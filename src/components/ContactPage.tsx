@@ -82,7 +82,7 @@ const ContactPage: FC = () => {
       {/* 1. SECTION HERO / TITRE */}
       {/* ======================================================= */}
       <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white pt-40 pb-24 md:pt-48 md:pb-32 overflow-hidden">
-        <Header variant="page" />
+        <Header />
         {/* Effets de fond similaires à la HomePage */}
         <div className="absolute inset-0 opacity-20">
           <div
