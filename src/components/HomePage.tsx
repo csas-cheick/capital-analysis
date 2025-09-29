@@ -18,7 +18,6 @@ import {
   ChevronRight,
   Fuel,
   Gauge,
-  DollarSign,
   Settings,
 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -212,7 +211,7 @@ const HomePage: FC = () => {
 
         <div className="absolute inset-0 bg-black opacity-60 z-10"></div>
 
-        <Header className="relative z-20" />
+        <Header />
 
         <div className="absolute inset-0 opacity-20 z-10">
           <div
