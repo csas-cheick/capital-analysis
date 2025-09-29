@@ -36,22 +36,24 @@ const AppHeader: FC<HeaderProps> = ({ variant = 'hero' }) => {
       href: "#activites",
       hasDropdown: true,
       dropdownItems: [
-        {
-          name: "Logiciel de gestion",
-          href: "/activites/logiciel-de-gestion",
-        },
-        {
+        {
           name: "Ingénierie financière",
           href: "/activites/ingenierie-financiere",
         },
+        {
+          name: "IT & Développement",
+          href: "/activites/departement-it-developpement",
+        },
+        {
+          name: "Etude & Conseil",
+          href: "/activites/etude-et-conseil",
+        },
+        
         {
           name: "Suivi et assistance comptable",
           href: "/activites/suivi-et-assistance-comptable",
         },
-        {
-          name: "Département IT & Développement",
-          href: "/activites/departement-it-developpement",
-        },
+        
       ],
     },
     { name: "Contact", href: "/contact", hasDropdown: false },
