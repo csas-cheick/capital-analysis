@@ -129,7 +129,7 @@ const GoalsPage: FC = () => {
                 <Banknote className="w-16 h-16 mx-auto mb-4" />
                 <p className="text-2xl font-light">
                   "Nous ne mesurons pas seulement les chiffres, nous
-                  construisons la **valeur**."
+                  construisons la valeur."
                 </p>
               </div>
             </div>

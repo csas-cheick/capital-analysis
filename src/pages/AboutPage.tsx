@@ -89,10 +89,10 @@ const AboutPage: FC = () => {
                 Une Expertise Fondée sur l'Impact
               </h2>
               <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                Créée il y a plus de cinq ans, **Capital Analysis** est née de la conviction que la performance des entreprises africaines repose sur la convergence entre une gestion financière rigoureuse et des solutions technologiques sur mesure.
+                Créée il y a deux ans, Capital Analysis est née de la conviction que la performance des entreprises africaines repose sur la convergence entre une gestion financière rigoureuse et des solutions technologiques sur mesure.
               </p>
               <p className="text-gray-600 text-lg leading-relaxed">
-                Nous accompagnons les PME et les grandes entreprises dans l'**optimisation de leurs processus** et la **sécurisation de leur croissance** grâce à notre double compétence unique en Ingénierie Financière et IT.
+                Nous accompagnons les PME et les grandes entreprises dans l'optimisation de leurs processus et la sécurisation de leur croissance grâce à notre double compétence unique en Ingénierie Financière et IT.
               </p>
             </div>
 
@@ -103,7 +103,7 @@ const AboutPage: FC = () => {
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">Notre Mission</h3>
                   <p className="text-gray-600">
-                    Fournir des **conseils stratégiques** et des **outils numériques innovants** qui garantissent la pérennité et l'expansion de nos clients en Afrique.
+                    Fournir des conseils stratégiques et des outils numériques innovants qui garantissent la pérennité et l'expansion de nos clients en Afrique.
                   </p>
                 </div>
               </div>

@@ -1,658 +1,650 @@
 import { FC, useState, useEffect } from "react";
 import {
-  ArrowRight,
-  BarChart3,
-  TrendingUp,
-  Users,
-  Banknote,
-  Star,
-  CheckCircle,
-  Award,
-  Target,
-  Zap,
-  Eye,
-  Quote,
-  Monitor,
-  ShieldCheck,
-  ChevronLeft,
-  ChevronRight,
-  Fuel,
-  Gauge,
-  Settings,
+  ArrowRight,
+  BarChart3,
+  TrendingUp,
+  Users,
+  Banknote,
+  Star,
+  CheckCircle,
+  Award,
+  Target,
+  Zap,
+  Eye,
+  Quote,
+  Monitor,
+  ShieldCheck,
+  ChevronLeft,
+  ChevronRight,
+  Fuel,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "../components/header/Header";
-import GasStationIcon from '../icons/station_service_carburant.svg.svg'
 import backgroundVideo from "../assets/video/capital_petroleum_video.mp4";
 
 const HomePage: FC = () => {
-  const [activeService, setActiveService] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
+  const [activeService, setActiveService] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
 
-  const heroSlides = [
-    {
-      tag: "Solutions Financières & IT de Croissance",
-      titleTop: "La Perspective de",
-      titleBottom: "Vos Chiffres",
-      description:
-        "Transformez vos données en décisions stratégiques avec nos solutions d'ingénierie financière, nos logiciels de gestion sur mesure et notre expertise IT de pointe.",
-      color: "from-blue-400 to-cyan-400",
-      cta: "Démarrer la Transformation",
-      statIcon: Zap,
-      visualContent: "default",
-    },
-    {
-      tag: "IT & Développement",
-      titleTop: "CapitalPetroleum :",
-      titleBottom: "Maîtrise de Station",
-      description:
-        "Automatisez la gestion de votre station-service : stocks, pompes, ventes et reporting financier, pour une efficacité opérationnelle maximale.",
-      color: "from-red-400 to-orange-400",
-      cta: "Découvrir Capital Petroleum",
-      statIcon: Monitor,
-      visualContent: "capital_petroleum",
-    },
-  ];
+  const heroSlides = [
+    {
+      tag: "Solutions Financières & IT de Croissance",
+      titleTop: "La Perspective de",
+      titleBottom: "Vos Chiffres",
+      description:
+        "Transformez vos données en décisions stratégiques avec nos solutions d'ingénierie financière, nos logiciels de gestion sur mesure et notre expertise IT de pointe.",
+      color: "from-blue-400 to-cyan-400",
+      cta: "Démarrer la Transformation",
+      statIcon: Zap,
+      visualContent: "default",
+    },
+    {
+      tag: "IT & Développement",
+      titleTop: "CapitalPetroleum :",
+      titleBottom: "Maîtrise de Station",
+      description:
+        "Automatisez la gestion de votre station-service : stocks, pompes, ventes et reporting financier, pour une efficacité opérationnelle maximale.",
+      color: "from-green-400 to-orange-400",
+      cta: "Découvrir Capital Petroleum",
+      statIcon: Monitor,
+      visualContent: "capital_petroleum",
+    },
+  ];
 
-  const goToNextHeroSlide = () => {
-    setCurrentHeroSlide((prev) => (prev + 1) % heroSlides.length);
-  };
+  const goToNextHeroSlide = () => {
+    setCurrentHeroSlide((prev) => (prev + 1) % heroSlides.length);
+  };
 
-  const goToPrevHeroSlide = () => {
-    setCurrentHeroSlide(
-      (prev) => (prev - 1 + heroSlides.length) % heroSlides.length
-    );
-  };
+  const goToPrevHeroSlide = () => {
+    setCurrentHeroSlide(
+      (prev) => (prev - 1 + heroSlides.length) % heroSlides.length
+    );
+  };
 
-  const testimonials = [
-    {
-      name: "Amadou Diallo",
-      position: "Directeur Général, TechCorp Niger",
-      content:
-        "Capital Analysis a révolutionné notre gestion financière. Leur expertise en ingénierie financière nous a permis d'optimiser nos flux de trésorerie de 40%.",
-      rating: 5,
-      avatar: "AD",
-    },
-    {
-      name: "Fatima Ousmane",
-      position: "CEO, InnovateLab",
-      content:
-        "L'équipe IT de Capital Analysis a développé notre plateforme e-commerce en un temps record. Leur professionnalisme et leur créativité nous ont impressionnés.",
-      rating: 5,
-      avatar: "FO",
-    },
-    {
-      name: "Ibrahim Moussa",
-      position: "CFO, AgriTech Solutions",
-      content:
-        "Grâce à leurs logiciels de gestion sur mesure, nous avons automatisé 70% de nos processus. Un gain de temps et d'efficacité considérable.",
-      rating: 5,
-      avatar: "IM",
-    },
-  ];
+  const testimonials = [
+    {
+      name: "Amadou Diallo",
+      position: "Directeur Général, TechCorp Niger",
+      content:
+        "Capital Analysis a révolutionné notre gestion financière. Leur expertise en ingénierie financière nous a permis d'optimiser nos flux de trésorerie de 40%.",
+      rating: 5,
+      avatar: "AD",
+    },
+    {
+      name: "Fatima Ousmane",
+      position: "CEO, InnovateLab",
+      content:
+        "L'équipe IT de Capital Analysis a développé notre plateforme e-commerce en un temps record. Leur professionnalisme et leur créativité nous ont impressionnés.",
+      rating: 5,
+      avatar: "FO",
+    },
+    {
+      name: "Ibrahim Moussa",
+      position: "CFO, AgriTech Solutions",
+      content:
+        "Grâce à leurs logiciels de gestion sur mesure, nous avons automatisé 70% de nos processus. Un gain de temps et d'efficacité considérable.",
+      rating: 5,
+      avatar: "IM",
+    },
+  ];
 
-  const goToNextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
+  const goToNextTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  };
 
-  const goToPrevTestimonial = () => {
-    setCurrentTestimonial(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length
-    );
-  };
+  const goToPrevTestimonial = () => {
+    setCurrentTestimonial(
+      (prev) => (prev - 1 + testimonials.length) % testimonials.length
+    );
+  };
 
-  useEffect(() => {
-    setIsVisible(true);
+  useEffect(() => {
+    setIsVisible(true);
 
-    const testimonialInterval = setInterval(() => {
-      goToNextTestimonial();
-    }, 5000);
+    const testimonialInterval = setInterval(() => {
+      goToNextTestimonial();
+    }, 5000);
 
-    const heroInterval = setInterval(() => {
-      goToNextHeroSlide();
-    }, 5000);
+    const heroInterval = setInterval(() => {
+      goToNextHeroSlide();
+    }, 5000);
 
-    return () => {
-      clearInterval(testimonialInterval);
-      clearInterval(heroInterval);
-    };
-  }, []);
+    return () => {
+      clearInterval(testimonialInterval);
+      clearInterval(heroInterval);
+    };
+  }, []);
 
-  const services = [
-    {
-      icon: Banknote,
-      title: "Ingénierie Financière",
-      description:
-        "Nous accompagnons entreprises, investisseurs et institutions dans la conception de solutions financières innovantes et adaptées, alliant rigueur analytique et vision stratégique.",
-      features: [
-        "Modélisation et prévisions",
-        "Structuration financière",
-        "Analyse et optimisation de la performance",
-      ],
-      color: "from-emerald-500 to-green-400",
-      bgColor: "bg-emerald-500/10",
-    },
-    {
-      icon: Monitor,
-      title: "IT & Développement",
-      description:
-        "Logiciel de gestion, création de plateformes digitales performantes et intégration de solutions technologiques avancées.",
-      features: [
-        "Logiciel de gestion : SAGE",
-        "Plateforme de gestion des stations service : CapitalPetroleum",
-        "Fourniture & Installation de matériel informatique",
-      ],
-      color: "from-red-500 to-orange-400",
-      bgColor: "bg-red-500/10",
-    },
-    {
-      icon: BarChart3,
-      title: "Etude & Conseil",
-      description:
-        "Des analyses approfondies et des recommandations stratégiques pour guider vos décisions et maximiser votre impact sur le marché.",
-      features: [],
-      color: "from-blue-500 to-cyan-400",
-      bgColor: "bg-blue-500/10",
-    },
-    {
-      icon: Users,
-      title: "Suivi & Assistance Comptable",
-      description:
-        "Accompagnement complet de votre comptabilité avec des experts dédiés à votre réussite et conformité.",
-      features: [
-        "Tenue de comptabilité",
-        "Déclarations fiscales",
-        "Audit contrôle de gestion",
-        "Conseil juridique",
-      ],
-      color: "from-purple-500 to-pink-400",
-      bgColor: "bg-purple-500/10",
-    },
-  ];
+  const services = [
+    {
+      icon: Banknote,
+      title: "Ingénierie Financière",
+      description:
+        "Nous accompagnons entreprises, investisseurs et institutions dans la conception de solutions financières innovantes et adaptées, alliant rigueur analytique et vision stratégique.",
+      features: [
+        "Modélisation et prévisions",
+        "Structuration financière",
+        "Analyse et optimisation de la performance",
+      ],
+      color: "from-emerald-500 to-green-400",
+      bgColor: "bg-emerald-500/10",
+    },
+    {
+      icon: Monitor,
+      title: "IT & Développement",
+      description:
+        "Logiciel de gestion, création de plateformes digitales performantes et intégration de solutions technologiques avancées.",
+      features: [
+        "Logiciel de gestion : SAGE",
+        "Plateforme de gestion des stations service : CapitalPetroleum",
+        "Fourniture & Installation de matériel informatique",
+      ],
+      color: "from-red-500 to-orange-400",
+      bgColor: "bg-red-500/10",
+    },
+    {
+      icon: BarChart3,
+      title: "Etude & Conseil",
+      description:
+        "Des analyses approfondies et des recommandations stratégiques pour guider vos décisions et maximiser votre impact sur le marché.",
+      features: [],
+      color: "from-blue-500 to-cyan-400",
+      bgColor: "bg-blue-500/10",
+    },
+    {
+      icon: Users,
+      title: "Suivi & Assistance Comptable",
+      description:
+        "Accompagnement complet de votre comptabilité avec des experts dédiés à votre réussite et conformité.",
+      features: [
+        "Tenue de comptabilité",
+        "Déclarations fiscales",
+        "Audit contrôle de gestion",
+        "Conseil juridique",
+      ],
+      color: "from-purple-500 to-pink-400",
+      bgColor: "bg-purple-500/10",
+    },
+  ];
 
-  const stats = [
-    { number: "2", label: "Développements", icon: Users },
-    { number: "98%", label: "Taux de Satisfaction", icon: Star },
-    { number: "24/7", label: "Support Client", icon: Award },
-  ];
+  const stats = [
+    { number: "2", label: "Développements", icon: Users },
+    { number: "98%", label: "Taux de Satisfaction", icon: Star },
+    { number: "24/7", label: "Support Client", icon: Award },
+    { number: "100%", label: "Clients Satisfaits", icon: CheckCircle },
+  ];
 
-  const achievements = [
-    {
-      title: "Innovation Technologique",
-      description: "Solutions digitales primées en Afrique de l'Ouest",
-    },
-    {
-      title: "Équipe Experte",
-      description:
-        "Consultants certifiés et formés aux dernières technologies",
-    },
-  ];
+  const achievements = [
+    {
+      title: "Innovation Technologique",
+      description: "Solutions digitales primées en Afrique de l'Ouest",
+    },
+    {
+      title: "Équipe Experte",
+      description:
+        "Consultants certifiés et formés aux dernières technologies",
+    },
+  ];
 
-  const activeSlide = heroSlides[currentHeroSlide];
+  const activeSlide = heroSlides[currentHeroSlide];
 
-  return (
-    <div className="min-h-screen bg-white">
-      {/* SECTION HERO */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
-        {/* Vidéo en arrière-plan */}
-        {activeSlide.visualContent === "capital_petroleum" && (
-          <video
-            className="absolute inset-0 w-full h-full object-cover z-0 opacity-10"
-            src={backgroundVideo}
-            autoPlay
-            loop
-            muted
-            playsInline
-            controls={false}
-          ></video>
-        )}
+  return (
+    <div className="min-h-screen bg-white">
+      {/* SECTION HERO */}
+      <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
+        {/* Vidéo en arrière-plan */}
+        {activeSlide.visualContent === "capital_petroleum" && (
+          <video
+            className="absolute inset-0 w-full h-full object-cover z-0 opacity-10"
+            src={backgroundVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            controls={false}
+          ></video>
+        )}
 
-        <div className="absolute inset-0 bg-black opacity-60 z-10"></div>
+        <div className="absolute inset-0 bg-black opacity-60 z-10"></div>
 
-        <Header />
+        <Header />
 
-        <div className="absolute inset-0 opacity-20 z-10">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `
-              radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.3) 0%, transparent 50%),
-              radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.2) 0%, transparent 50%)
-            `,
-            }}
-          ></div>
-        </div>
-        <div className="absolute top-20 left-10 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl animate-pulse z-10"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000 z-10"></div>
+        <div className="absolute inset-0 opacity-20 z-10">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `
+              radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.3) 0%, transparent 50%),
+              radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.2) 0%, transparent 50%)
+            `,
+            }}
+          ></div>
+        </div>
+        {/* Éléments de décoration responsive */}
+        <div className="absolute top-4 left-2 w-16 h-16 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-blue-500/10 rounded-full blur-3xl animate-pulse z-10"></div>
+        <div className="absolute bottom-4 right-2 w-20 h-20 sm:w-32 sm:h-32 lg:w-40 lg:h-40 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000 z-10"></div>
 
-        <div className="relative container mx-auto px-6 pt-40 pb-32 z-20">
-          <button
-            onClick={goToPrevHeroSlide}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-all duration-300 z-30 hidden md:block"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
+        {/* Container principal responsive */}
+        <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 sm:pt-32 sm:pb-16 lg:pt-40 lg:pb-32 z-20">
+          {/* Boutons de navigation adaptés */}
+          <button
+            onClick={goToPrevHeroSlide}
+            className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 p-2 sm:p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-all duration-300 z-30 hidden md:block"
+          >
+            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+          </button>
 
-          <button
-            onClick={goToNextHeroSlide}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-all duration-300 z-30 hidden md:block"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
+          <button
+            onClick={goToNextHeroSlide}
+            className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 p-2 sm:p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-all duration-300 z-30 hidden md:block"
+          >
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+          </button>
 
-          <div className={`grid lg:grid-cols-2 gap-12 items-center`}>
-            <div
-              key={currentHeroSlide}
-              className={`transition-all duration-1000 ${
-                isVisible
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 -translate-x-10"
-              }`}
-            >
-              <div className="inline-flex items-center bg-blue-600/20 text-blue-300 px-4 py-2 rounded-full text-sm font-medium mb-6 backdrop-blur-sm border border-blue-500/30 shadow-md">
-                <activeSlide.statIcon className="w-4 h-4 mr-2" />
-                {activeSlide.tag}
-              </div>
+          {/* Layout responsive avec meilleurs breakpoints */}
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
+            <div
+              key={currentHeroSlide}
+              className={`transition-all duration-1000 ${
+                isVisible
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 -translate-x-10"
+              }`}
+            >
+              <div className="inline-flex items-center bg-blue-600/20 text-blue-300 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-3 sm:mb-4 lg:mb-6 backdrop-blur-sm border border-blue-500/30 shadow-md">
+                <activeSlide.statIcon className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
+                <span className="truncate">{activeSlide.tag}</span>
+              </div>
 
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-cyan-200 bg-clip-text text-transparent leading-tight">
-                {activeSlide.titleTop}
-                <span
-                  className={`block text-transparent bg-gradient-to-r ${activeSlide.color} bg-clip-text`}
-                >
-                  {activeSlide.titleBottom}
-                </span>
-              </h1>
+              {/* Titre avec meilleure progression responsive */}
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 lg:mb-6 bg-gradient-to-r from-white via-blue-100 to-cyan-200 bg-clip-text text-transparent leading-tight">
+                {activeSlide.titleTop}
+                <span
+                  className={`block text-transparent bg-gradient-to-r ${activeSlide.color} bg-clip-text`}
+                >
+                  {activeSlide.titleBottom}
+                </span>
+              </h1>
 
-              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                {activeSlide.description}
-              </p>
+              {/* Description responsive */}
+              <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-gray-300 mb-4 sm:mb-6 lg:mb-8 leading-relaxed">
+                {activeSlide.description}
+              </p>
 
-              {/* Bouton CTA */}
-              <div className="mb-10">
-                <Link to="/contact">
-                  <button className="group bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl shadow-blue-500/30">
-                    <span className="flex items-center text-lg">
-                      {activeSlide.cta}
-                      <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </button>
-                </Link>
-              </div>
+              {/* Bouton CTA responsive */}
+              <div className="mb-6 sm:mb-8 lg:mb-10">
+                <Link to="/contact">
+                  <button className="group bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white px-4 py-2 sm:px-6 sm:py-2.5 lg:px-8 lg:py-3 rounded-lg sm:rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl shadow-blue-500/30 w-full sm:w-auto">
+                    <span className="flex items-center justify-center text-sm sm:text-base lg:text-lg">
+                      {activeSlide.cta}
+                      <ArrowRight className="w-4 h-4 sm:w-4 sm:h-4 lg:w-5 lg:h-5 ml-2 lg:ml-3 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </button>
+                </Link>
+              </div>
 
-              {/* Quick Stats */}
-              <div className="grid grid-cols-3 divide-x divide-gray-700/50 border border-gray-700/50 rounded-xl p-3 bg-white/5 backdrop-blur-sm">
-                {stats.slice(0, 3).map((stat, index) => (
-                  <div key={index} className="text-center px-4">
-                    <div className="text-2xl md:text-3xl font-bold text-white mb-1">
-                      {stat.number}
-                    </div>
-                    <div className="text-gray-400 text-xs md:text-sm">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+              {/* Stats grid responsive */}
+              <div className="grid grid-cols-3 divide-x divide-gray-700/50 border border-gray-700/50 rounded-lg sm:rounded-xl p-2 sm:p-3 bg-white/5 backdrop-blur-sm">
+                {stats.slice(0, 3).map((stat, index) => (
+                  <div key={index} className="text-center px-1 sm:px-2 lg:px-4">
+                    <div className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-white mb-0.5 sm:mb-1">
+                      {stat.number}
+                    </div>
+                    <div className="text-gray-400 text-xs sm:text-xs lg:text-sm leading-tight">
+                      {stat.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-            {/* Colonne Visuelle (Droite) - Dynamique */}
-            <div
-              key={`${currentHeroSlide}-visual`}
-              className={`relative h-full transition-all duration-1000 delay-300 ${
-                isVisible
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 translate-x-10"
-              }`}
-            >
-              <div className="relative w-full h-80 lg:h-96 flex items-center justify-center">
-                {activeSlide.visualContent === "capital_petroleum" ? (
-                  <>
-                    {/* Contenu visuel pour Capital Petroleum */}
+            {/* Colonne Visuelle responsive */}
+            <div
+              key={`${currentHeroSlide}-visual`}
+              className={`relative h-48 sm:h-64 md:h-72 lg:h-80 xl:h-96 transition-all duration-1000 delay-300 ${
+                isVisible
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 translate-x-10"
+              } hidden md:block lg:block`}
+            >
+              <div className="relative w-full h-full flex items-center justify-center">
+                {activeSlide.visualContent === "capital_petroleum" ? (
+                  <>
+                    {/* Contenu visuel pour Capital Petroleum */}
+                    {/* Tailles du badge ajustées pour le responsive (si on voulait le montrer, ici on le cache) */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-48 h-48 md:w-68 md:h-68 bg-slate-700/80 backdrop-blur-md rounded-full border border-green-500/50 shadow-2xl shadow-green-500/30 p-4 md:p-8 flex flex-col items-center justify-center text-center transform rotate-3 animate-pulse-slow">
+                        <Fuel className="w-16 h-16 md:w-20 md:h-20 text-green-400 mb-1 md:mb-2" />
+                        <span className="text-white font-extrabold text-xl md:text-3xl">CapitalPetroleum</span>
+                        <span className="text-green-300 text-xs md:text-sm mt-1">CapitalPetroleum</span>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
                     {/* Contenu visuel par défaut (diagrammes abstraits) */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <img
-                        src={GasStationIcon}
-                        alt="Icône de Capital Petroleum"
-                        className="w-[200px] h-[200px] lg:w-[500px] lg:h-[500px] transform transition-transform duration-1000 ease-out hover:scale-105"
-                      />
-                    </div>
-                    {/* Pompe à essence */}
-                    <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-slate-700/70 backdrop-blur-md rounded-full border border-red-400/30 shadow-2xl p-4 flex flex-col items-center justify-center text-center transform rotate-6 animate-float">
-                      <Fuel className="w-8 h-8 text-red-400 mb-1" />
-                      <span className="text-white font-bold text-xl">Pompe</span>
-                      <span className="text-gray-400 text-xs">Gestion</span>
-                    </div>
+                    <div className="absolute inset-0 flex items-end justify-center perspective-1000">
+                      {/* Les barres de graphique sont OK car leur taille est absolue */}
+                      <div className="w-6 h-20 bg-blue-500 rounded-t-lg shadow-blue-500/50 transform rotate-x-10 rotate-y-5 animate-pulse-slow"></div>
+                      <div className="w-6 h-40 bg-cyan-400 rounded-t-lg shadow-cyan-400/50 transform rotate-x-10 rotate-y-0 ml-4 animate-pulse-slow delay-100"></div>
+                      <div className="w-6 h-28 bg-emerald-400 rounded-t-lg shadow-emerald-400/50 transform rotate-x-10 rotate-y-3 ml-4 animate-pulse-slow delay-200"></div>
+                      <div className="w-6 h-56 bg-blue-400 rounded-t-lg shadow-blue-400/50 transform rotate-x-10 rotate-y-7 ml-4 animate-pulse-slow delay-300"></div>
+                      <div className="w-6 h-36 bg-cyan-300 rounded-t-lg shadow-cyan-300/50 transform rotate-x-10 rotate-y-2 ml-4 animate-pulse-slow delay-400"></div>
+                    </div>
 
-                    {/* Pistolet/Tuyau */}
-                    <div className="absolute bottom-1/4 right-1/4 w-32 h-32 bg-slate-700/70 backdrop-blur-md rounded-xl border border-orange-400/30 shadow-2xl p-3 flex flex-col items-center justify-center text-center transform -rotate-3 animate-float-delay">
-                      <ShieldCheck className="w-8 h-8 text-orange-400 mb-1" /> {/* Icône de pistolet, ou alternative */}
-                      <span className="text-white font-bold text-xl">99%</span>
-                      <span className="text-gray-400 text-xs">Sécurité</span>
-                    </div>
+                    {/* Badges flottants responsives */}
+                    <div className="absolute top-1/4 left-1/4 w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 bg-slate-700/70 backdrop-blur-md rounded-full border border-blue-400/30 shadow-2xl p-2 sm:p-3 lg:p-4 flex flex-col items-center justify-center text-center transform rotate-6 animate-float">
+                      <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 xl:w-8 xl:h-8 text-green-400 mb-0.5 lg:mb-1" />
+                      <span className="text-white font-bold text-sm sm:text-base lg:text-lg xl:text-xl">+32%</span>
+                      <span className="text-gray-400 text-xs">Croissance</span>
+                    </div>
 
-                    {/* Jauge de carburant */}
-                    <div className="absolute top-10 right-10 w-32 h-32 bg-slate-700/70 backdrop-blur-md rounded-full border border-yellow-400/30 shadow-2xl p-3 flex flex-col items-center justify-center text-center transform -rotate-12 animate-float-delay-2">
-                      <Gauge className="w-7 h-7 text-yellow-400 mb-1" />
-                      <span className="text-white font-bold text-xl">Stock</span>
-                      <span className="text-gray-400 text-xs">Réel</span>
-                    </div>
+                    <div className="absolute bottom-1/4 right-1/4 w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 bg-slate-700/70 backdrop-blur-md rounded-xl border border-emerald-400/30 shadow-2xl p-2 sm:p-3 lg:p-4 flex flex-col items-center justify-center text-center transform -rotate-3 animate-float-delay">
+                      <Banknote className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 xl:w-8 xl:h-8 text-emerald-400 mb-0.5 lg:mb-1" />
+                      <span className="text-white font-bold text-sm sm:text-base lg:text-lg xl:text-xl">€</span>
+                      <span className="text-gray-400 text-xs">Optimisation</span>
+                    </div>
 
-                    {/* Élément Flottant : Gestion / Settings */}
-                    <div className="absolute bottom-10 left-10 w-32 h-32 bg-slate-700/70 backdrop-blur-md rounded-xl border border-purple-400/30 shadow-2xl p-3 flex flex-col items-center justify-center text-center transform rotate-12 animate-float-delay-3">
-                      <Settings className="w-7 h-7 text-purple-400 mb-1" />
-                      <span className="text-white font-bold text-xl">90%</span>
-                      <span className="text-gray-400 text-xs">Paramétré</span>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    {/* Contenu visuel par défaut (diagrammes abstraits) */}
-                    <div className="absolute inset-0 flex items-end justify-center perspective-1000">
-                      <div className="w-6 h-20 bg-blue-500 rounded-t-lg shadow-blue-500/50 transform rotate-x-10 rotate-y-5 animate-pulse-slow"></div>
-                      <div className="w-6 h-40 bg-cyan-400 rounded-t-lg shadow-cyan-400/50 transform rotate-x-10 rotate-y-0 ml-4 animate-pulse-slow delay-100"></div>
-                      <div className="w-6 h-28 bg-emerald-400 rounded-t-lg shadow-emerald-400/50 transform rotate-x-10 rotate-y-3 ml-4 animate-pulse-slow delay-200"></div>
-                      <div className="w-6 h-56 bg-blue-400 rounded-t-lg shadow-blue-400/50 transform rotate-x-10 rotate-y-7 ml-4 animate-pulse-slow delay-300"></div>
-                      <div className="w-6 h-36 bg-cyan-300 rounded-t-lg shadow-cyan-300/50 transform rotate-x-10 rotate-y-2 ml-4 animate-pulse-slow delay-400"></div>
-                    </div>
+                    <div className="absolute top-5 right-5 w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 bg-slate-700/70 backdrop-blur-md rounded-full border border-cyan-400/30 shadow-2xl p-2 sm:p-3 lg:p-4 flex flex-col items-center justify-center text-center transform -rotate-12 animate-float-delay-2">
+                      <Monitor className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 xl:w-7 xl:h-7 text-cyan-400 mb-0.5 lg:mb-1" />
+                      <span className="text-white font-bold text-sm sm:text-base lg:text-lg xl:text-xl">90%</span>
+                      <span className="text-gray-400 text-xs">Déploiement</span>
+                    </div>
 
-                    <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-slate-700/70 backdrop-blur-md rounded-full border border-blue-400/30 shadow-2xl p-4 flex flex-col items-center justify-center text-center transform rotate-6 animate-float">
-                      <TrendingUp className="w-8 h-8 text-green-400 mb-1" />
-                      <span className="text-white font-bold text-xl">+32%</span>
-                      <span className="text-gray-400 text-xs">Croissance</span>
-                    </div>
+                    <div className="absolute bottom-5 left-5 w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 bg-slate-700/70 backdrop-blur-md rounded-xl border border-red-400/30 shadow-2xl p-2 sm:p-3 lg:p-4 flex flex-col items-center justify-center text-center transform rotate-12 animate-float-delay-3">
+                      <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 xl:w-7 xl:h-7 text-red-400 mb-0.5 lg:mb-1" />
+                      <span className="text-white font-bold text-sm sm:text-base lg:text-lg xl:text-xl">99%</span>
+                      <span className="text-gray-400 text-xs">Sécurité</span>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
 
-                    <div className="absolute bottom-1/4 right-1/4 w-32 h-32 bg-slate-700/70 backdrop-blur-md rounded-xl border border-emerald-400/30 shadow-2xl p-3 flex flex-col items-center justify-center text-center transform -rotate-3 animate-float-delay">
-                      <Banknote className="w-8 h-8 text-emerald-400 mb-1" />
-                      <span className="text-white font-bold text-xl">%</span>
-                      <span className="text-gray-400 text-xs">Optimisation</span>
-                    </div>
+            {/* Indicateurs de slide responsive */}
+            <div className="absolute bottom-3 sm:bottom-4 lg:bottom-10 left-1/2 transform -translate-x-1/2 flex space-x-1.5 sm:space-x-2 z-30">
+              {heroSlides.map((_, index) => (
+                <div
+                  key={index}
+                  className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                    index === currentHeroSlide
+                      ? "bg-white w-4 sm:w-6"
+                      : "bg-gray-500 hover:bg-gray-300"
+                  }`}
+                  onClick={() => setCurrentHeroSlide(index)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
-                    <div className="absolute top-10 right-10 w-32 h-32 bg-slate-700/70 backdrop-blur-md rounded-full border border-cyan-400/30 shadow-2xl p-3 flex flex-col items-center justify-center text-center transform -rotate-12 animate-float-delay-2">
-                      <Monitor className="w-7 h-7 text-cyan-400 mb-1" />
-                      <span className="text-white font-bold text-xl">90%</span>
-                      <span className="text-gray-400 text-xs">Déploiement</span>
-                    </div>
+      {/* Services Section Responsive */}
+      <section className="py-12 sm:py-16 lg:py-20 xl:py-24 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+            <div className="inline-flex items-center bg-blue-100 text-blue-700 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-3 sm:mb-4 lg:mb-6">
+              <Target className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
+              Nos Expertises
+            </div>
+            {/* Titre responsive progressif */}
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-6">
+              Des Solutions
+              <span className="block text-transparent bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text">
+                Sur Mesure
+              </span>
+            </h2>
+            {/* Description responsive */}
+            <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Découvrez notre gamme complète de services conçus pour accélérer
+              votre croissance et optimiser vos performances financières et
+              opérationnelles.
+            </p>
+           </div>
 
-                    <div className="absolute bottom-10 left-10 w-32 h-32 bg-slate-700/70 backdrop-blur-md rounded-xl border border-red-400/30 shadow-2xl p-3 flex flex-col items-center justify-center text-center transform rotate-12 animate-float-delay-3">
-                      <ShieldCheck className="w-7 h-7 text-red-400 mb-1" />
-                      <span className="text-white font-bold text-xl">99%</span>
-                      <span className="text-gray-400 text-xs">Sécurité</span>
-                    </div>
-                  </>
-                )}
-              </div>
-            </div>
+          {/* Grille services responsive améliorée */}
+          <div className="grid gap-4 sm:gap-6 lg:gap-8 md:grid-cols-2">
+            {services.map((service, index) => (
+              <div
+                key={index}
+                className={`group bg-white rounded-lg sm:rounded-xl lg:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:-translate-y-1 sm:hover:-translate-y-2 border-l-4 ${
+                  activeService === index
+                    ? "border-blue-500 shadow-2xl"
+                    : "border-transparent"
+                }`}
+                onMouseEnter={() => setActiveService(index)}
+              >
+                <div className="flex items-start space-x-3 sm:space-x-4 lg:space-x-6">
+                  <div
+                    className={`w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16 bg-gradient-to-r ${service.color} rounded-lg lg:rounded-xl xl:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg flex-shrink-0`}
+                  >
+                    <service.icon className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 xl:w-8 xl:h-8 text-white" />
+                  </div>
 
-            {/* Indicateurs de Slide Hero (Clicables) */}
-            <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex space-x-2 z-30">
-              {heroSlides.map((_, index) => (
-                <div
-                  key={index}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    index === currentHeroSlide
-                      ? "bg-white w-6"
-                      : "bg-gray-500 hover:bg-gray-300"
-                  } cursor-pointer`}
-                  onClick={() => setCurrentHeroSlide(index)}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3 group-hover:text-blue-600 transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-600 mb-3 lg:mb-4 leading-relaxed text-xs sm:text-sm lg:text-base">
+                      {service.description}
+                    </p>
 
-      {/* Services Section (Inchangée) */}
-      <section className="py-24 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <Target className="w-4 h-4 mr-2" />
-              Nos Expertises
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Des Solutions
-              <span className="block text-transparent bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text">
-                Sur Mesure
-              </span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Découvrez notre gamme complète de services conçus pour accélérer
-              votre croissance et optimiser vos performances financières et
-              opérationnelles.
-            </p>
-           </div>
+                    {service.features.length > 0 && (
+                      <div className="grid grid-cols-1 gap-1 lg:gap-2 mb-3 lg:mb-4">
+                        {service.features.slice(0, 3).map(
+                          (feature, featureIndex) => (
+                            <div
+                              key={featureIndex}
+                              className="flex items-start text-xs lg:text-sm text-gray-700"
+                            >
+                              <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                              <span className="leading-tight">{feature}</span>
+                            </div>
+                          )
+                        )}
+                      </div>
+                    )}
 
-          <div className="grid lg:grid-cols-2 gap-8">
-            {services.map((service, index) => (
-              <div
-                key={index}
-                className={`group bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:-translate-y-2 border-l-4 ${
-                  activeService === index
-                    ? "border-blue-500 shadow-2xl"
-                    : "border-transparent"
-                }`}
-                onMouseEnter={() => setActiveService(index)}
-              >
-                <div className="flex items-start space-x-6">
-                  <div
-                    className={`w-16 h-16 bg-gradient-to-r ${service.color} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}
-                  >
-                    <service.icon className="w-8 h-8 text-white" />
-                  </div>
+                    <Link
+                      to={`/activites/${service.title
+                        .toLowerCase()
+                        .replace(/\s/g, "-")}`}
+                    >
+                      <button className="group/btn flex items-center text-blue-600 hover:text-blue-700 font-semibold transition-colors text-xs sm:text-sm">
+                        En savoir plus
+                        <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-600 mb-4 leading-relaxed text-sm">
-                      {service.description}
-                    </p>
+      {/* Section Pourquoi Nous Choisir Responsive */}
+      <section className="py-12 sm:py-16 lg:py-20 xl:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Layout responsive amélioré */}
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 xl:gap-16 items-start">
+            <div className="order-2 lg:order-1">
+              <div className="inline-flex items-center bg-emerald-100 text-emerald-700 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-3 sm:mb-4 lg:mb-6">
+                <Eye className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
+                Notre Vision
+              </div>
 
-                    <div className="grid grid-cols-1 gap-2 mb-6">
-                      {service.features.slice(0, 3).map(
-                        (feature, featureIndex) => (
-                          <div
-                            key={featureIndex}
-                            className="flex items-center text-sm text-gray-700"
-                          >
-                            <CheckCircle className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
-                            {feature}
-                          </div>
-                        )
-                      )}
-                    </div>
+              {/* Titre responsive progressif */}
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 lg:mb-8">
+                Pourquoi Nous
+                <span className="block text-transparent bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text">
+                  Choisir ?
+                </span>
+              </h2>
 
-                    <Link
-                      to={`/activites/${service.title
-                        .toLowerCase()
-                        .replace(/\s/g, "-")}`}
-                    >
-                      <button className="group/btn flex items-center text-blue-600 hover:text-blue-700 font-semibold transition-colors text-sm">
-                        En savoir plus
-                        <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                      </button>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+              {/* Description responsive */}
+              <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-gray-600 mb-4 sm:mb-6 lg:mb-8 leading-relaxed">
+                Chez Capital Analysis, nous combinons expertise technique,
+                innovation et accompagnement personnalisé pour transformer vos
+                défis en opportunités de croissance durable.
+              </p>
 
-      {/* Why Choose Us Section (Inchangée) */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            <div>
-              <div className="inline-flex items-center bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
-                <Eye className="w-4 h-4 mr-2" />
-                Notre Vision
-              </div>
+              <div className="space-y-4 sm:space-y-6 lg:space-y-8">
+                {achievements.map((achievement, index) => (
+                  <div key={index} className="flex items-start space-x-3 sm:space-x-4 group">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-lg lg:rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                      <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <h4 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 mb-1 lg:mb-2">
+                        {achievement.title}
+                      </h4>
+                      <p className="text-xs sm:text-sm lg:text-base text-gray-600 leading-relaxed">{achievement.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
-                Pourquoi Nous
-                <span className="block text-transparent bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text">
-                  Choisir ?
-                </span>
-              </h2>
+            <div className="relative order-1 lg:order-2">
+              {/* Stats Grid responsive améliorée */}
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:gap-6 xl:gap-8">
+                {stats.map((stat, index) => (
+                  <div
+                    key={index}
+                    className="bg-gradient-to-br from-white to-gray-50 rounded-lg sm:rounded-xl lg:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300 group text-center border border-gray-100"
+                  >
+                    <div
+                      className={`w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 xl:w-16 xl:h-16 bg-gradient-to-r ${
+                        index === 0
+                          ? "from-blue-500 to-cyan-400"
+                          : index === 1
+                          ? "from-emerald-500 to-green-400"
+                          : index === 2
+                          ? "from-purple-500 to-pink-400"
+                          : "from-orange-500 to-yellow-400"
+                      } rounded-lg lg:rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-3 lg:mb-4 xl:mb-6 group-hover:scale-110 transition-transform`}
+                    >
+                      <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 xl:w-8 xl:h-8 text-white" />
+                    </div>
+                    <div className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-1 sm:mb-2 lg:mb-3">
+                      {stat.number}
+                    </div>
+                    <div className="text-gray-600 text-xs sm:text-sm lg:text-base leading-relaxed">
+                      {stat.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
 
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Chez Capital Analysis, nous combinons expertise technique,
-                innovation et accompagnement personnalisé pour transformer vos
-                défis en opportunités de croissance durable.
-              </p>
+              {/* Badge flottant responsive */}
+              <div className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 lg:-top-4 lg:-right-4 xl:-top-6 xl:-right-6 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-2 py-1 sm:px-3 sm:py-1 lg:px-4 lg:py-2 rounded-full text-xs sm:text-xs lg:text-sm font-bold shadow-lg animate-bounce">
+                #1 au Niger
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              <div className="space-y-8">
-                {achievements.map((achievement, index) => (
-                  <div key={index} className="flex items-start space-x-4 group">
-                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                      <CheckCircle className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                        {achievement.title}
-                      </h4>
-                      <p className="text-gray-600">{achievement.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+      {/* Section Témoignages Responsive */}
+      <section className="py-12 sm:py-16 lg:py-20 xl:py-24 bg-gradient-to-r from-blue-50 to-cyan-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+            <div className="inline-flex items-center bg-blue-100 text-blue-700 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-3 sm:mb-4 lg:mb-6">
+              <Quote className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
+              Témoignages Clients
+            </div>
+            {/* Titre responsive progressif */}
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-6">
+              Ils Nous Font
+              <span className="block text-transparent bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text">
+                Confiance
+              </span>
+            </h2>
+          </div>
 
-            <div className="relative">
-              {/* Stats Grid */}
-              <div className="grid grid-cols-2 gap-8">
-                {stats.map((stat, index) => (
-                  <div
-                    key={index}
-                    className="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group text-center border border-gray-100"
-                  >
-                    <div
-                      className={`w-16 h-16 bg-gradient-to-r ${
-                        index === 0
-                          ? "from-blue-500 to-cyan-400"
-                          : index === 1
-                          ? "from-emerald-500 to-green-400"
-                          : index === 2
-                          ? "from-purple-500 to-pink-400"
-                          : "from-orange-500 to-yellow-400"
-                      } rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform`}
-                    >
-                      <stat.icon className="w-8 h-8 text-white" />
-                    </div>
-                    <div className="text-4xl font-bold text-gray-900 mb-3">
-                      {stat.number}
-                    </div>
-                    <div className="text-gray-600 text-base leading-relaxed">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
+          <div className="max-w-4xl mx-auto">
+            {/* Card témoignage responsive */}
+            <div className="relative bg-white rounded-lg sm:rounded-xl lg:rounded-2xl xl:rounded-3xl p-6 sm:p-8 lg:p-10 xl:p-12 shadow-2xl">
+              {/* Boutons navigation desktop */}
+              <button
+                onClick={goToPrevTestimonial}
+                className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 p-2 lg:p-3 rounded-full bg-blue-500/10 text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300 z-10 hidden md:block"
+              >
+                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
+              </button>
 
-              {/* Floating Badge */}
-              <div className="absolute -top-6 -right-6 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg animate-bounce">
-                #1 au Niger
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+              <button
+                onClick={goToNextTestimonial}
+                className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 p-2 lg:p-3 rounded-full bg-blue-500/10 text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300 z-10 hidden md:block"
+              >
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
+              </button>
 
-      {/* Testimonials Section (Inchangée) */}
-      <section className="py-24 bg-gradient-to-r from-blue-50 to-cyan-50">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <Quote className="w-4 h-4 mr-2" />
-              Témoignages Clients
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Ils Nous Font
-              <span className="block text-transparent bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text">
-                Confiance
-              </span>
-            </h2>
-          </div>
+              {/* Icône citation responsive */}
+              <div className="absolute -top-3 sm:-top-4 lg:-top-6 left-1/2 transform -translate-x-1/2">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full flex items-center justify-center">
+                  <Quote className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />
+                </div>
+              </div>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="relative bg-white rounded-3xl p-8 md:p-12 shadow-2xl">
-              {/* Bouton de navigation PRÉCÉDENT */}
-              <button
-                onClick={goToPrevTestimonial}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 p-3 rounded-full bg-blue-500/10 text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300 z-10 hidden md:block"
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
+              <div className="text-center">
+                {/* Étoiles responsive */}
+                <div className="flex justify-center mb-3 sm:mb-4 lg:mb-6">
+                  {[...Array(testimonials[currentTestimonial].rating)].map(
+                    (_, i) => (
+                      <Star
+                        key={i}
+                        className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-yellow-400 fill-current"
+                      />
+                    )
+                  )}
+                </div>
 
-              {/* Bouton de navigation SUIVANT */}
-              <button
-                onClick={goToNextTestimonial}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 p-3 rounded-full bg-blue-500/10 text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300 z-10 hidden md:block"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
+                {/* Citation responsive */}
+                <blockquote className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 mb-4 sm:mb-6 lg:mb-8 leading-relaxed italic transition-opacity duration-500">
+                  "{testimonials[currentTestimonial].content}"
+                </blockquote>
 
-              <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full flex items-center justify-center">
-                  <Quote className="w-6 h-6 text-white" />
-                </div>
-              </div>
+                {/* Profil auteur responsive */}
+                <div className="flex items-center justify-center space-x-2 sm:space-x-3 lg:space-x-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base lg:text-lg">
+                    {testimonials[currentTestimonial].avatar}
+                  </div>
+                  <div className="text-left">
+                    <div className="font-semibold text-gray-900 text-sm sm:text-base lg:text-lg">
+                      {testimonials[currentTestimonial].name}
+                    </div>
+                    <div className="text-xs sm:text-sm lg:text-base text-gray-600 leading-tight">
+                      {testimonials[currentTestimonial].position}
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-              <div className="text-center">
-                <div className="flex justify-center mb-6">
-                  {[...Array(testimonials[currentTestimonial].rating)].map(
-                    (_, i) => (
-                      <Star
-                        key={i}
-                        className="w-6 h-6 text-yellow-400 fill-current"
-                      />
-                    )
-                  )}
-                </div>
-
-                <blockquote className="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed italic transition-opacity duration-500">
-                  "{testimonials[currentTestimonial].content}"
-                </blockquote>
-
-                <div className="flex items-center justify-center space-x-4">
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                    {testimonials[currentTestimonial].avatar}
-                  </div>
-                  <div className="text-left">
-                    <div className="font-semibold text-gray-900 text-lg">
-                      {testimonials[currentTestimonial].name}
-                    </div>
-                    <div className="text-gray-600">
-                      {testimonials[currentTestimonial].position}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Navigation dots */}
-              <div className="flex justify-center mt-8 space-x-3">
-                {testimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentTestimonial(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === currentTestimonial
-                        ? "bg-blue-600 w-8"
-                        : "bg-gray-300"
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
+              {/* Navigation dots responsive */}
+              <div className="flex justify-center mt-4 sm:mt-6 lg:mt-8 space-x-2 sm:space-x-3">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentTestimonial(index)}
+                    className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
+                      index === currentTestimonial
+                        ? "bg-blue-600 w-6 sm:w-8"
+                        : "bg-gray-300"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 };
 
 export default HomePage;
