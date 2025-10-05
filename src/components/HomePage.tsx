@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, useCallback } from "react";
 import {
   ArrowRight,
   BarChart3,
@@ -9,14 +9,13 @@ import {
   CheckCircle,
   Award,
   Target,
-  Zap,
   Eye,
   Quote,
   Monitor,
   ShieldCheck,
+  Fuel,
   ChevronLeft,
   ChevronRight,
-  Fuel,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "../components/header/Header";
@@ -26,42 +25,6 @@ const HomePage: FC = () => {
   const [activeService, setActiveService] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
-
-  const heroSlides = [
-    {
-      tag: "Solutions Financières & IT de Croissance",
-      titleTop: "La Perspective de",
-      titleBottom: "Vos Chiffres",
-      description:
-        "Transformez vos données en décisions stratégiques avec nos solutions d'ingénierie financière, nos logiciels de gestion sur mesure et notre expertise IT de pointe.",
-      color: "from-blue-400 to-cyan-400",
-      cta: "Démarrer la Transformation",
-      statIcon: Zap,
-      visualContent: "default",
-    },
-    {
-      tag: "IT & Développement",
-      titleTop: "CapitalPetroleum :",
-      titleBottom: "Maîtrise de Station",
-      description:
-        "Automatisez la gestion de votre station-service : stocks, pompes, ventes et reporting financier, pour une efficacité opérationnelle maximale.",
-      color: "from-green-400 to-orange-400",
-      cta: "Découvrir Capital Petroleum",
-      statIcon: Monitor,
-      visualContent: "capital_petroleum",
-    },
-  ];
-
-  const goToNextHeroSlide = () => {
-    setCurrentHeroSlide((prev) => (prev + 1) % heroSlides.length);
-  };
-
-  const goToPrevHeroSlide = () => {
-    setCurrentHeroSlide(
-      (prev) => (prev - 1 + heroSlides.length) % heroSlides.length
-    );
-  };
 
   const testimonials = [
     {
@@ -90,15 +53,15 @@ const HomePage: FC = () => {
     },
   ];
 
-  const goToNextTestimonial = () => {
+  const goToNextTestimonial = useCallback(() => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
+  }, [testimonials.length]);
 
-  const goToPrevTestimonial = () => {
+  const goToPrevTestimonial = useCallback(() => {
     setCurrentTestimonial(
       (prev) => (prev - 1 + testimonials.length) % testimonials.length
     );
-  };
+  }, [testimonials.length]);
 
   useEffect(() => {
     setIsVisible(true);
@@ -107,15 +70,10 @@ const HomePage: FC = () => {
       goToNextTestimonial();
     }, 5000);
 
-    const heroInterval = setInterval(() => {
-      goToNextHeroSlide();
-    }, 5000);
-
     return () => {
       clearInterval(testimonialInterval);
-      clearInterval(heroInterval);
     };
-  }, []);
+  }, [goToNextTestimonial]);
 
   const services = [
     {
@@ -188,66 +146,19 @@ const HomePage: FC = () => {
     },
   ];
 
-  const activeSlide = heroSlides[currentHeroSlide];
-
   return (
     <div className="min-h-screen bg-white">
-      {/* SECTION HERO */}
+      {/* SECTION HERO PRINCIPAL - CAPITAL ANALYSIS */}
       <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
-        {/* Vidéo en arrière-plan */}
-        {activeSlide.visualContent === "capital_petroleum" && (
-          <video
-            className="absolute inset-0 w-full h-full object-cover z-0 opacity-10"
-            src={backgroundVideo}
-            autoPlay
-            loop
-            muted
-            playsInline
-            controls={false}
-          ></video>
-        )}
-
-        <div className="absolute inset-0 bg-black opacity-60 z-10"></div>
-
         <Header />
-
-        <div className="absolute inset-0 opacity-20 z-10">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `
-              radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.3) 0%, transparent 50%),
-              radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.2) 0%, transparent 50%)
-            `,
-            }}
-          ></div>
-        </div>
         {/* Éléments de décoration responsive */}
         <div className="absolute top-4 left-2 w-16 h-16 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-blue-500/10 rounded-full blur-3xl animate-pulse z-10"></div>
         <div className="absolute bottom-4 right-2 w-20 h-20 sm:w-32 sm:h-32 lg:w-40 lg:h-40 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000 z-10"></div>
 
         {/* Container principal responsive */}
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 sm:pt-32 sm:pb-16 lg:pt-40 lg:pb-32 z-20">
-          {/* Boutons de navigation adaptés */}
-          <button
-            onClick={goToPrevHeroSlide}
-            className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 p-2 sm:p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-all duration-300 z-30 hidden md:block"
-          >
-            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-          </button>
-
-          <button
-            onClick={goToNextHeroSlide}
-            className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 p-2 sm:p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-all duration-300 z-30 hidden md:block"
-          >
-            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-          </button>
-
-          {/* Layout responsive avec meilleurs breakpoints */}
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
             <div
-              key={currentHeroSlide}
               className={`transition-all duration-1000 ${
                 isVisible
                   ? "opacity-100 translate-x-0"
@@ -255,23 +166,21 @@ const HomePage: FC = () => {
               }`}
             >
               <div className="inline-flex items-center bg-blue-600/20 text-blue-300 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-3 sm:mb-4 lg:mb-6 backdrop-blur-sm border border-blue-500/30 shadow-md">
-                <activeSlide.statIcon className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
-                <span className="truncate">{activeSlide.tag}</span>
+                <BarChart3 className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
+                <span className="truncate">Solutions Financières & IT de Croissance</span>
               </div>
 
               {/* Titre avec meilleure progression responsive */}
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 lg:mb-6 bg-gradient-to-r from-white via-blue-100 to-cyan-200 bg-clip-text text-transparent leading-tight">
-                {activeSlide.titleTop}
-                <span
-                  className={`block text-transparent bg-gradient-to-r ${activeSlide.color} bg-clip-text`}
-                >
-                  {activeSlide.titleBottom}
+                La Perspective de
+                <span className="block text-transparent bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text">
+                  Vos Chiffres
                 </span>
               </h1>
 
               {/* Description responsive */}
               <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-gray-300 mb-4 sm:mb-6 lg:mb-8 leading-relaxed">
-                {activeSlide.description}
+                Transformez vos données en décisions stratégiques avec nos solutions d'ingénierie financière, nos logiciels de gestion sur mesure et notre expertise IT de pointe.
               </p>
 
               {/* Bouton CTA responsive */}
@@ -279,7 +188,7 @@ const HomePage: FC = () => {
                 <Link to="/contact">
                   <button className="group bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white px-4 py-2 sm:px-6 sm:py-2.5 lg:px-8 lg:py-3 rounded-lg sm:rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl shadow-blue-500/30 w-full sm:w-auto">
                     <span className="flex items-center justify-center text-sm sm:text-base lg:text-lg">
-                      {activeSlide.cta}
+                      Démarrer la Transformation
                       <ArrowRight className="w-4 h-4 sm:w-4 sm:h-4 lg:w-5 lg:h-5 ml-2 lg:ml-3 group-hover:translate-x-1 transition-transform" />
                     </span>
                   </button>
@@ -303,7 +212,6 @@ const HomePage: FC = () => {
 
             {/* Colonne Visuelle responsive */}
             <div
-              key={`${currentHeroSlide}-visual`}
               className={`relative h-48 sm:h-64 md:h-72 lg:h-80 xl:h-96 transition-all duration-1000 delay-300 ${
                 isVisible
                   ? "opacity-100 translate-x-0"
@@ -311,72 +219,197 @@ const HomePage: FC = () => {
               } hidden md:block lg:block`}
             >
               <div className="relative w-full h-full flex items-center justify-center">
-                {activeSlide.visualContent === "capital_petroleum" ? (
-                  <>
-                    {/* Contenu visuel pour Capital Petroleum */}
-                    {/* Tailles du badge ajustées pour le responsive (si on voulait le montrer, ici on le cache) */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-48 h-48 md:w-68 md:h-68 bg-slate-700/80 backdrop-blur-md rounded-full border border-green-500/50 shadow-2xl shadow-green-500/30 p-4 md:p-8 flex flex-col items-center justify-center text-center transform rotate-3 animate-pulse-slow">
-                        <Fuel className="w-16 h-16 md:w-20 md:h-20 text-green-400 mb-1 md:mb-2" />
-                        <span className="text-white font-extrabold text-xl md:text-3xl">CapitalPetroleum</span>
-                        <span className="text-green-300 text-xs md:text-sm mt-1">CapitalPetroleum</span>
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    {/* Contenu visuel par défaut (diagrammes abstraits) */}
-                    <div className="absolute inset-0 flex items-end justify-center perspective-1000">
-                      {/* Les barres de graphique sont OK car leur taille est absolue */}
-                      <div className="w-6 h-20 bg-blue-500 rounded-t-lg shadow-blue-500/50 transform rotate-x-10 rotate-y-5 animate-pulse-slow"></div>
-                      <div className="w-6 h-40 bg-cyan-400 rounded-t-lg shadow-cyan-400/50 transform rotate-x-10 rotate-y-0 ml-4 animate-pulse-slow delay-100"></div>
-                      <div className="w-6 h-28 bg-emerald-400 rounded-t-lg shadow-emerald-400/50 transform rotate-x-10 rotate-y-3 ml-4 animate-pulse-slow delay-200"></div>
-                      <div className="w-6 h-56 bg-blue-400 rounded-t-lg shadow-blue-400/50 transform rotate-x-10 rotate-y-7 ml-4 animate-pulse-slow delay-300"></div>
-                      <div className="w-6 h-36 bg-cyan-300 rounded-t-lg shadow-cyan-300/50 transform rotate-x-10 rotate-y-2 ml-4 animate-pulse-slow delay-400"></div>
-                    </div>
+                {/* Contenu visuel par défaut (diagrammes abstraits) */}
+                <div className="absolute inset-0 flex items-end justify-center perspective-1000">
+                  <div className="w-6 h-20 bg-blue-500 rounded-t-lg shadow-blue-500/50 transform rotate-x-10 rotate-y-5 animate-pulse-slow"></div>
+                  <div className="w-6 h-40 bg-cyan-400 rounded-t-lg shadow-cyan-400/50 transform rotate-x-10 rotate-y-0 ml-4 animate-pulse-slow delay-100"></div>
+                  <div className="w-6 h-28 bg-emerald-400 rounded-t-lg shadow-emerald-400/50 transform rotate-x-10 rotate-y-3 ml-4 animate-pulse-slow delay-200"></div>
+                  <div className="w-6 h-56 bg-blue-400 rounded-t-lg shadow-blue-400/50 transform rotate-x-10 rotate-y-7 ml-4 animate-pulse-slow delay-300"></div>
+                  <div className="w-6 h-36 bg-cyan-300 rounded-t-lg shadow-cyan-300/50 transform rotate-x-10 rotate-y-2 ml-4 animate-pulse-slow delay-400"></div>
+                </div>
 
-                    {/* Badges flottants responsives */}
-                    <div className="absolute top-1/4 left-1/4 w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 bg-slate-700/70 backdrop-blur-md rounded-full border border-blue-400/30 shadow-2xl p-2 sm:p-3 lg:p-4 flex flex-col items-center justify-center text-center transform rotate-6 animate-float">
-                      <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 xl:w-8 xl:h-8 text-green-400 mb-0.5 lg:mb-1" />
-                      <span className="text-white font-bold text-sm sm:text-base lg:text-lg xl:text-xl">+32%</span>
-                      <span className="text-gray-400 text-xs">Croissance</span>
-                    </div>
+                {/* Badges flottants responsives */}
+                <div className="absolute top-1/4 left-1/4 w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 bg-slate-700/70 backdrop-blur-md rounded-full border border-blue-400/30 shadow-2xl p-2 sm:p-3 lg:p-4 flex flex-col items-center justify-center text-center transform rotate-6 animate-float">
+                  <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 xl:w-8 xl:h-8 text-green-400 mb-0.5 lg:mb-1" />
+                  <span className="text-white font-bold text-sm sm:text-base lg:text-lg xl:text-xl">+32%</span>
+                  <span className="text-gray-400 text-xs">Croissance</span>
+                </div>
 
-                    <div className="absolute bottom-1/4 right-1/4 w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 bg-slate-700/70 backdrop-blur-md rounded-xl border border-emerald-400/30 shadow-2xl p-2 sm:p-3 lg:p-4 flex flex-col items-center justify-center text-center transform -rotate-3 animate-float-delay">
-                      <Banknote className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 xl:w-8 xl:h-8 text-emerald-400 mb-0.5 lg:mb-1" />
-                      <span className="text-white font-bold text-sm sm:text-base lg:text-lg xl:text-xl">€</span>
-                      <span className="text-gray-400 text-xs">Optimisation</span>
-                    </div>
+                <div className="absolute bottom-1/4 right-1/4 w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 bg-slate-700/70 backdrop-blur-md rounded-xl border border-emerald-400/30 shadow-2xl p-2 sm:p-3 lg:p-4 flex flex-col items-center justify-center text-center transform -rotate-3 animate-float-delay">
+                  <Banknote className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 xl:w-8 xl:h-8 text-emerald-400 mb-0.5 lg:mb-1" />
+                  <span className="text-white font-bold text-sm sm:text-base lg:text-lg xl:text-xl">€</span>
+                  <span className="text-gray-400 text-xs">Optimisation</span>
+                </div>
 
-                    <div className="absolute top-5 right-5 w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 bg-slate-700/70 backdrop-blur-md rounded-full border border-cyan-400/30 shadow-2xl p-2 sm:p-3 lg:p-4 flex flex-col items-center justify-center text-center transform -rotate-12 animate-float-delay-2">
-                      <Monitor className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 xl:w-7 xl:h-7 text-cyan-400 mb-0.5 lg:mb-1" />
-                      <span className="text-white font-bold text-sm sm:text-base lg:text-lg xl:text-xl">90%</span>
-                      <span className="text-gray-400 text-xs">Déploiement</span>
-                    </div>
+                <div className="absolute top-5 right-5 w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 bg-slate-700/70 backdrop-blur-md rounded-full border border-cyan-400/30 shadow-2xl p-2 sm:p-3 lg:p-4 flex flex-col items-center justify-center text-center transform -rotate-12 animate-float-delay-2">
+                  <Monitor className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 xl:w-7 xl:h-7 text-cyan-400 mb-0.5 lg:mb-1" />
+                  <span className="text-white font-bold text-sm sm:text-base lg:text-lg xl:text-xl">90%</span>
+                  <span className="text-gray-400 text-xs">Déploiement</span>
+                </div>
 
-                    <div className="absolute bottom-5 left-5 w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 bg-slate-700/70 backdrop-blur-md rounded-xl border border-red-400/30 shadow-2xl p-2 sm:p-3 lg:p-4 flex flex-col items-center justify-center text-center transform rotate-12 animate-float-delay-3">
-                      <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 xl:w-7 xl:h-7 text-red-400 mb-0.5 lg:mb-1" />
-                      <span className="text-white font-bold text-sm sm:text-base lg:text-lg xl:text-xl">99%</span>
-                      <span className="text-gray-400 text-xs">Sécurité</span>
-                    </div>
-                  </>
-                )}
+                <div className="absolute bottom-5 left-5 w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 bg-slate-700/70 backdrop-blur-md rounded-xl border border-red-400/30 shadow-2xl p-2 sm:p-3 lg:p-4 flex flex-col items-center justify-center text-center transform rotate-12 animate-float-delay-3">
+                  <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 xl:w-7 xl:h-7 text-red-400 mb-0.5 lg:mb-1" />
+                  <span className="text-white font-bold text-sm sm:text-base lg:text-lg xl:text-xl">99%</span>
+                  <span className="text-gray-400 text-xs">Sécurité</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SÉPARATEUR ENTRE LES DEUX HERO */}
+      <section className="relative py-8 sm:py-12 lg:py-16 bg-gradient-to-r from-slate-100 via-white to-slate-100">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Ligne de séparation avec éléments décoratifs */}
+          <div className="flex items-center justify-center space-x-4 sm:space-x-6 lg:space-x-8">
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-300 to-slate-400"></div>
+            
+            {/* Badge central */}
+            <div className="flex items-center space-x-2 sm:space-x-3 bg-white rounded-full px-4 py-2 sm:px-6 sm:py-3 shadow-lg border border-slate-200">
+              <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+              <span className="text-slate-600 font-medium text-xs sm:text-sm">Nos Solutions</span>
+              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse delay-300"></div>
+            </div>
+            
+            <div className="flex-1 h-px bg-gradient-to-r from-slate-400 via-slate-300 to-transparent"></div>
+          </div>
+
+          {/* Points décoratifs */}
+          <div className="flex justify-center mt-6 sm:mt-8 space-x-2 sm:space-x-3">
+            <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-blue-400 rounded-full opacity-60"></div>
+            <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-slate-400 rounded-full opacity-40"></div>
+            <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-emerald-400 rounded-full opacity-60"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION CAPITAL PETROLEUM - HERO PROFESSIONNEL */}
+      <section className="relative bg-gradient-to-br from-slate-800 via-emerald-900 to-slate-900 text-white overflow-hidden">
+        {/* Vidéo en arrière-plan */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover z-0 opacity-15"
+          src={backgroundVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          controls={false}
+        ></video>
+
+        <div className="absolute inset-0 bg-black opacity-40 z-10"></div>
+
+        {/* Éléments de décoration spécifiques au petroleum */}
+        <div className="absolute top-8 right-8 w-20 h-20 sm:w-32 sm:h-32 lg:w-40 lg:h-40 bg-emerald-500/10 rounded-full blur-3xl animate-pulse z-10"></div>
+        <div className="absolute bottom-8 left-8 w-24 h-24 sm:w-36 sm:h-36 lg:w-44 lg:h-44 bg-orange-500/10 rounded-full blur-3xl animate-pulse delay-1000 z-10"></div>
+
+        {/* Container principal */}
+        <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 xl:py-32 z-20">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
+            
+            {/* Contenu textuel */}
+            <div className="order-2 lg:order-1">
+              <div className="inline-flex items-center bg-emerald-600/20 text-emerald-300 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6 backdrop-blur-sm border border-emerald-500/30 shadow-md">
+                <Fuel className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
+                <span>Solution de Gestion Pétrolière</span>
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
+                <span className="text-white">CapitalPetroleum</span>
+                <span className="block text-transparent bg-gradient-to-r from-emerald-400 to-orange-400 bg-clip-text">
+                  Maîtrise Totale
+                </span>
+              </h2>
+
+              <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed">
+                Solution complète de gestion automatisée pour stations-service : contrôle des stocks, supervision des pompes, reporting financier en temps réel et optimisation opérationnelle.
+              </p>
+
+              {/* Fonctionnalités clés */}
+              <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
+                <div className="flex items-center space-x-3 bg-white/5 backdrop-blur-sm rounded-lg p-3 border border-emerald-500/20">
+                  <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Monitor className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="text-sm sm:text-base text-gray-200">Gestion Pompes</span>
+                </div>
+                <div className="flex items-center space-x-3 bg-white/5 backdrop-blur-sm rounded-lg p-3 border border-orange-500/20">
+                  <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <BarChart3 className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="text-sm sm:text-base text-gray-200">Stocks & Inventaire</span>
+                </div>
+                <div className="flex items-center space-x-3 bg-white/5 backdrop-blur-sm rounded-lg p-3 border border-blue-500/20">
+                  <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Banknote className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="text-sm sm:text-base text-gray-200">Reporting Financier</span>
+                </div>
+                <div className="flex items-center space-x-3 bg-white/5 backdrop-blur-sm rounded-lg p-3 border border-purple-500/20">
+                  <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <ShieldCheck className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="text-sm sm:text-base text-gray-200">Sécurité Avancée</span>
+                </div>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <Link to="/contact">
+                  <button className="group bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white px-6 py-3 sm:px-8 sm:py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-2xl shadow-emerald-500/30 w-full sm:w-auto">
+                    <span className="flex items-center justify-center text-sm sm:text-base">
+                      Demander une Démo
+                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </button>
+                </Link>
+                <button className="group bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 sm:px-8 sm:py-3 rounded-xl font-semibold transition-all duration-300 hover:bg-white/20 w-full sm:w-auto">
+                  <span className="flex items-center justify-center text-sm sm:text-base">
+                    Voir les Fonctionnalités
+                    <Eye className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:scale-110 transition-transform" />
+                  </span>
+                </button>
               </div>
             </div>
 
-            {/* Indicateurs de slide responsive */}
-            <div className="absolute bottom-3 sm:bottom-4 lg:bottom-10 left-1/2 transform -translate-x-1/2 flex space-x-1.5 sm:space-x-2 z-30">
-              {heroSlides.map((_, index) => (
-                <div
-                  key={index}
-                  className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                    index === currentHeroSlide
-                      ? "bg-white w-4 sm:w-6"
-                      : "bg-gray-500 hover:bg-gray-300"
-                  }`}
-                  onClick={() => setCurrentHeroSlide(index)}
-                />
-              ))}
+            {/* Contenu visuel */}
+            <div className="order-1 lg:order-2 relative">
+              <div className="relative bg-gradient-to-br from-emerald-900/50 to-slate-900/50 backdrop-blur-sm rounded-2xl lg:rounded-3xl p-6 sm:p-8 lg:p-10 border border-emerald-500/20 shadow-2xl">
+                
+                {/* Logo/Badge central */}
+                <div className="text-center mb-6 sm:mb-8">
+                  <div className="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 bg-gradient-to-br from-emerald-500 to-orange-500 rounded-full shadow-2xl shadow-emerald-500/30 mb-4">
+                    <Fuel className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 text-white" />
+                  </div>
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-2">CapitalPetroleum</h3>
+                  <p className="text-sm sm:text-base text-emerald-300">Station Management System</p>
+                </div>
+
+                {/* Stats en grille */}
+                <div className="grid grid-cols-2 gap-4 sm:gap-6">
+                  <div className="text-center bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-emerald-500/10">
+                    <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-emerald-400 mb-1">99.9%</div>
+                    <div className="text-xs sm:text-sm text-gray-300">Disponibilité</div>
+                  </div>
+                  <div className="text-center bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-orange-500/10">
+                    <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-orange-400 mb-1">24/7</div>
+                    <div className="text-xs sm:text-sm text-gray-300">Surveillance</div>
+                  </div>
+                  <div className="text-center bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-blue-500/10">
+                    <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-400 mb-1">Real-time</div>
+                    <div className="text-xs sm:text-sm text-gray-300">Reporting</div>
+                  </div>
+                  <div className="text-center bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-purple-500/10">
+                    <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-purple-400 mb-1">99%</div>
+                    <div className="text-xs sm:text-sm text-gray-300">Efficacité</div>
+                  </div>
+                </div>
+
+                {/* Badge certifié */}
+                <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-slate-900 px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-bold shadow-lg animate-pulse">
+                  Déployé
+                </div>
+              </div>
             </div>
           </div>
         </div>
