@@ -150,7 +150,9 @@ const HomePage: FC = () => {
     <div className="min-h-screen bg-white">
       {/* SECTION HERO PRINCIPAL - CAPITAL ANALYSIS */}
       <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
+
         <Header />
+
         {/* Éléments de décoration responsive */}
         <div className="absolute top-4 left-2 w-16 h-16 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-blue-500/10 rounded-full blur-3xl animate-pulse z-10"></div>
         <div className="absolute bottom-4 right-2 w-20 h-20 sm:w-32 sm:h-32 lg:w-40 lg:h-40 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000 z-10"></div>
