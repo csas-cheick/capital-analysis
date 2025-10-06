@@ -152,7 +152,7 @@ const ContactPage: FC = () => {
                 <Phone className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="font-semibold text-gray-900">Téléphone</h3>
-                  <p className="text-gray-600">(+227) 92 01 42 42</p>
+                  <p className="text-gray-600">(+227) 97 40 00 12</p>
                 </div>
               </div>
 

@@ -32,6 +32,8 @@ const Header: FC<HeaderProps> = ({ variant = 'hero' }) => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   // État pour le dropdown mobile : stocke le nom de l'élément ouvert ou null
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState<string | null>(null);
+  // État pour adapter le header selon le scroll
+  const [isScrolled, setIsScrolled] = useState(false);
   
   // Réf pour détecter les clics à l'extérieur du menu mobile et le fermer
   const mobileMenuRef = useRef<HTMLDivElement>(null);
@@ -69,6 +71,22 @@ const Header: FC<HeaderProps> = ({ variant = 'hero' }) => {
     };
   }, [isMenuOpen]);
 
+  // Détecter le scroll pour adapter l'apparence du header
+  useEffect(() => {
+    const handleScroll = () => {
+      // Détecter si on a scrollé au-delà de la section hero (environ 600px)
+      const scrollPosition = window.scrollY;
+      const heroHeight = 600; // Hauteur approximative de la section hero
+      
+      if (variant === 'hero') {
+        setIsScrolled(scrollPosition > heroHeight);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [variant]);
+
 
   const navItems: NavItem[] = [
     { name: "Accueil", href: "/", hasDropdown: false },
@@ -100,21 +118,57 @@ const Header: FC<HeaderProps> = ({ variant = 'hero' }) => {
     { name: "Contact", href: "/contact", hasDropdown: false },
   ];
 
-  // Classes conditionnelles selon le variant
-  const headerClasses = variant === 'hero'
-    ? "absolute top-0 left-0 w-full z-50 transition-all duration-300"
-    : "sticky top-0 left-0 w-full z-50 bg-slate-900 shadow-2xl transition-all duration-300"; // Ajout de 'sticky' pour un header fixe sur les pages intérieures
-  
-  // Sur un variant 'hero', le texte est blanc par défaut. Sur 'page', il est également blanc (car le fond est sombre).
-  const textColorClasses = "text-white/90 hover:text-white transition-colors duration-200";
-  
-  // Sur le variant 'page', on pourrait vouloir que le logo soit également visible sur un fond blanc si la variante était inversée.
-  const logoClasses = variant === 'hero' ? "text-white" : "text-white"; 
+  // Classes conditionnelles selon le variant et le scroll
+  const getHeaderClasses = () => {
+    const baseClasses = "fixed top-0 left-0 w-full z-50 transition-all duration-300";
+    
+    if (variant === 'hero') {
+      if (isScrolled) {
+        // Header avec fond blanc quand on a scrollé
+        return `${baseClasses} bg-white shadow-lg border-b border-gray-200`;
+      } else {
+        // Header transparent sur la section hero
+        return `${baseClasses} bg-transparent backdrop-blur-sm`;
+      }
+    } else {
+      // Header avec fond sombre pour les autres pages
+      return `${baseClasses} bg-slate-900 shadow-2xl`;
+    }
+  };
+
+  // Classes de texte adaptives
+  const getTextClasses = () => {
+    if (variant === 'hero' && isScrolled) {
+      return "text-gray-800 hover:text-blue-600 transition-colors duration-200";
+    } else if (variant === 'hero') {
+      return "text-white/90 hover:text-white transition-colors duration-200";
+    } else {
+      return "text-white/90 hover:text-white transition-colors duration-200";
+    }
+  };
+
+  // Classes pour le logo
+  const getLogoClasses = () => {
+    if (variant === 'hero' && isScrolled) {
+      return "text-gray-800"; // Logo sombre sur fond blanc
+    } else {
+      return "text-white"; // Logo blanc sur fond sombre/transparent
+    }
+  };
+
+  // Classes pour le bouton mobile
+  const getMobileButtonClasses = () => {
+    if (variant === 'hero' && isScrolled) {
+      return "text-gray-800 hover:text-blue-600";
+    } else {
+      return "text-white/90 hover:text-white";
+    }
+  }; 
 
   return (
-    <header className={headerClasses}>
+    <header className={getHeaderClasses()}>
       {/* Ligne de séparation subtile pour le variant hero, ajustement pour être plus propre */}
-      {variant === 'hero' && (
+      {variant === 'hero' && !isScrolled && (
         <div className="absolute top-[80px] lg:top-[76px] w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent z-40 opacity-70 hidden lg:block"></div>
       )}
       
@@ -122,17 +176,23 @@ const Header: FC<HeaderProps> = ({ variant = 'hero' }) => {
         <div className="flex items-center justify-between py-4">
           
           {/* Logo et Nom */}
-          <Link to="/" className={`flex items-center space-x-3 cursor-pointer ${logoClasses}`}>
+          <Link to="/" className={`flex items-center space-x-3 cursor-pointer ${getLogoClasses()}`}>
             <img
               src={logo}
               alt="Capital Analysis Logo"
               className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
             />
             <div className="hidden sm:block">
-              <h1 className="text-lg sm:text-xl font-extrabold bg-gradient-to-r from-white via-blue-100 to-cyan-200 bg-clip-text text-transparent leading-none">
+              <h1 className={`text-lg sm:text-xl font-extrabold leading-none ${
+                variant === 'hero' && isScrolled 
+                  ? 'text-gray-800' 
+                  : 'bg-gradient-to-r from-white via-blue-100 to-cyan-200 bg-clip-text text-transparent'
+              }`}>
                 Capital Analysis
               </h1>
-              <p className="text-xs text-gray-400 opacity-90 leading-none mt-0.5">
+              <p className={`text-xs opacity-90 leading-none mt-0.5 ${
+                variant === 'hero' && isScrolled ? 'text-gray-500' : 'text-gray-400'
+              }`}>
                 La perspective de vos chiffres
               </p>
             </div>
@@ -154,7 +214,7 @@ const Header: FC<HeaderProps> = ({ variant = 'hero' }) => {
                   className={`flex items-center px-4 py-2 font-medium transition-all duration-300 rounded-lg whitespace-nowrap
                     ${item.hasDropdown && activeDropdown === item.name
                       ? "text-blue-400 bg-white/5" // Style actif/ouvert
-                      : `${textColorClasses} hover:bg-white/10` // Style normal
+                      : `${getTextClasses()} hover:bg-white/10` // Style normal
                     }`}
                   // Empêche la navigation au clic si c'est un dropdown (pour ouvrir le sous-menu) - non nécessaire avec onMouseEnter
                   onClick={(e) => item.hasDropdown && e.preventDefault()}
@@ -210,7 +270,7 @@ const Header: FC<HeaderProps> = ({ variant = 'hero' }) => {
           <button
             id="mobile-menu-button"
             onClick={toggleMenu}
-            className="lg:hidden p-2 text-white hover:bg-white/20 rounded-lg transition-colors duration-200"
+            className={`lg:hidden p-2 hover:bg-white/20 rounded-lg transition-colors duration-200 ${getMobileButtonClasses()}`}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu-content"
             aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}

@@ -11,7 +11,6 @@ import {
   Linkedin,
   Instagram,
   ArrowRight,
-  Star,
   Banknote,
   Award,
   Clock,
@@ -91,7 +90,7 @@ const Footer: FC = () => {
                 <div className="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center mr-3 group-hover:bg-blue-600 transition-colors">
                   <Phone className="w-4 h-4" />
                 </div>
-                <span className="group-hover:text-white transition-colors">+227 92 01 42 42</span>
+                <span className="group-hover:text-white transition-colors">+227 97 40 00 12</span>
               </div>
               <div className="flex items-center group">
                 <div className="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center mr-3 group-hover:bg-blue-600 transition-colors">
@@ -117,36 +116,29 @@ const Footer: FC = () => {
             <ul className="space-y-3">
               <li>
                 <a href="#services" className="flex items-center group hover:text-white transition-colors">
+                  <Banknote className="w-4 h-4 mr-3 text-green-400" />
+                  <span>Ingénierie Financière</span>
+                  <ArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+                </a>
+              </li>
+              <li>
+                <a href="#services" className="flex items-center group hover:text-white transition-colors">
                   <Globe className="w-4 h-4 mr-3 text-blue-400" />
-                  <span>Création de site web</span>
+                  <span>IT & Développement</span>
                   <ArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
               </li>
               <li>
                 <a href="#services" className="flex items-center group hover:text-white transition-colors">
                   <Users className="w-4 h-4 mr-3 text-cyan-400" />
-                  <span>Conseil stratégique</span>
+                  <span>Etude & Conseil</span>
                   <ArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
               </li>
               <li>
                 <a href="#services" className="flex items-center group hover:text-white transition-colors">
                   <TrendingUp className="w-4 h-4 mr-3 text-green-400" />
-                  <span>Stratégie marketing</span>
-                  <ArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="flex items-center group hover:text-white transition-colors">
-                  <Banknote className="w-4 h-4 mr-3 text-green-400" />
-                  <span>Ingénierie financière</span>
-                  <ArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="flex items-center group hover:text-white transition-colors">
-                  <Star className="w-4 h-4 mr-3 text-yellow-400" />
-                  <span>Accompagnement</span>
+                  <span>Suivi & Assistance Comptable</span>
                   <ArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
               </li>
@@ -186,7 +178,7 @@ const Footer: FC = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Copyright */}
           <div className="text-gray-400 text-sm text-center md:text-left">
-           © 2025 Capital Analytics. Tous droits réservés.
+           © 2025 Capital Analysis. Tous droits réservés.
           </div>
 
           {/* Trust Indicators */}
@@ -212,9 +204,6 @@ const Footer: FC = () => {
             </a>
             <a href="#" className="text-gray-400 hover:text-white transition-colors">
               Mentions légales
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">
-              CGV
             </a>
           </div>
         </div>

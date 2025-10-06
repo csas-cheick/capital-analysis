@@ -28,24 +28,24 @@ const HomePage: FC = () => {
 
   const testimonials = [
     {
-      name: "Amadou Diallo",
-      position: "Directeur Général, TechCorp Niger",
+      name: "Mouhamed Diaou",
+      position: "Alimentation Fadak",
       content:
         "Capital Analysis a révolutionné notre gestion financière. Leur expertise en ingénierie financière nous a permis d'optimiser nos flux de trésorerie de 40%.",
       rating: 5,
       avatar: "AD",
     },
     {
-      name: "Fatima Ousmane",
-      position: "CEO, InnovateLab",
+      name: "Mouhamed Moucharraf",
+      position: "Tech-Fadak",
       content:
-        "L'équipe IT de Capital Analysis a développé notre plateforme e-commerce en un temps record. Leur professionnalisme et leur créativité nous ont impressionnés.",
+        "Grâce à leurs logiciels de gestion sur mesure, nous avons automatisé 70% de nos processus. Un gain de temps et d'efficacité considérable.",
       rating: 5,
       avatar: "FO",
     },
     {
       name: "Ibrahim Moussa",
-      position: "CFO, AgriTech Solutions",
+      position: "Tech Solutions",
       content:
         "Grâce à leurs logiciels de gestion sur mesure, nous avons automatisé 70% de nos processus. Un gain de temps et d'efficacité considérable.",
       rating: 5,
@@ -233,26 +233,22 @@ const HomePage: FC = () => {
                 {/* Badges flottants responsives */}
                 <div className="absolute top-1/4 left-1/4 w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 bg-slate-700/70 backdrop-blur-md rounded-full border border-blue-400/30 shadow-2xl p-2 sm:p-3 lg:p-4 flex flex-col items-center justify-center text-center transform rotate-6 animate-float">
                   <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 xl:w-8 xl:h-8 text-green-400 mb-0.5 lg:mb-1" />
-                  <span className="text-white font-bold text-sm sm:text-base lg:text-lg xl:text-xl">+32%</span>
-                  <span className="text-gray-400 text-xs">Croissance</span>
+                  <span className="text-white font-bold text-sm sm:text-base lg:text-lg xl:text-xl">Croissance</span>
                 </div>
 
                 <div className="absolute bottom-1/4 right-1/4 w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 bg-slate-700/70 backdrop-blur-md rounded-xl border border-emerald-400/30 shadow-2xl p-2 sm:p-3 lg:p-4 flex flex-col items-center justify-center text-center transform -rotate-3 animate-float-delay">
-                  <Banknote className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 xl:w-8 xl:h-8 text-emerald-400 mb-0.5 lg:mb-1" />
-                  <span className="text-white font-bold text-sm sm:text-base lg:text-lg xl:text-xl">€</span>
-                  <span className="text-gray-400 text-xs">Optimisation</span>
+                  <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 xl:w-8 xl:h-8 text-emerald-400 mb-0.5 lg:mb-1" />
+                  <span className="text-white font-bold text-sm sm:text-base lg:text-lg xl:text-xl">Optimisation</span>
                 </div>
 
                 <div className="absolute top-5 right-5 w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 bg-slate-700/70 backdrop-blur-md rounded-full border border-cyan-400/30 shadow-2xl p-2 sm:p-3 lg:p-4 flex flex-col items-center justify-center text-center transform -rotate-12 animate-float-delay-2">
                   <Monitor className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 xl:w-7 xl:h-7 text-cyan-400 mb-0.5 lg:mb-1" />
-                  <span className="text-white font-bold text-sm sm:text-base lg:text-lg xl:text-xl">90%</span>
-                  <span className="text-gray-400 text-xs">Déploiement</span>
+                  <span className="text-white font-bold text-sm sm:text-base lg:text-lg xl:text-xl">Déploiement</span>
                 </div>
 
                 <div className="absolute bottom-5 left-5 w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 bg-slate-700/70 backdrop-blur-md rounded-xl border border-red-400/30 shadow-2xl p-2 sm:p-3 lg:p-4 flex flex-col items-center justify-center text-center transform rotate-12 animate-float-delay-3">
                   <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 xl:w-7 xl:h-7 text-red-400 mb-0.5 lg:mb-1" />
-                  <span className="text-white font-bold text-sm sm:text-base lg:text-lg xl:text-xl">99%</span>
-                  <span className="text-gray-400 text-xs">Sécurité</span>
+                  <span className="text-white font-bold text-sm sm:text-base lg:text-lg xl:text-xl">Sécurité</span>
                 </div>
               </div>
             </div>

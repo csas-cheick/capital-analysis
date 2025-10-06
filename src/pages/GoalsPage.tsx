@@ -184,10 +184,10 @@ const GoalsPage: FC = () => {
               <div className="md:grid md:grid-cols-2 md:gap-12 items-center">
                 <div className="text-right md:pr-10">
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                    Phase 1 : Consolidation (Année 1)
+                    Phase 1 : Consolidation
                   </h3>
                   <p className="text-gray-600">
-                    Déploiement de notre plateforme ERP/CRM de nouvelle génération et standardisation de nos procédures d'audit financier.
+                    Déploiement de notre plateforme CapitalPeroleum de gestion des stations services.
                   </p>
                 </div>
                 <div className="md:col-span-1 flex justify-start md:justify-start">
@@ -206,10 +206,10 @@ const GoalsPage: FC = () => {
                 </div>
                 <div className="text-left md:pl-10">
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                    Phase 2 : Innovation et Expansion (Année 2-3)
+                    Phase 2 : Innovation et Expansio
                   </h3>
                   <p className="text-gray-600">
-                    Lancement de services de Cybersécurité avancés et ouverture de deux nouvelles représentations régionales en Afrique de l'Ouest.
+                    Lancement de services de Cybersécurité avancés.
                   </p>
                 </div>
               </div>
@@ -218,7 +218,7 @@ const GoalsPage: FC = () => {
               <div className="md:grid md:grid-cols-2 md:gap-12 items-center">
                 <div className="text-right md:pr-10">
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                    Phase 3 : Leadership (À Long Terme)
+                    Phase 3 : Leadership
                   </h3>
                   <p className="text-gray-600">
                     Être la référence absolue pour l'intégration Finance/IT, garantissant la sécurité et la performance des entreprises sur le continent.
