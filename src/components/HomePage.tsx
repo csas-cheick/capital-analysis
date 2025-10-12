@@ -33,7 +33,7 @@ const HomePage: FC = () => {
       content:
         "Capital Analysis a révolutionné notre gestion financière. Leur expertise en ingénierie financière nous a permis d'optimiser nos flux de trésorerie de 40%.",
       rating: 5,
-      avatar: "AD",
+      avatar: "MD",
     },
     {
       name: "Mouhamed Moucharraf",
@@ -41,7 +41,7 @@ const HomePage: FC = () => {
       content:
         "Grâce à leurs logiciels de gestion sur mesure, nous avons automatisé 70% de nos processus. Un gain de temps et d'efficacité considérable.",
       rating: 5,
-      avatar: "FO",
+      avatar: "MM",
     },
     {
       name: "Ibrahim Moussa",
@@ -157,13 +157,9 @@ const HomePage: FC = () => {
 
         <Header />
 
-        {/* Éléments de décoration responsive */}
-        {/* Cercle décoratif animé en haut à gauche */}
         <div className="absolute top-4 left-2 w-16 h-16 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-blue-500/10 rounded-full blur-3xl animate-pulse z-10"></div>
         {/* Cercle décoratif animé en bas à droite */}
         <div className="absolute bottom-4 right-2 w-20 h-20 sm:w-32 sm:h-32 lg:w-40 lg:h-40 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000 z-10"></div>
-
-        {/* Container principal responsive */}
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 sm:pt-32 sm:pb-16 lg:pt-40 lg:pb-32 z-20">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
             <div
@@ -178,7 +174,6 @@ const HomePage: FC = () => {
                 <span className="truncate">Solutions Financières & IT de Croissance</span>
               </div>
 
-              {/* Titre avec meilleure progression responsive */}
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 lg:mb-6 bg-gradient-to-r from-white via-blue-100 to-cyan-200 bg-clip-text text-transparent leading-tight">
                 La Perspective de
                 <span className="block text-transparent bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text">
@@ -186,7 +181,6 @@ const HomePage: FC = () => {
                 </span>
               </h1>
 
-              {/* Description responsive */}
               <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-gray-300 mb-4 sm:mb-6 lg:mb-8 leading-relaxed">
                 Transformez vos données en décisions stratégiques avec nos solutions d'ingénierie financière, nos logiciels de gestion sur mesure et notre expertise IT de pointe.
               </p>

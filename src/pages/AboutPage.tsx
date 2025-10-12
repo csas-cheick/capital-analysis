@@ -1,13 +1,12 @@
 import { FC } from "react";
 import {
-  Briefcase, // Icône principale de la page (Mallette/Expertise)
-  Target, // Mission
-  CheckCircle, // Valeur
-  Star, // Valeur
-  Lightbulb, // Valeur
-  Users, // Équipe
-  ArrowRight,
-  Eye, // Vision
+  Briefcase,
+  Target,
+  CheckCircle,
+  Star,
+  Lightbulb,
+  Users,
+  Eye,
 } from "lucide-react";
 import Header from "../components/header/Header";
 
@@ -38,12 +37,9 @@ const AboutPage: FC = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* ======================================================= */}
       {/* 1. SECTION HERO / TITRE */}
-      {/* ======================================================= */}
       <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white pt-40 pb-24 md:pt-48 md:pb-32 overflow-hidden">
         <Header />
-        {/* Effets de fond */}
         <div className="absolute inset-0 opacity-20">
           <div
             className="absolute inset-0"
@@ -57,7 +53,6 @@ const AboutPage: FC = () => {
         </div>
 
         <div className="relative container mx-auto px-6 text-center">
-          {/* Icône principale */}
           <div className="inline-flex items-center justify-center mb-6 p-6 rounded-full bg-blue-600/30 backdrop-blur-sm border-2 border-blue-500/50 shadow-2xl">
             <Briefcase className="w-16 h-16 md:w-20 md:h-20 text-cyan-400" />
           </div>
@@ -72,10 +67,7 @@ const AboutPage: FC = () => {
           </p>
         </div>
       </section>
-
-      {/* ======================================================= */}
       {/* 2. NOTRE HISTOIRE & MISSION/VISION */}
-      {/* ======================================================= */}
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -121,9 +113,7 @@ const AboutPage: FC = () => {
         </div>
       </section>
 
-      {/* ======================================================= */}
       {/* 3. NOS VALEURS FONDAMENTALES */}
-      {/* ======================================================= */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-6 text-center">
           <div className="inline-flex items-center bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
@@ -155,9 +145,7 @@ const AboutPage: FC = () => {
         </div>
       </section>
 
-      {/* ======================================================= */}
       {/* 4. NOTRE ÉQUIPE (Placeholder pour le futur) */}
-      {/* ======================================================= */}
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-6 text-center">
           <div className="inline-flex items-center bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
@@ -168,7 +156,7 @@ const AboutPage: FC = () => {
             Rencontrez Nos Experts
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12">
-            Notre succès repose sur une équipe de consultants financiers certifiés et de développeurs IT passionnés, dédiés à l'atteinte de vos objectifs.
+            Notre succès repose sur une équipe de consultants financiers  et de développeurs IT passionnés, dédiés à l'atteinte de vos objectifs.
           </p>
 
           {/* Placeholder pour les cartes de membres d'équipe */}
@@ -195,13 +183,6 @@ const AboutPage: FC = () => {
                 <p className="text-sm text-emerald-600">Relation Partenaire</p>
             </div>
           </div>
-          
-          <button className="group mt-12 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-xl shadow-blue-500/30">
-            <span className="flex items-center text-lg">
-              Rejoindre l'Équipe
-              <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
-            </span>
-          </button>
         </div>
       </section>
     </div>
