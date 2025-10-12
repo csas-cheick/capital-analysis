@@ -88,6 +88,7 @@ const HomePage: FC = () => {
       ],
       color: "from-emerald-500 to-green-400",
       bgColor: "bg-emerald-500/10",
+      link: "/activites/ingenierie-financiere",
     },
     {
       icon: Monitor,
@@ -101,6 +102,7 @@ const HomePage: FC = () => {
       ],
       color: "from-red-500 to-orange-400",
       bgColor: "bg-red-500/10",
+      link: "/activites/departement-it-developpement",
     },
     {
       icon: BarChart3,
@@ -110,6 +112,7 @@ const HomePage: FC = () => {
       features: [],
       color: "from-blue-500 to-cyan-400",
       bgColor: "bg-blue-500/10",
+      link: "/activites/etude-et-conseil",
     },
     {
       icon: Users,
@@ -124,6 +127,7 @@ const HomePage: FC = () => {
       ],
       color: "from-purple-500 to-pink-400",
       bgColor: "bg-purple-500/10",
+      link: "/activites/suivi-et-assistance-comptable",
     },
   ];
 
@@ -154,7 +158,9 @@ const HomePage: FC = () => {
         <Header />
 
         {/* Éléments de décoration responsive */}
+        {/* Cercle décoratif animé en haut à gauche */}
         <div className="absolute top-4 left-2 w-16 h-16 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-blue-500/10 rounded-full blur-3xl animate-pulse z-10"></div>
+        {/* Cercle décoratif animé en bas à droite */}
         <div className="absolute bottom-4 right-2 w-20 h-20 sm:w-32 sm:h-32 lg:w-40 lg:h-40 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000 z-10"></div>
 
         {/* Container principal responsive */}
@@ -361,12 +367,14 @@ const HomePage: FC = () => {
                     </span>
                   </button>
                 </Link>
-                <button className="group bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 sm:px-8 sm:py-3 rounded-xl font-semibold transition-all duration-300 hover:bg-white/20 w-full sm:w-auto">
-                  <span className="flex items-center justify-center text-sm sm:text-base">
-                    Voir les Fonctionnalités
-                    <Eye className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:scale-110 transition-transform" />
-                  </span>
-                </button>
+                <Link to="/capitalpetroleum">
+                  <button className="group bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 sm:px-8 sm:py-3 rounded-xl font-semibold transition-all duration-300 hover:bg-white/20 w-full sm:w-auto">
+                    <span className="flex items-center justify-center text-sm sm:text-base">
+                      Voir les Fonctionnalités
+                      <Eye className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:scale-110 transition-transform" />
+                    </span>
+                  </button>
+                </Link>
               </div>
             </div>
 
@@ -479,11 +487,7 @@ const HomePage: FC = () => {
                       </div>
                     )}
 
-                    <Link
-                      to={`/activites/${service.title
-                        .toLowerCase()
-                        .replace(/\s/g, "-")}`}
-                    >
+                    <Link to={service.link}>
                       <button className="group/btn flex items-center text-blue-600 hover:text-blue-700 font-semibold transition-colors text-xs sm:text-sm">
                         En savoir plus
                         <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />

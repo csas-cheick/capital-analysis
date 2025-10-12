@@ -1,5 +1,5 @@
 import { FC, useState, useRef, useEffect } from "react";
-import { ChevronDown, Menu, X, Mail } from "lucide-react";
+import { ChevronDown, Menu, X, Mail, TrendingUp, Code, FileText, Calculator } from "lucide-react";
 import { Link } from "react-router-dom";
 // Assurez-vous que le chemin d'accès au logo est correct
 import logo from "../assets/logoC.svg";
@@ -8,6 +8,8 @@ import logo from "../assets/logoC.svg";
 type DropdownItem = {
   name: string;
   href: string;
+  description?: string;
+  icon?: React.ComponentType<{ className?: string }>;
 };
 
 type NavItem = {
@@ -37,6 +39,8 @@ const Header: FC<HeaderProps> = ({ variant = 'hero' }) => {
   
   // Réf pour détecter les clics à l'extérieur du menu mobile et le fermer
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+  // Réf pour le délai de fermeture du dropdown
+  const dropdownTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
@@ -48,6 +52,22 @@ const Header: FC<HeaderProps> = ({ variant = 'hero' }) => {
 
   const toggleMobileDropdown = (itemName: string) => {
     setMobileDropdownOpen(itemName === mobileDropdownOpen ? null : itemName);
+  };
+
+  // Fonction pour ouvrir le dropdown (annule le délai de fermeture s'il existe)
+  const handleDropdownEnter = (itemName: string) => {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+      dropdownTimeoutRef.current = null;
+    }
+    setActiveDropdown(itemName);
+  };
+
+  // Fonction pour fermer le dropdown avec un délai
+  const handleDropdownLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 300); // Délai de 300ms avant la fermeture
   };
 
   // Fermer le menu mobile lors d'un clic en dehors
@@ -94,24 +114,32 @@ const Header: FC<HeaderProps> = ({ variant = 'hero' }) => {
     { name: "Objectifs", href: "/objectifs", hasDropdown: false },
     {
       name: "Activités",
-      href: "/activites", // Peut être un lien vers une page d'activités ou '#'
+      href: "/activites",
       hasDropdown: true,
       dropdownItems: [
         {
           name: "Ingénierie financière",
           href: "/activites/ingenierie-financiere",
+          description: "",
+          icon: TrendingUp,
         },
         {
           name: "IT & Développement",
           href: "/activites/departement-it-developpement",
+          description: "",
+          icon: Code,
         },
         {
           name: "Étude & Conseil",
           href: "/activites/etude-et-conseil",
+          description: "",
+          icon: FileText,
         },
         {
           name: "Suivi et assistance comptable",
           href: "/activites/suivi-et-assistance-comptable",
+          description: "",
+          icon: Calculator,
         },
       ],
     },
@@ -172,7 +200,7 @@ const Header: FC<HeaderProps> = ({ variant = 'hero' }) => {
         <div className="absolute top-[80px] lg:top-[76px] w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent z-40 opacity-70 hidden lg:block"></div>
       )}
       
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-50">
         <div className="flex items-center justify-between py-4">
           
           {/* Logo et Nom */}
@@ -203,20 +231,17 @@ const Header: FC<HeaderProps> = ({ variant = 'hero' }) => {
             {navItems.map((item) => (
               <div
                 key={item.name}
-                className="relative"
-                onMouseEnter={() => item.hasDropdown && setActiveDropdown(item.name)}
-                onMouseLeave={() => item.hasDropdown && setActiveDropdown(null)}
+                className="relative z-[100]"
+                onMouseEnter={() => item.hasDropdown && handleDropdownEnter(item.name)}
+                onMouseLeave={() => item.hasDropdown && handleDropdownLeave()}
               >
                 <Link
-                  // Si c'est un dropdown, on utilise '#' pour ne pas naviguer au hover. L'utilisateur doit cliquer.
-                  // Mais ici, je garde le href initial, car la navigation est gérée par le hover/clic.
                   to={item.href}
                   className={`flex items-center px-4 py-2 font-medium transition-all duration-300 rounded-lg whitespace-nowrap
                     ${item.hasDropdown && activeDropdown === item.name
-                      ? "text-blue-400 bg-white/5" // Style actif/ouvert
-                      : `${getTextClasses()} hover:bg-white/10` // Style normal
+                      ? "text-blue-400 bg-white/5"
+                      : `${getTextClasses()} hover:bg-white/10`
                     }`}
-                  // Empêche la navigation au clic si c'est un dropdown (pour ouvrir le sous-menu) - non nécessaire avec onMouseEnter
                   onClick={(e) => item.hasDropdown && e.preventDefault()}
                 >
                   {item.name}
@@ -232,22 +257,50 @@ const Header: FC<HeaderProps> = ({ variant = 'hero' }) => {
                   )}
                 </Link>
 
-                {/* Dropdown Desktop */}
+                {/* Dropdown Desktop - Design Professionnel */}
                 {item.hasDropdown && activeDropdown === item.name && (
-                  <div 
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-white/95 backdrop-blur-md rounded-xl shadow-2xl border border-gray-100 transition-all duration-300 transform opacity-100 visible origin-top"
-                    // On peut ajouter onMouseLeave ici si on veut fermer dès que la souris quitte le div parent
-                  >
-                    {item.dropdownItems?.map((dropdownItem) => (
-                      <Link
-                        key={dropdownItem.name}
-                        to={dropdownItem.href}
-                        className="block px-4 py-3 text-gray-800 hover:text-blue-600 hover:bg-blue-50/80 transition-all duration-200 text-sm first:rounded-t-xl last:rounded-b-xl"
-                        onClick={() => setActiveDropdown(null)} // Fermer le dropdown après clic
-                      >
-                        {dropdownItem.name}
-                      </Link>
-                    ))}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-96 bg-white/98 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100/50 transition-all duration-500 transform opacity-100 visible origin-top overflow-hidden z-[9999]">
+                    {/* En-tête du dropdown */}
+                    <div className="px-6 py-4 bg-gradient-to-r from-slate-50 to-blue-50/30 border-b border-gray-100/50">
+                      <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider">
+                        Nos Services
+                      </h3>
+                      <p className="text-xs text-gray-500 mt-1">
+                        Solutions professionnelles adaptées à vos besoins
+                      </p>
+                    </div>
+                    
+                    {/* Liste des services */}
+                    <div className="py-2">
+                      {item.dropdownItems?.map((dropdownItem) => {
+                        const IconComponent = dropdownItem.icon;
+                        return (
+                          <Link
+                            key={dropdownItem.name}
+                            to={dropdownItem.href}
+                            className="group flex items-center px-6 py-3 hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50/50 transition-all duration-300 border-l-2 border-transparent hover:border-blue-400"
+                            onClick={() => setActiveDropdown(null)}
+                          >
+                            {/* Icône */}
+                            <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-xl flex items-center justify-center group-hover:from-blue-200 group-hover:to-cyan-200 transition-all duration-300 group-hover:scale-110">
+                              {IconComponent && (
+                                <IconComponent className="w-5 h-5 text-blue-600 group-hover:text-blue-700" />
+                              )}
+                            </div>
+                            
+                            {/* Contenu */}
+                            <div className="ml-4 flex-1 min-w-0">
+                              <div className="flex items-center justify-between">
+                                <h4 className="text-sm font-semibold text-gray-900 group-hover:text-blue-900 transition-colors duration-200">
+                                  {dropdownItem.name}
+                                </h4>
+                                <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-blue-500 -rotate-90 opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                              </div>
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
                   </div>
                 )}
               </div>
@@ -288,10 +341,9 @@ const Header: FC<HeaderProps> = ({ variant = 'hero' }) => {
       <div
         id="mobile-menu-content"
         ref={mobileMenuRef} // Référence pour la gestion du clic extérieur
-        className={`lg:hidden absolute inset-x-0 top-full bg-white shadow-2xl transition-all duration-300 overflow-hidden ${
+        className={`lg:hidden absolute inset-x-0 top-full bg-white shadow-2xl transition-[max-height,opacity] duration-300 overflow-hidden ${
           isMenuOpen ? "opacity-100 max-h-screen" : "opacity-0 max-h-0 pointer-events-none" // Meilleure gestion de l'ouverture
         }`}
-        style={{ transitionProperty: "max-height, opacity" }} // Pour une transition plus fluide sur max-height
       >
         <div className="container mx-auto px-4 sm:px-6 py-4">
           <nav className="space-y-1">
@@ -329,27 +381,52 @@ const Header: FC<HeaderProps> = ({ variant = 'hero' }) => {
                     )}
                   </Link>
 
-                  {/* Sous-Menu Mobile */}
+                  {/* Sous-Menu Mobile - Design Professionnel */}
                   {hasDropdownItems && (
                     <div
-                      className={`pl-4 transition-all duration-300 overflow-hidden ${
+                      className={`transition-[max-height,opacity] duration-500 overflow-hidden ${
                         isDropdownOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                       }`}
-                      style={{ transitionProperty: "max-height, opacity" }}
                     >
-                      <div className="border-l-2 border-blue-200 ml-4 pl-2 space-y-0.5">
-                        {item.dropdownItems!.map(
-                          (dropdownItem) => (
-                            <Link
-                              key={dropdownItem.name}
-                              to={dropdownItem.href}
-                              onClick={() => setIsMenuOpen(false)} // Ferme le menu principal après la navigation
-                              className="block px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-100/70 rounded-lg transition-all duration-200 text-sm font-normal"
-                            >
-                              {dropdownItem.name}
-                            </Link>
-                          )
-                        )}
+                      <div className="mt-2 bg-gradient-to-r from-gray-50 to-blue-50/30 rounded-xl border border-gray-100/50 overflow-hidden">
+                        {/* En-tête du sous-menu mobile */}
+                        <div className="px-4 py-2 bg-gradient-to-r from-slate-100/50 to-blue-100/30 border-b border-gray-200/30">
+                          <p className="text-xs font-medium text-gray-600 uppercase tracking-wider">
+                            Nos Services
+                          </p>
+                        </div>
+                        
+                        {/* Liste des services mobiles */}
+                        <div className="py-1">
+                          {item.dropdownItems!.map((dropdownItem) => {
+                            const IconComponent = dropdownItem.icon;
+                            return (
+                              <Link
+                                key={dropdownItem.name}
+                                to={dropdownItem.href}
+                                onClick={() => setIsMenuOpen(false)}
+                                className="group flex items-center px-4 py-3 hover:bg-gradient-to-r hover:from-blue-100/50 hover:to-cyan-100/30 transition-all duration-300 border-l-2 border-transparent hover:border-blue-400"
+                              >
+                                {/* Icône mobile */}
+                                <div className="flex-shrink-0 w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:scale-105 transition-all duration-300">
+                                  {IconComponent && (
+                                    <IconComponent className="w-4 h-4 text-blue-600 group-hover:text-blue-700" />
+                                  )}
+                                </div>
+                                
+                                {/* Contenu mobile */}
+                                <div className="ml-3 flex-1 min-w-0">
+                                  <h5 className="text-sm font-medium text-gray-800 group-hover:text-blue-900 transition-colors duration-200">
+                                    {dropdownItem.name}
+                                  </h5>
+                                </div>
+                                
+                                {/* Flèche indicatrice */}
+                                <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-blue-500 -rotate-90 group-hover:translate-x-0.5 transition-all duration-300" />
+                              </Link>
+                            );
+                          })}
+                        </div>
                       </div>
                     </div>
                   )}
