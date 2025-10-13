@@ -1,5 +1,5 @@
 import { FC, useState, useRef, useEffect } from "react";
-import { ChevronDown, Menu, X, Mail, TrendingUp, Code, FileText, Calculator } from "lucide-react";
+import { ChevronDown, Menu, X, Mail, TrendingUp, Code, FileText, Calculator, Languages } from "lucide-react";
 import { Link } from "react-router-dom";
 // Assurez-vous que le chemin d'accès au logo est correct
 import logo from "../assets/logoC.svg";
@@ -308,7 +308,17 @@ const Header: FC<HeaderProps> = ({ variant = 'hero' }) => {
           </nav>
 
           {/* Bouton Contact Desktop */}
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center space-x-3">
+            {/* Icône de traduction */}
+            <button 
+              className={`p-2.5 rounded-full transition-all duration-300 hover:bg-white/10 ${getTextClasses()}`}
+              aria-label="Changer de langue"
+              title="Changer de langue"
+            >
+              <Languages className="w-5 h-5" />
+            </button>
+            
+            {/* Bouton Contact */}
             <Link to="/contact">
               <button className="group bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white px-5 py-2.5 rounded-full font-semibold transition-all duration-300 shadow-lg shadow-blue-500/50 hover:shadow-blue-500/70">
                 <span className="flex items-center">
@@ -435,8 +445,18 @@ const Header: FC<HeaderProps> = ({ variant = 'hero' }) => {
             })}
           </nav>
 
-          {/* Bouton Contact Mobile */}
-          <div className="mt-4 pt-4 border-t border-gray-100">
+          {/* Bouton Contact et Traduction Mobile */}
+          <div className="mt-4 pt-4 border-t border-gray-100 space-y-2">
+            {/* Bouton de traduction mobile */}
+            <button 
+              className="w-full bg-gradient-to-r from-gray-100 to-gray-200 text-gray-700 font-semibold py-3 rounded-xl shadow-md flex items-center justify-center space-x-2 hover:from-gray-200 hover:to-gray-300 transition-all duration-300"
+              aria-label="Changer de langue"
+            >
+              <Languages className="w-5 h-5" />
+              <span>Changer de langue</span>
+            </button>
+            
+            {/* Bouton Contact */}
             <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
               <button className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold py-3 rounded-xl shadow-lg flex items-center justify-center space-x-2 hover:from-blue-700 hover:to-cyan-600 transition-all duration-300">
                 <Mail className="w-4 h-4" />

@@ -56,13 +56,13 @@ const CapitalPetroleum: FC = () => {
     },
     {
       icon: Users,
-      title: "Gestion du Personnel",
-      description: "Gestion complète des employés",
+      title: "Gestion de la Clientèle",
+      description: "Module permettant la gestion complète des clients et de leurs transactions.",
       highlights: [
-        "Ajout des employés",
-        "Affectation aux stations",
-        "suivi des performances",
-        "suppression des employés"
+        "Suivi des soldes clients",
+        "Gestion des règlements clients",
+        "Suivi des mouvements clients",
+        "Impression des relevés et factures"
       ]
     },
     {

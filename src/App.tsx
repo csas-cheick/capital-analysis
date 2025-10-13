@@ -13,7 +13,7 @@ import SuiviAssistanceComptable from "./pages/services/SuiviAssistanceComptable"
 
 const App: FC = () => {
   return (
-    <Router>
+      <Router>
       <div className="flex flex-col min-h-screen">
         {/* Pages avec routing */}
         <main className="flex-1">
