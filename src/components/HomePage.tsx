@@ -13,7 +13,6 @@ import {
   ChevronRight,
   Phone,
   Mail,
-  MapPin,
   Play,
   Pause,
 } from "lucide-react";
