@@ -14,8 +14,10 @@ import {
   Banknote,
   Award,
   Clock,
-  Shield
+  Shield,
+  Heart
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "../assets/logoC.svg";
 
 const Footer: FC = () => {
@@ -35,17 +37,33 @@ const Footer: FC = () => {
       {/* Decorative Elements */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-600"></div>
       
+      {/* Floating particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(4)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-2 h-2 bg-blue-400/10 rounded-full animate-float"
+            style={{
+              left: `${20 + i * 20}%`,
+              top: `${30 + (i % 2) * 30}%`,
+              animationDelay: `${i * 0.5}s`,
+              animationDuration: `${4 + i}s`
+            }}
+          />
+        ))}
+      </div>
+      
       <div className="relative container mx-auto px-6 pt-16 pb-8">
         {/* Main Footer Content */}
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-12 mb-12">
           
           {/* Company Info */}
           <div className="lg:col-span-1">
-            <div className="flex items-center space-x-3 cursor-pointer">
+            <Link to="/" className="flex items-center space-x-3 cursor-pointer group">
               <img
                 src={logo}
                 alt="Capital Analytics"
-                className="w-14 h-14 sm:w-16 sm:h-16 object-contain"
+                className="w-14 h-14 sm:w-16 sm:h-16 object-contain group-hover:scale-110 transition-transform duration-300"
               />
               <div className="hidden sm:block">
                 <h1 className="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-white via-blue-100 to-cyan-200 bg-clip-text text-transparent">
@@ -55,7 +73,7 @@ const Footer: FC = () => {
                   la perspective de vos chiffres
                 </p>
               </div>
-            </div>
+            </Link>
 
             <p className="text-gray-400 mb-6 mt-4 leading-relaxed">
               Nous offrons des solutions digitales sur mesure : création de sites web,
@@ -64,16 +82,16 @@ const Footer: FC = () => {
 
             {/* Social Links */}
             <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all duration-300 transform hover:scale-110 hover:shadow-lg group">
+              <a href="#" aria-label="Facebook" className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/20 group">
                 <Facebook className="w-5 h-5 group-hover:text-white transition-colors" />
               </a>
-              <a href="#" className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-sky-500 transition-all duration-300 transform hover:scale-110 hover:shadow-lg group">
+              <a href="#" aria-label="Twitter" className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-sky-500 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 hover:shadow-lg hover:shadow-sky-500/20 group">
                 <Twitter className="w-5 h-5 group-hover:text-white transition-colors" />
               </a>
-              <a href="#" className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-blue-700 transition-all duration-300 transform hover:scale-110 hover:shadow-lg group">
+              <a href="#" aria-label="LinkedIn" className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-blue-700 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-700/20 group">
                 <Linkedin className="w-5 h-5 group-hover:text-white transition-colors" />
               </a>
-              <a href="#" className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-pink-600 transition-all duration-300 transform hover:scale-110 hover:shadow-lg group">
+              <a href="#" aria-label="Instagram" className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-pink-600 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 hover:shadow-lg hover:shadow-pink-500/20 group">
                 <Instagram className="w-5 h-5 group-hover:text-white transition-colors" />
               </a>
             </div>
@@ -86,20 +104,20 @@ const Footer: FC = () => {
               <div className="w-8 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-400 mt-2"></div>
             </h3>
             <div className="space-y-4">
-              <div className="flex items-center group">
-                <div className="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center mr-3 group-hover:bg-blue-600 transition-colors">
+              <a href="tel:+22797400012" className="flex items-center group">
+                <div className="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center mr-3 group-hover:bg-blue-600 group-hover:scale-110 transition-all duration-300">
                   <Phone className="w-4 h-4" />
                 </div>
                 <span className="group-hover:text-white transition-colors">+227 97 40 00 12</span>
-              </div>
-              <div className="flex items-center group">
-                <div className="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center mr-3 group-hover:bg-blue-600 transition-colors">
+              </a>
+              <a href="mailto:contact@capital-analysis.com" className="flex items-center group">
+                <div className="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center mr-3 group-hover:bg-blue-600 group-hover:scale-110 transition-all duration-300">
                   <Mail className="w-4 h-4" />
                 </div>
                 <span className="group-hover:text-white transition-colors">contact@capital-analysis.com</span>
-              </div>
+              </a>
               <div className="flex items-center group">
-                <div className="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center mr-3 group-hover:bg-blue-600 transition-colors">
+                <div className="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center mr-3 group-hover:bg-blue-600 group-hover:scale-110 transition-all duration-300">
                   <MapPin className="w-4 h-4" />
                 </div>
                 <span className="group-hover:text-white transition-colors">Niamey, Niger</span>
@@ -115,32 +133,32 @@ const Footer: FC = () => {
             </h3>
             <ul className="space-y-3">
               <li>
-                <a href="#services" className="flex items-center group hover:text-white transition-colors">
-                  <Banknote className="w-4 h-4 mr-3 text-green-400" />
+                <Link to="/services/ingenierie-financiere" className="flex items-center group hover:text-white transition-colors">
+                  <Banknote className="w-4 h-4 mr-3 text-green-400 group-hover:scale-110 transition-transform" />
                   <span>Ingénierie Financière</span>
-                  <ArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
-                </a>
+                  <ArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                </Link>
               </li>
               <li>
-                <a href="#services" className="flex items-center group hover:text-white transition-colors">
-                  <Globe className="w-4 h-4 mr-3 text-blue-400" />
+                <Link to="/services/it-developpement" className="flex items-center group hover:text-white transition-colors">
+                  <Globe className="w-4 h-4 mr-3 text-blue-400 group-hover:scale-110 transition-transform" />
                   <span>IT & Développement</span>
-                  <ArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
-                </a>
+                  <ArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                </Link>
               </li>
               <li>
-                <a href="#services" className="flex items-center group hover:text-white transition-colors">
-                  <Users className="w-4 h-4 mr-3 text-cyan-400" />
+                <Link to="/services/etude-conseil" className="flex items-center group hover:text-white transition-colors">
+                  <Users className="w-4 h-4 mr-3 text-cyan-400 group-hover:scale-110 transition-transform" />
                   <span>Etude & Conseil</span>
-                  <ArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
-                </a>
+                  <ArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                </Link>
               </li>
               <li>
-                <a href="#services" className="flex items-center group hover:text-white transition-colors">
-                  <TrendingUp className="w-4 h-4 mr-3 text-green-400" />
+                <Link to="/services/suivi-assistance-comptable" className="flex items-center group hover:text-white transition-colors">
+                  <TrendingUp className="w-4 h-4 mr-3 text-green-400 group-hover:scale-110 transition-transform" />
                   <span>Suivi & Assistance Comptable</span>
-                  <ArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
-                </a>
+                  <ArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                </Link>
               </li>
             </ul>
           </div>
@@ -155,15 +173,15 @@ const Footer: FC = () => {
               Restez informé des dernières tendances digitales et de nos actualités.
             </p>
             <div className="space-y-4">
-              <div className="relative">
+              <div className="relative group">
                 <input
                   type="email"
                   placeholder="Votre adresse email"
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all duration-300"
                 />
-                <Mail className="absolute right-3 top-3.5 w-5 h-5 text-gray-400" />
+                <Mail className="absolute right-3 top-3.5 w-5 h-5 text-gray-400 group-focus-within:text-blue-400 transition-colors" />
               </div>
-              <button className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white py-3 px-6 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center group">
+              <button className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white py-3 px-6 rounded-lg font-medium transition-all duration-300 transform hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-500/25 flex items-center justify-center group">
                 S'abonner
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </button>
@@ -177,32 +195,32 @@ const Footer: FC = () => {
         {/* Bottom Section */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Copyright */}
-          <div className="text-gray-400 text-sm text-center md:text-left">
-           © 2025 Capital Analysis. Tous droits réservés.
+          <div className="text-gray-400 text-sm text-center md:text-left flex items-center gap-1">
+            © 2025 Capital Analysis. Fait avec <Heart className="w-4 h-4 text-red-500 animate-pulse" /> au Niger.
           </div>
 
           {/* Trust Indicators */}
           <div className="flex flex-wrap justify-center md:justify-center gap-6">
-            <div className="flex items-center space-x-2 text-sm">
-              <Shield className="w-4 h-4 text-green-400" />
-              <span className="text-gray-400">100% Sécurisé</span>
+            <div className="flex items-center space-x-2 text-sm group">
+              <Shield className="w-4 h-4 text-green-400 group-hover:scale-110 transition-transform" />
+              <span className="text-gray-400 group-hover:text-white transition-colors">100% Sécurisé</span>
             </div>
-            <div className="flex items-center space-x-2 text-sm">
-              <Clock className="w-4 h-4 text-blue-400" />
-              <span className="text-gray-400">Support 24/7</span>
+            <div className="flex items-center space-x-2 text-sm group">
+              <Clock className="w-4 h-4 text-blue-400 group-hover:scale-110 transition-transform" />
+              <span className="text-gray-400 group-hover:text-white transition-colors">Support 24/7</span>
             </div>
-            <div className="flex items-center space-x-2 text-sm">
-              <Award className="w-4 h-4 text-yellow-400" />
-              <span className="text-gray-400">Certifié</span>
+            <div className="flex items-center space-x-2 text-sm group">
+              <Award className="w-4 h-4 text-yellow-400 group-hover:scale-110 transition-transform" />
+              <span className="text-gray-400 group-hover:text-white transition-colors">Certifié</span>
             </div>
           </div>
 
           {/* Legal Links */}
           <div className="flex items-center space-x-6 text-sm text-center md:text-right">
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">
+            <a href="#" className="text-gray-400 hover:text-white transition-colors hover:underline underline-offset-4">
               Politique de confidentialité
             </a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">
+            <a href="#" className="text-gray-400 hover:text-white transition-colors hover:underline underline-offset-4">
               Mentions légales
             </a>
           </div>

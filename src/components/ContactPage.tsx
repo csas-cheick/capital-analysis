@@ -1,16 +1,15 @@
 import { FC, useState } from "react";
 import {
-  Mail, // Icône principale de la page
-  ArrowRight,
-  User,
+  Mail,
   Phone,
-  MessageSquare,
   MapPin,
   Clock,
+  CheckCircle,
+  Send,
 } from "lucide-react";
 import Header from "./header/Header";
+import { useScrollReveal } from "../hooks/useScrollReveal";
 
-// Définition des types pour les données du formulaire
 interface ContactFormState {
   name: string;
   email: string;
@@ -29,13 +28,13 @@ const ContactPage: FC = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitMessage, setSubmitMessage] = useState<string | null>(null);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  
+  const [formRef, formVisible] = useScrollReveal();
+  const [infoRef, infoVisible] = useScrollReveal();
 
-  // Gère la mise à jour des champs du formulaire
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     setFormData({
       ...formData,
@@ -43,306 +42,263 @@ const ContactPage: FC = () => {
     });
   };
 
-  // Gère la soumission du formulaire
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitMessage(null);
 
-    // Simulation de l'envoi des données (remplacez par votre logique API/Backend)
     setTimeout(() => {
       console.log("Données envoyées:", formData);
       setIsSubmitting(false);
-      setSubmitMessage(
-        "Votre message a été envoyé avec succès ! Nous vous répondrons rapidement."
-      );
-      // Réinitialiser le formulaire
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
-      });
+      setSubmitSuccess(true);
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+      
+      setTimeout(() => setSubmitSuccess(false), 5000);
     }, 2000);
   };
 
-  // Liste des sujets pour le champ de sélection
   const subjects = [
     "Information Générale",
-    "Demande de Devis (Ingénierie Financière)",
-    "Support Technique (Logiciel)",
-    "Recrutement / Partenariat",
+    "Demande de Devis",
+    "Support Technique",
+    "Partenariat",
     "Autre",
   ];
 
+  const contactInfo = [
+    {
+      icon: Phone,
+      title: "Téléphone",
+      value: "+227 97 40 00 12",
+      href: "tel:+22797400012",
+    },
+    {
+      icon: Mail,
+      title: "Email",
+      value: "contact@capital-analysis.com",
+      href: "mailto:contact@capital-analysis.com",
+    },
+    {
+      icon: MapPin,
+      title: "Adresse",
+      value: "Niamey, Niger",
+      href: null,
+    },
+    {
+      icon: Clock,
+      title: "Horaires",
+      value: "Lun - Ven: 8h - 18h",
+      href: null,
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* ======================================================= */}
-      {/* 1. SECTION HERO / TITRE */}
-      {/* ======================================================= */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white pt-40 pb-24 md:pt-48 md:pb-32 overflow-hidden">
+    <div className="min-h-screen bg-white">
+      
+      {/* Hero Section */}
+      <section className="relative bg-[#0a1628] overflow-hidden">
         <Header />
-        {/* Effets de fond similaires à la HomePage */}
-        <div className="absolute inset-0 opacity-20">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `
-              radial-gradient(circle at 50% 10%, rgba(59, 130, 246, 0.4) 0%, transparent 50%), 
-              radial-gradient(circle at 10% 80%, rgba(6, 182, 212, 0.3) 0%, transparent 50%)
-            `,
-            }}
-          ></div>
+        
+        <div className="absolute inset-0 opacity-[0.03]">
+          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="0.5"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+          </svg>
         </div>
 
-        <div className="relative container mx-auto px-6 text-center">
-          {/* Icône Mail Géante */}
-          <div className="inline-flex items-center justify-center mb-6 p-6 rounded-full bg-blue-600/30 backdrop-blur-sm border-2 border-blue-500/50 shadow-2xl">
-            <Mail className="w-16 h-16 md:w-20 md:h-20 text-cyan-400" />
+        <div className="relative z-10 container mx-auto px-6 lg:px-8 pt-32 pb-20 lg:pt-40 lg:pb-24">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-full mb-6">
+              <Mail className="w-4 h-4 text-blue-400" />
+              <span className="text-sm text-gray-300">Nous contacter</span>
+            </div>
+            
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
+              Parlons de
+              <span className="block text-transparent bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text">
+                Votre Projet
+              </span>
+            </h1>
+            <p className="text-lg text-gray-400 leading-relaxed">
+              Nous sommes là pour répondre à vos questions et discuter de vos besoins.
+            </p>
           </div>
-
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-white via-blue-100 to-cyan-200 bg-clip-text text-transparent leading-tight">
-            Contactez-Nous
-          </h1>
-
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Nous sommes là pour répondre à vos questions et discuter de votre
-            prochain projet.
-          </p>
         </div>
       </section>
 
-      {/* ======================================================= */}
-      {/* 2. CORPS DE LA PAGE / FORMULAIRE ET INFOS */}
-      {/* ======================================================= */}
-      <section className="py-24">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-3 gap-12">
-            {/* Colonne d'informations de contact (Gauche) */}
-            <div className="lg:col-span-1 space-y-8 bg-white p-8 rounded-2xl shadow-xl h-full border border-gray-100">
-              <h2 className="text-2xl font-bold text-gray-900 border-b pb-4 mb-4">
-                Nos Coordonnées
+      {/* Contact Section */}
+      <section className="py-20 lg:py-28 bg-gray-50">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-5 gap-12">
+            
+            {/* Contact Info */}
+            <div 
+              ref={infoRef}
+              className={`lg:col-span-2 transition-all duration-700 ${infoVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}
+            >
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                Informations de contact
               </h2>
+              
+              <p className="text-gray-600 mb-8">
+                N'hésitez pas à nous contacter pour toute question. 
+                Notre équipe vous répondra dans les plus brefs délais.
+              </p>
 
-              {/* Adresse */}
-              <div className="flex items-start space-x-4">
-                <MapPin className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="font-semibold text-gray-900">Adresse</h3>
-                  <p className="text-gray-600">
-                    Froncophonie, Niamey, Niger
-                  </p>
-                </div>
+              <div className="space-y-6">
+                {contactInfo.map((info, index) => (
+                  <div key={index} className="flex items-start gap-4">
+                    <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <info.icon className="w-5 h-5 text-blue-600" />
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-500 mb-1">{info.title}</div>
+                      {info.href ? (
+                        <a 
+                          href={info.href} 
+                          className="text-gray-900 font-medium hover:text-blue-600 transition-colors"
+                        >
+                          {info.value}
+                        </a>
+                      ) : (
+                        <div className="text-gray-900 font-medium">{info.value}</div>
+                      )}
+                    </div>
+                  </div>
+                ))}
               </div>
 
-              {/* Email */}
-              <div className="flex items-start space-x-4">
-                <Mail className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="font-semibold text-gray-900">Email</h3>
-                  <p className="text-blue-600 hover:underline cursor-pointer">
-                    contact@capital-analysis.com
-                  </p>
-                </div>
-              </div>
-
-              {/* Téléphone */}
-              <div className="flex items-start space-x-4">
-                <Phone className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="font-semibold text-gray-900">Téléphone</h3>
-                  <p className="text-gray-600">(+227) 97 40 00 12</p>
-                </div>
-              </div>
-
-              {/* Heures d'ouverture */}
-              <div className="flex items-start space-x-4">
-                <Clock className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="font-semibold text-gray-900">
-                    Heures d'ouverture
-                  </h3>
-                  <p className="text-gray-600">Lun - Samedi : 8h00 - 17h00 GMT+1</p>
-                </div>
-              </div>
-
-              {/* Carte Google Maps (Placeholder) */}
-              <div className="mt-8 pt-8 border-t border-gray-100">
-                <p className="text-sm text-gray-500">
-                  Visualisez notre emplacement (Placeholder pour carte) :
-                </p>
-                <div className="w-full h-48 bg-gray-200 rounded-lg mt-2 flex items-center justify-center text-gray-500 text-sm">
-                  [Emplacement de la carte ici]
-                </div>
+              {/* Map placeholder */}
+              <div className="mt-8 bg-gray-200 rounded-xl h-48 flex items-center justify-center">
+                <span className="text-gray-500">Carte - Niamey, Niger</span>
               </div>
             </div>
 
-            {/* Colonne du Formulaire de contact (Droite) */}
-            <div className="lg:col-span-2 bg-white p-8 rounded-2xl shadow-xl">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">
-                Envoyez-nous un Message
-              </h2>
+            {/* Contact Form */}
+            <div 
+              ref={formRef}
+              className={`lg:col-span-3 transition-all duration-700 delay-200 ${formVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}
+            >
+              <div className="bg-white rounded-2xl p-8 shadow-sm">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                  Envoyez-nous un message
+                </h2>
 
-              {submitMessage && (
-                <div
-                  className={`p-4 mb-4 rounded-lg font-medium ${
-                    submitMessage.includes("succès")
-                      ? "bg-green-100 text-green-700"
-                      : "bg-red-100 text-red-700"
-                  }`}
-                >
-                  {submitMessage}
-                </div>
-              )}
+                {submitSuccess && (
+                  <div className="mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded-lg flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-emerald-600" />
+                    <span className="text-emerald-700">
+                      Votre message a été envoyé avec succès !
+                    </span>
+                  </div>
+                )}
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Ligne 1: Nom et Email */}
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Nom complet *
-                    </label>
-                    <div className="relative">
-                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Nom complet *
+                      </label>
                       <input
                         type="text"
                         name="name"
-                        id="name"
                         value={formData.name}
                         onChange={handleChange}
                         required
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all"
                         placeholder="Votre nom"
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-150"
                       />
                     </div>
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Adresse Email *
-                    </label>
-                    <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Email *
+                      </label>
                       <input
                         type="email"
                         name="email"
-                        id="email"
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        placeholder="votre.email@exemple.com"
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-150"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all"
+                        placeholder="votre@email.com"
                       />
                     </div>
                   </div>
-                </div>
 
-                {/* Ligne 2: Téléphone et Sujet */}
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      htmlFor="phone"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Numéro de Téléphone
-                    </label>
-                    <div className="relative">
-                      <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Téléphone
+                      </label>
                       <input
                         type="tel"
                         name="phone"
-                        id="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="(+227) 99 00 00 00"
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-150"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all"
+                        placeholder="+227 XX XX XX XX"
                       />
                     </div>
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="subject"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Objet de la demande *
-                    </label>
-                    <div className="relative">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Sujet *
+                      </label>
                       <select
                         name="subject"
-                        id="subject"
                         value={formData.subject}
                         onChange={handleChange}
                         required
-                        className="w-full pl-4 pr-4 py-3 border border-gray-300 rounded-xl appearance-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-150 bg-white"
+                        aria-label="Sujet du message"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all bg-white"
                       >
-                        <option value="" disabled>
-                          Sélectionnez un sujet
-                        </option>
-                        {subjects.map((subject, index) => (
-                          <option key={index} value={subject}>
+                        <option value="">Sélectionner un sujet</option>
+                        {subjects.map((subject) => (
+                          <option key={subject} value={subject}>
                             {subject}
                           </option>
                         ))}
                       </select>
-                      <ArrowRight className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 rotate-90 pointer-events-none" />
                     </div>
                   </div>
-                </div>
 
-                {/* Ligne 3: Message */}
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Votre Message *
-                  </label>
-                  <div className="relative">
-                    <MessageSquare className="absolute left-3 top-4 w-5 h-5 text-gray-400" />
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Message *
+                    </label>
                     <textarea
                       name="message"
-                      id="message"
-                      rows={5}
                       value={formData.message}
                       onChange={handleChange}
                       required
-                      placeholder="Décrivez votre demande en détail ici..."
-                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-150 resize-none"
+                      rows={5}
+                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all resize-none"
+                      placeholder="Décrivez votre projet ou votre question..."
                     />
                   </div>
-                </div>
 
-                {/* Bouton de Soumission */}
-                <div>
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full group bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-[1.005] shadow-xl shadow-blue-500/30 disabled:bg-gray-400 disabled:shadow-none disabled:cursor-not-allowed"
+                    className="group w-full bg-blue-600 text-white px-6 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    <span className="flex items-center justify-center text-lg">
-                      {isSubmitting ? (
-                        <>
-                          Envoi en cours...
-                          <span className="animate-spin ml-2 h-5 w-5 border-t-2 border-b-2 border-white rounded-full"></span>
-                        </>
-                      ) : (
-                        <>
-                          Envoyer le Message
-                          <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
-                        </>
-                      )}
-                    </span>
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        Envoi en cours...
+                      </>
+                    ) : (
+                      <>
+                        Envoyer le message
+                        <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      </>
+                    )}
                   </button>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
-            {/* Fin du Formulaire */}
           </div>
         </div>
       </section>
