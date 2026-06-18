@@ -1,7 +1,7 @@
 services:
-  mon-site-nextjs:
-    container_name: mon-site-nextjs
-    image: mon-site-nextjs:latest
+  capital-analysis:
+    container_name: capital-analysis
+    image: capital-analysis:latest
     build:
       context: .
       dockerfile: Dockerfile
