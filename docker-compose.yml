@@ -1,0 +1,21 @@
+services:
+  mon-site-nextjs:
+    container_name: mon-site-nextjs
+    image: mon-site-nextjs:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    expose:
+      - "3000"
+    environment:
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: "1"
+      PORT: "3000"
+      HOSTNAME: 0.0.0.0
+    networks:
+      - global-proxy-network
+
+networks:
+  global-proxy-network:
+    external: true

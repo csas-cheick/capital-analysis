@@ -1,7 +1,14 @@
 import { FC } from "react";
-import { Code, Monitor, Settings, Network, CheckCircle, ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
-import Header from "../../components/header/Header";
+import {
+  Code,
+  Monitor,
+  Settings,
+  Network,
+  CheckCircle,
+  ArrowRight,
+} from "lucide-react";
+import Link from "next/link";
+import Header from "../../components/layout/Header";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 const ITDeveloppement: FC = () => {
@@ -12,32 +19,44 @@ const ITDeveloppement: FC = () => {
     {
       icon: Monitor,
       title: "Solutions SAGE",
-      description: "Intégration et accompagnement autour des solutions SAGE pour une gestion efficace.",
-      features: ["Installation et configuration", "Formation utilisateurs", "Maintenance"],
+      description:
+        "Intégration et accompagnement autour des solutions SAGE pour une gestion efficace.",
+      features: [
+        "Installation et configuration",
+        "Formation utilisateurs",
+        "Maintenance",
+      ],
     },
     {
       icon: Code,
       title: "Développement Sur Mesure",
-      description: "Applications web et mobiles modernes adaptées à vos besoins spécifiques.",
-      features: ["Applications de gestion", "Sites web", "Applications mobiles"],
+      description:
+        "Applications web et mobiles modernes adaptées à vos besoins spécifiques.",
+      features: [
+        "Applications de gestion",
+        "Sites web",
+        "Applications mobiles",
+      ],
     },
     {
       icon: Network,
       title: "Réseaux & Serveurs",
-      description: "Configuration et maintenance de vos infrastructures réseau et serveurs.",
+      description:
+        "Configuration et maintenance de vos infrastructures réseau et serveurs.",
       features: ["Installation serveurs", "Sécurisation réseau", "Sauvegarde"],
     },
     {
       icon: Settings,
       title: "Maintenance & Support",
-      description: "Accompagnement continu pour assurer la performance de vos systèmes.",
+      description:
+        "Accompagnement continu pour assurer la performance de vos systèmes.",
       features: ["Support réactif", "Mises à jour", "Monitoring"],
     },
   ];
 
   const projects = [
     {
-      title: "CapitalPetroleum",
+      title: "CAPEsys",
       description: "Plateforme de gestion des stations-service",
       tag: "Logiciel",
     },
@@ -55,16 +74,25 @@ const ITDeveloppement: FC = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      
       {/* Hero Section */}
       <section className="relative bg-[#0a1628] overflow-hidden">
         <Header />
-        
+
         <div className="absolute inset-0 opacity-[0.03]">
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="0.5"/>
+              <pattern
+                id="grid"
+                width="40"
+                height="40"
+                patternUnits="userSpaceOnUse"
+              >
+                <path
+                  d="M 40 0 L 0 0 0 40"
+                  fill="none"
+                  stroke="white"
+                  strokeWidth="0.5"
+                />
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#grid)" />
@@ -77,7 +105,7 @@ const ITDeveloppement: FC = () => {
               <Code className="w-4 h-4 text-blue-400" />
               <span className="text-sm text-blue-300 font-medium">Service</span>
             </div>
-            
+
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
               IT &
               <span className="block text-transparent bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text">
@@ -85,7 +113,7 @@ const ITDeveloppement: FC = () => {
               </span>
             </h1>
             <p className="text-lg text-gray-400 leading-relaxed max-w-2xl">
-              Logiciels de gestion, création de plateformes digitales et 
+              Logiciels de gestion, création de plateformes digitales et
               intégration de solutions technologiques pour votre entreprise.
             </p>
           </div>
@@ -95,13 +123,15 @@ const ITDeveloppement: FC = () => {
       {/* Services Section */}
       <section ref={servicesRef} className="py-20 lg:py-28 bg-white">
         <div className="container mx-auto px-6 lg:px-8">
-          
-          <div className={`max-w-2xl mb-16 transition-all duration-700 ${servicesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+          <div
+            className={`max-w-2xl mb-16 transition-all duration-700 ${servicesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+          >
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
               Nos Services IT
             </h2>
             <p className="text-gray-600">
-              Des solutions technologiques complètes pour moderniser votre entreprise.
+              Des solutions technologiques complètes pour moderniser votre
+              entreprise.
             </p>
           </div>
 
@@ -110,7 +140,9 @@ const ITDeveloppement: FC = () => {
               <div
                 key={index}
                 className={`bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-500 ${
-                  servicesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                  servicesVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-10"
                 }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
@@ -120,12 +152,13 @@ const ITDeveloppement: FC = () => {
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
                   {service.title}
                 </h3>
-                <p className="text-gray-600 mb-6">
-                  {service.description}
-                </p>
+                <p className="text-gray-600 mb-6">{service.description}</p>
                 <ul className="space-y-2">
                   {service.features.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-2 text-sm text-gray-600">
+                    <li
+                      key={i}
+                      className="flex items-center gap-2 text-sm text-gray-600"
+                    >
                       <CheckCircle className="w-4 h-4 text-blue-500" />
                       {feature}
                     </li>
@@ -140,8 +173,9 @@ const ITDeveloppement: FC = () => {
       {/* Projects Section */}
       <section ref={projectsRef} className="py-20 lg:py-28 bg-gray-50">
         <div className="container mx-auto px-6 lg:px-8">
-          
-          <div className={`max-w-2xl mx-auto text-center mb-16 transition-all duration-700 ${projectsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+          <div
+            className={`max-w-2xl mx-auto text-center mb-16 transition-all duration-700 ${projectsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+          >
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
               Nos Réalisations
             </h2>
@@ -155,7 +189,9 @@ const ITDeveloppement: FC = () => {
               <div
                 key={index}
                 className={`bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-500 ${
-                  projectsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                  projectsVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-10"
                 }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
@@ -165,9 +201,7 @@ const ITDeveloppement: FC = () => {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   {project.title}
                 </h3>
-                <p className="text-gray-600 text-sm">
-                  {project.description}
-                </p>
+                <p className="text-gray-600 text-sm">{project.description}</p>
               </div>
             ))}
           </div>
@@ -184,7 +218,7 @@ const ITDeveloppement: FC = () => {
             <p className="text-gray-600 mb-8">
               Discutons de vos besoins et trouvons la solution adaptée.
             </p>
-            <Link to="/contact">
+            <Link href="/contact">
               <button className="group bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 flex items-center gap-2 mx-auto">
                 Discuter de votre projet
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

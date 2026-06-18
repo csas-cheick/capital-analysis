@@ -59,19 +59,21 @@ export const useStaggeredReveal = (count: number, baseDelay: number = 100): [Ref
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
+    const timers: ReturnType<typeof setTimeout>[] = [];
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           // Stagger the visibility of each item
           for (let i = 0; i < count; i++) {
-            setTimeout(() => {
+            const timer = setTimeout(() => {
               setVisibleItems((prev) => {
                 const newState = [...prev];
                 newState[i] = true;
                 return newState;
               });
             }, i * baseDelay);
+            timers.push(timer);
           }
           observer.unobserve(container);
         }
@@ -83,6 +85,7 @@ export const useStaggeredReveal = (count: number, baseDelay: number = 100): [Ref
 
     return () => {
       observer.unobserve(container);
+      timers.forEach((timer) => clearTimeout(timer));
     };
   }, [count, baseDelay]);
 

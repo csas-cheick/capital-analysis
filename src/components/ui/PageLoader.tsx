@@ -1,5 +1,5 @@
-import { FC, useEffect, useState } from 'react';
-import logo from '../../assets/logoC.svg';
+import { FC, useEffect, useState } from "react";
+import Image from "next/image";
 
 interface PageLoaderProps {
   minDisplayTime?: number;
@@ -29,7 +29,7 @@ const PageLoader: FC<PageLoaderProps> = ({ minDisplayTime = 800 }) => {
   return (
     <div
       className={`fixed inset-0 z-[99999] flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 transition-opacity duration-500 ${
-        isFading ? 'opacity-0' : 'opacity-100'
+        isFading ? "opacity-0" : "opacity-100"
       }`}
     >
       {/* Background decorative elements */}
@@ -43,10 +43,13 @@ const PageLoader: FC<PageLoaderProps> = ({ minDisplayTime = 800 }) => {
         {/* Logo with animation */}
         <div className="relative mb-8">
           <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-xl animate-pulse"></div>
-          <img
-            src={logo}
+          <Image
+            src="/images/logoC.svg"
             alt="Capital Analysis"
+            width={80}
+            height={80}
             className="relative w-20 h-20 object-contain animate-pulse"
+            priority
           />
         </div>
 
