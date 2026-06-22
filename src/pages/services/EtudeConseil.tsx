@@ -17,6 +17,17 @@ const EtudeConseil: FC = () => {
 
   const services = [
     {
+      icon: FileText,
+      title: "Suivi et Évaluation de Projets",
+      description:
+        "Mesurez l'impact et optimisez les performances de vos opérations grâce.",
+      features: [
+        "Mesure de la performance",
+        "Évaluation d'impact",
+        "Reporting détaillé et sur mesure",
+      ],
+    },
+    {
       icon: Search,
       title: "Études de Marché",
       description:
@@ -26,13 +37,6 @@ const EtudeConseil: FC = () => {
         "Études sectorielles",
         "Veille stratégique",
       ],
-    },
-    {
-      icon: FileText,
-      title: "Business Plans",
-      description:
-        "Élaboration de plans d'affaires solides pour convaincre partenaires et investisseurs.",
-      features: ["Plans financiers", "Stratégie commerciale", "Prévisions"],
     },
     {
       icon: Lightbulb,

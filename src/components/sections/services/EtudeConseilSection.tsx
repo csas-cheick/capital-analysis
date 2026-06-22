@@ -12,6 +12,18 @@ import Link from "next/link";
 const EtudeConseil: FC = () => {
   const services = [
     {
+      icon: FileText,
+      title: "Suivi et Évaluation de Projets",
+      description:
+        "Pilotez vos projets avec clarté et rigueur. Capital Analysis vous offre un système complet de suivi-évaluation",
+      features: [
+        "Conception du cadre S&E",
+        "Tableau de bord indicateurs (cibles vs réalisations)",
+        "Évaluation d'impact et rapports automatisés",
+        "Mesure de la performance",
+      ],
+    },
+    {
       icon: Search,
       title: "Études de Marché",
       description:
@@ -21,13 +33,6 @@ const EtudeConseil: FC = () => {
         "Études sectorielles",
         "Veille stratégique",
       ],
-    },
-    {
-      icon: FileText,
-      title: "Business Plans",
-      description:
-        "Élaboration de plans d'affaires solides pour convaincre partenaires et investisseurs.",
-      features: ["Plans financiers", "Stratégie commerciale", "Prévisions"],
     },
     {
       icon: Lightbulb,

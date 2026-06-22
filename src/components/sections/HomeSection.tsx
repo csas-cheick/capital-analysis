@@ -56,9 +56,6 @@ const HomePage: FC = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* ═══════════════════════════════════════════════════════════
-          HERO SECTION - Clean & Professional
-      ═══════════════════════════════════════════════════════════ */}
       <section className="relative min-h-screen bg-[#0a1628] overflow-hidden">
         {/* Subtle gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a1628] via-[#0a1628]/95 to-[#0a1628]" />
@@ -125,8 +122,7 @@ const HomePage: FC = () => {
               }`}
             >
               Nous transformons vos données en décisions stratégiques grâce à
-              notre expertise en ingénierie financière et nos solutions
-              technologiques innovantes.
+              notre expertise et nos solutions technologiques innovantes.
             </p>
 
             {/* CTA Buttons */}
@@ -184,6 +180,64 @@ const HomePage: FC = () => {
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
           <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center pt-2">
             <div className="w-1 h-2 bg-white/40 rounded-full animate-pulse" />
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════
+          SERVICES - Clean Grid Layout
+      ═══════════════════════════════════════════════════════════ */}
+      <section ref={servicesRef} className="py-24 lg:py-32 bg-gray-50">
+        <div className="container mx-auto px-6 lg:px-8">
+          {/* Section Header */}
+          <div
+            className={`max-w-2xl mx-auto text-center mb-16 transition-all duration-700 ${
+              servicesVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-10"
+            }`}
+          >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Nos Expertises
+            </h2>
+            <p className="text-lg text-gray-600">
+              Des solutions complètes pour accompagner la croissance de votre
+              entreprise.
+            </p>
+          </div>
+
+          {/* Services Grid */}
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+            {services.map((service, index) => (
+              <Link
+                key={index}
+                href={service.link}
+                className={`group bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 hover:border-blue-100 ${
+                  servicesVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-10"
+                }`}
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                <div className="flex items-start gap-5">
+                  <div className="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center group-hover:bg-blue-100 transition-colors flex-shrink-0">
+                    <service.icon className="w-7 h-7 text-blue-600" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed mb-4">
+                      {service.description}
+                    </p>
+                    <span className="inline-flex items-center text-blue-600 font-medium text-sm group-hover:gap-2 transition-all">
+                      En savoir plus
+                      <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -294,64 +348,6 @@ const HomePage: FC = () => {
                 </Link>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════
-          SERVICES - Clean Grid Layout
-      ═══════════════════════════════════════════════════════════ */}
-      <section ref={servicesRef} className="py-24 lg:py-32 bg-gray-50">
-        <div className="container mx-auto px-6 lg:px-8">
-          {/* Section Header */}
-          <div
-            className={`max-w-2xl mx-auto text-center mb-16 transition-all duration-700 ${
-              servicesVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-10"
-            }`}
-          >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Nos Expertises
-            </h2>
-            <p className="text-lg text-gray-600">
-              Des solutions complètes pour accompagner la croissance de votre
-              entreprise.
-            </p>
-          </div>
-
-          {/* Services Grid */}
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-            {services.map((service, index) => (
-              <Link
-                key={index}
-                href={service.link}
-                className={`group bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 hover:border-blue-100 ${
-                  servicesVisible
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-10"
-                }`}
-                style={{ transitionDelay: `${index * 100}ms` }}
-              >
-                <div className="flex items-start gap-5">
-                  <div className="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center group-hover:bg-blue-100 transition-colors flex-shrink-0">
-                    <service.icon className="w-7 h-7 text-blue-600" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed mb-4">
-                      {service.description}
-                    </p>
-                    <span className="inline-flex items-center text-blue-600 font-medium text-sm group-hover:gap-2 transition-all">
-                      En savoir plus
-                      <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            ))}
           </div>
         </div>
       </section>
