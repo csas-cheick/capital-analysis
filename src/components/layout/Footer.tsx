@@ -240,8 +240,7 @@ const Footer: FC = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Copyright */}
           <div className="text-gray-400 text-sm text-center md:text-left flex items-center gap-1">
-            © 2025 Capital Analysis. Fait avec{" "}
-            <Heart className="w-4 h-4 text-red-500 animate-pulse" /> au Niger.
+            © 2025 Capital Analysis.
           </div>
 
           {/* Trust Indicators */}
