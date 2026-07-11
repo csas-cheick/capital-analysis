@@ -126,12 +126,12 @@ const Footer: FC = () => {
               <div className="w-8 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-400 mt-2"></div>
             </h3>
             <div className="space-y-4">
-              <a href="tel:+22797400012" className="flex items-center group">
+              <a href="tel:+22790553074" className="flex items-center group">
                 <div className="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center mr-3 group-hover:bg-blue-600 group-hover:scale-110 transition-all duration-300">
                   <Phone className="w-4 h-4" />
                 </div>
                 <span className="group-hover:text-white transition-colors">
-                  +227 97 40 00 12
+                  +227 90 55 30 74
                 </span>
               </a>
               <a
