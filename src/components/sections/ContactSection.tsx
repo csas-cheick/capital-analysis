@@ -88,8 +88,8 @@ const ContactPage: FC = () => {
     {
       icon: Phone,
       title: "Téléphone",
-      value: "+227 97 40 00 12",
-      href: "tel:+22797400012",
+      value: "+227 90 55 30 74",
+      href: "tel:+22790553074",
     },
     {
       icon: Mail,
