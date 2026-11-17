@@ -174,19 +174,19 @@ export default function ITDeveloppementSection() {
   return (
     <main className="min-h-screen bg-white">
       {/* ═══ HERO ═══ */}
-      <section className="relative flex min-h-[300px] items-center justify-center overflow-hidden bg-[#0A1628] pt-16">
+      <section className="relative flex min-h-[220px] items-center justify-center overflow-hidden bg-[#0A1628] pt-16 sm:min-h-[300px]">
         <div className="absolute inset-0 bg-[url('/images/principale.svg')] bg-cover bg-center opacity-10" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A1628]/80 to-[#0A1628]/95" />
 
         <div className="pointer-events-none absolute -right-32 -top-36 h-[350px] w-[350px] rounded-full border border-white/[0.07]" />
         <div className="pointer-events-none absolute -right-16 -top-20 h-[230px] w-[230px] rounded-full border border-white/[0.07]" />
 
-        <div className="relative mx-auto w-full max-w-[1400px] px-6 py-16 text-center lg:px-10">
+        <div className="relative mx-auto w-full max-w-[1400px] px-5 py-10 text-center sm:py-16 lg:px-10">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease }}
-            className="text-4xl font-extrabold uppercase tracking-wider text-white sm:text-5xl lg:text-6xl"
+            className="text-3xl font-extrabold uppercase tracking-wider text-white sm:text-5xl lg:text-6xl"
           >
             IT & Développement
           </motion.h1>
@@ -221,8 +221,8 @@ export default function ITDeveloppementSection() {
       </section>
 
       {/* ═══ INTRODUCTION ═══ */}
-      <section className="bg-white py-20 lg:py-28">
-        <div ref={introRef} className="mx-auto max-w-[1250px] px-6 lg:px-10">
+      <section className="bg-white py-12 sm:py-20 lg:py-28">
+        <div ref={introRef} className="mx-auto max-w-[1250px] px-5 sm:px-6 lg:px-10">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <motion.div
               initial={{ opacity: 0, x: -40 }}
@@ -234,14 +234,14 @@ export default function ITDeveloppementSection() {
                 Notre département IT
               </span>
 
-              <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#0A1628] sm:text-4xl">
+              <h2 className="mt-4 text-2xl font-bold tracking-tight text-[#0A1628] sm:text-3xl lg:text-4xl">
                 Des solutions technologiques pour accélérer votre transformation
                 digitale
               </h2>
 
               <div className="mt-5 h-1 w-16 rounded-full bg-[#E87932]" />
 
-              <p className="mt-6 text-base leading-8 text-[#64748B]">
+              <p className="mt-6 text-sm leading-7 text-[#64748B] sm:text-base sm:leading-8">
                 Notre département IT conçoit et déploie des solutions
                 technologiques sur mesure pour répondre aux défis de votre
                 entreprise. Du développement logiciel à l&apos;intégration de
@@ -249,7 +249,7 @@ export default function ITDeveloppementSection() {
                 performance.
               </p>
 
-              <p className="mt-4 text-base leading-8 text-[#64748B]">
+              <p className="mt-4 text-sm leading-7 text-[#64748B] sm:text-base sm:leading-8">
                 Avec CAPESYS comme produit phare et notre expertise en solutions
                 SAGE, nous accompagnons les entreprises dans leur modernisation
                 et leur croissance.
@@ -271,7 +271,7 @@ export default function ITDeveloppementSection() {
                 sizes="(min-width: 1024px) 50vw, 100vw"
               />
 
-              <div className="absolute -bottom-6 -left-6 rounded-xl bg-[#E87932] px-6 py-4 text-white shadow-lg">
+              <div className="absolute -bottom-6 left-3 rounded-xl bg-[#E87932] px-6 py-4 text-white shadow-lg sm:-left-6">
                 <p className="text-3xl font-extrabold">5+</p>
                 <p className="text-sm font-medium text-white/90">
                   projets livrés
@@ -283,8 +283,8 @@ export default function ITDeveloppementSection() {
       </section>
 
       {/* ═══ NOS SERVICES ═══ */}
-      <section className="bg-[#F4F6F9] py-20 lg:py-28">
-        <div ref={servicesRef} className="mx-auto max-w-[1250px] px-6 lg:px-10">
+      <section className="bg-[#F4F6F9] py-12 sm:py-20 lg:py-28">
+        <div ref={servicesRef} className="mx-auto max-w-[1250px] px-5 sm:px-6 lg:px-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={servicesInView ? { opacity: 1, y: 0 } : {}}
@@ -295,13 +295,13 @@ export default function ITDeveloppementSection() {
               Nos compétences
             </span>
 
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0A1628] sm:text-4xl">
+            <h2 className="mt-3 text-2xl font-bold tracking-tight text-[#0A1628] sm:text-3xl lg:text-4xl">
               Nos Services IT
             </h2>
 
             <div className="mx-auto mt-5 h-1 w-16 rounded-full bg-[#E87932]" />
 
-            <p className="mt-6 text-base leading-8 text-[#64748B]">
+            <p className="mt-6 text-sm leading-7 text-[#64748B] sm:text-base sm:leading-8">
               Des solutions technologiques complètes pour moderniser votre
               entreprise et optimiser vos processus.
             </p>
@@ -329,7 +329,7 @@ export default function ITDeveloppementSection() {
                       duration: 0.6,
                       ease,
                     }}
-                    className={`${colors[i]} rounded-2xl p-8 text-white`}
+                    className={`${colors[i]} rounded-xl p-5 text-white sm:rounded-2xl sm:p-8`}
                   >
                     <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/20">
                       <Icon className="h-6 w-6 text-white" />
@@ -382,13 +382,13 @@ export default function ITDeveloppementSection() {
       </section>
 
       {/* ═══ PORTFOLIO / NOS RÉALISATIONS ═══ */}
-      <section className="relative overflow-hidden bg-white py-20 lg:py-28">
+      <section className="relative overflow-hidden bg-white py-12 sm:py-20 lg:py-28">
         <div className="pointer-events-none absolute -left-40 top-20 h-80 w-80 rounded-full bg-[#F4F6F9] blur-3xl" />
         <div className="pointer-events-none absolute -right-40 bottom-0 h-80 w-80 rounded-full bg-[#F4F6F9] blur-3xl" />
 
         <div
           ref={projectsRef}
-          className="relative mx-auto max-w-[1400px] px-6 lg:px-10"
+          className="relative mx-auto max-w-[1400px] px-5 sm:px-6 lg:px-10"
         >
           <motion.div
             initial={{ opacity: 0, y: 25 }}
@@ -400,13 +400,13 @@ export default function ITDeveloppementSection() {
               Portfolio
             </span>
 
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0A1628] sm:text-4xl lg:text-5xl">
+            <h2 className="mt-3 text-2xl font-bold tracking-tight text-[#0A1628] sm:text-3xl lg:text-4xl">
               Nos réalisations
             </h2>
 
             <div className="mx-auto mt-5 h-1 w-16 rounded-full bg-[#E87932]" />
 
-            <p className="mt-6 text-base leading-8 text-[#64748B]">
+            <p className="mt-6 text-sm leading-7 text-[#64748B] sm:text-base sm:leading-8">
               Découvrez une sélection de projets conçus pour accompagner les
               entreprises dans leur transformation numérique.
             </p>
@@ -479,7 +479,7 @@ export default function ITDeveloppementSection() {
                     {project.title}
                   </h3>
 
-                  <p className="mt-3 min-h-[72px] text-sm leading-6 text-[#64748B]">
+                  <p className="mt-3 hidden text-sm leading-6 text-[#64748B] sm:block sm:min-h-[72px]">
                     {project.description}
                   </p>
 
@@ -498,8 +498,8 @@ export default function ITDeveloppementSection() {
       </section>
 
       {/* ═══ NOTRE STACK TECHNIQUE ═══ */}
-      <section className="bg-white py-20 lg:py-28">
-        <div ref={techRef} className="mx-auto max-w-[1250px] px-6 lg:px-10">
+      <section className="bg-white py-12 sm:py-20 lg:py-28">
+        <div ref={techRef} className="mx-auto max-w-[1250px] px-5 sm:px-6 lg:px-10">
           {/* En-tête centré */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -511,13 +511,13 @@ export default function ITDeveloppementSection() {
               Notre expertise technique
             </span>
 
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0A1628] sm:text-4xl">
+            <h2 className="mt-3 text-2xl font-bold tracking-tight text-[#0A1628] sm:text-3xl lg:text-4xl">
               Des technologies modernes et éprouvées
             </h2>
 
             <div className="mx-auto mt-5 h-1 w-16 rounded-full bg-[#E87932]" />
 
-            <p className="mt-6 text-base leading-8 text-[#64748B]">
+            <p className="mt-6 text-sm leading-7 text-[#64748B] sm:text-base sm:leading-8">
               Nous mobilisons des technologies fiables et performantes pour
               concevoir des solutions numériques sécurisées, évolutives et
               adaptées aux enjeux de votre entreprise.
@@ -539,7 +539,7 @@ export default function ITDeveloppementSection() {
                     duration: 0.6,
                     ease,
                   }}
-                  className="group flex flex-col items-center justify-center rounded-2xl border border-[#E9EDF2] bg-[#F8F9FB] px-5 py-9 text-center transition-all duration-300 hover:-translate-y-1 hover:border-[#D8DEE8] hover:bg-white hover:shadow-lg hover:shadow-[#0A1628]/[0.05]"
+                  className="group flex flex-col items-center justify-center rounded-xl border border-[#E9EDF2] bg-[#F8F9FB] px-4 py-6 text-center sm:rounded-2xl sm:px-5 sm:py-9 transition-all duration-300 hover:-translate-y-1 hover:border-[#D8DEE8] hover:bg-white hover:shadow-lg hover:shadow-[#0A1628]/[0.05]"
                 >
                   <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-white shadow-sm transition-transform duration-300 group-hover:scale-110">
                     <Icon className="h-7 w-7 text-[#E87932]" />
@@ -556,8 +556,8 @@ export default function ITDeveloppementSection() {
       </section>
 
       {/* ═══ POURQUOI NOUS ═══ */}
-      <section className="bg-[#F4F6F9] py-20 lg:py-28">
-        <div className="mx-auto max-w-[900px] px-6 text-center lg:px-10">
+      <section className="bg-[#F4F6F9] py-12 sm:py-20 lg:py-28">
+        <div className="mx-auto max-w-[900px] px-5 text-center sm:px-6 lg:px-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -568,7 +568,7 @@ export default function ITDeveloppementSection() {
               Nos engagements
             </span>
 
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0A1628] sm:text-4xl">
+            <h2 className="mt-3 text-2xl font-bold tracking-tight text-[#0A1628] sm:text-3xl lg:text-4xl">
               Pourquoi travailler avec nous ?
             </h2>
 
@@ -611,13 +611,13 @@ export default function ITDeveloppementSection() {
       </section>
 
       {/* ═══ CTA ═══ */}
-      <section className="bg-[#F4F6F9] px-6 pb-20 lg:px-10 lg:pb-28">
+      <section className="bg-[#F4F6F9] px-5 pb-12 sm:px-6 sm:pb-20 lg:px-10 lg:pb-28">
         <div ref={ctaRef} className="mx-auto max-w-[1400px]">
           <motion.div
             initial={{ opacity: 0, y: 50, scale: 0.97 }}
             animate={ctaInView ? { opacity: 1, y: 0, scale: 1 } : {}}
             transition={{ duration: 0.9, ease }}
-            className="relative overflow-hidden rounded-3xl bg-[#0A1628] px-7 py-16 text-center sm:px-12 lg:px-20 lg:py-20"
+            className="relative overflow-hidden rounded-2xl bg-[#0A1628] px-5 py-10 text-center sm:rounded-3xl sm:px-12 sm:py-16 lg:px-20 lg:py-20"
           >
             <motion.div
               animate={{ rotate: 360 }}
@@ -655,7 +655,7 @@ export default function ITDeveloppementSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={ctaInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.7, delay: 0.3, ease }}
-                className="mt-5 text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl"
+                className="mt-4 text-2xl font-bold leading-tight text-white sm:mt-5 sm:text-3xl lg:text-5xl"
               >
                 Un projet IT en tête ?
               </motion.h2>
@@ -664,7 +664,7 @@ export default function ITDeveloppementSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={ctaInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.7, delay: 0.45, ease }}
-                className="mx-auto mt-6 max-w-2xl text-base leading-8 text-white/65 sm:text-lg"
+                className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-white/65 sm:mt-6 sm:text-base sm:leading-8 lg:text-lg"
               >
                 Discutons de vos besoins et trouvons ensemble la solution
                 technologique adaptée à vos ambitions.
@@ -674,11 +674,11 @@ export default function ITDeveloppementSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={ctaInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.7, delay: 0.6, ease }}
-                className="mt-9"
+                className="mt-6 sm:mt-9"
               >
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#E87932] px-8 py-4 text-sm font-bold text-white shadow-lg shadow-[#E87932]/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#f28b47] hover:shadow-xl hover:shadow-[#E87932]/30"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#E87932] px-6 py-3 sm:gap-3 sm:px-8 sm:py-4 text-sm font-bold text-white shadow-lg shadow-[#E87932]/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#f28b47] hover:shadow-xl hover:shadow-[#E87932]/30"
                 >
                   Discuter de votre projet
                   <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />

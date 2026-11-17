@@ -170,14 +170,53 @@ const Header: FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Sidebar Overlay */}
       <div
-        className={`lg:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-100 shadow-lg transition-all duration-300 ${
-          isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 lg:hidden ${
+          isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
+        }`}
+        onClick={closeMenus}
+        aria-hidden="true"
+      />
+
+      {/* Mobile Sidebar */}
+      <div
+        className={`fixed right-0 top-0 z-50 flex h-full w-[300px] max-w-[85vw] flex-col bg-white shadow-2xl transition-transform duration-300 ease-out lg:hidden ${
+          isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="container mx-auto px-6 py-4">
-          <nav className="space-y-1">
+        {/* Sidebar Header */}
+        <div className="flex items-center justify-between border-b border-gray-100 px-5 py-4">
+          <Link href="/" onClick={closeMenus} className="flex items-center gap-2.5">
+            <Image
+              src="/images/logoC.svg"
+              alt="Capital Analysis"
+              width={32}
+              height={32}
+              className="h-8 w-8"
+            />
+            <div>
+              <span className="text-sm font-bold leading-none text-gray-900">
+                Capital Analysis
+              </span>
+              <span className="mt-0.5 block text-[9px] text-orange-500">
+                La perspective de vos chiffres
+              </span>
+            </div>
+          </Link>
+
+          <button
+            onClick={closeMenus}
+            aria-label="Fermer le menu"
+            className="grid h-9 w-9 place-items-center rounded-lg text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+
+        {/* Sidebar Navigation */}
+        <nav className="flex-1 overflow-y-auto px-4 py-4">
+          <div className="space-y-1">
             {navigationItems.map((item) => (
               <div key={item.name}>
                 {item.children ? (
@@ -188,24 +227,30 @@ const Header: FC = () => {
                           activeDropdown === item.name ? null : item.name,
                         )
                       }
-                      className="w-full flex items-center justify-between rounded-lg px-4 py-3 font-medium text-gray-700 hover:bg-[#0a1628]/5 hover:text-[#0a1628]"
+                      className={`flex w-full items-center justify-between rounded-lg px-4 py-3 text-[15px] font-medium transition-colors hover:bg-[#0a1628]/5 hover:text-[#0a1628] ${
+                        activeDropdown === item.name ? "text-[#0a1628]" : "text-gray-700"
+                      }`}
                     >
                       {item.name}
                       <ChevronDown
-                        className={`w-4 h-4 transition-transform ${activeDropdown === item.name ? "rotate-180" : ""}`}
+                        className={`h-4 w-4 transition-transform duration-200 ${activeDropdown === item.name ? "rotate-180" : ""}`}
                       />
                     </button>
 
-                    {activeDropdown === item.name && (
-                      <div className="ml-4 mt-1 space-y-1 border-l-2 border-gray-100 pl-4">
+                    <div
+                      className={`overflow-hidden transition-all duration-200 ${
+                        activeDropdown === item.name ? "max-h-60" : "max-h-0"
+                      }`}
+                    >
+                      <div className="ml-3 space-y-0.5 border-l-2 border-[#E87932]/30 pl-4 pt-1 pb-2">
                         {item.children.map((child) => (
                           <Link
                             key={child.name}
                             href={child.href}
                             onClick={closeMenus}
-                            className={`block px-4 py-2.5 rounded-lg text-sm ${
+                            className={`block rounded-lg px-3 py-2.5 text-sm transition-colors ${
                               isActive(child.href)
-                                ? "bg-[#0a1628]/5 text-[#0a1628]"
+                                ? "bg-[#E87932]/10 font-semibold text-[#E87932]"
                                 : "text-gray-600 hover:bg-[#0a1628]/5 hover:text-[#0a1628]"
                             }`}
                           >
@@ -213,13 +258,13 @@ const Header: FC = () => {
                           </Link>
                         ))}
                       </div>
-                    )}
+                    </div>
                   </>
                 ) : (
                   <Link
                     href={item.href}
                     onClick={closeMenus}
-                    className={`block px-4 py-3 rounded-lg font-medium ${
+                    className={`block rounded-lg px-4 py-3 text-[15px] font-medium transition-colors ${
                       isActive(item.href)
                         ? "bg-[#0a1628]/5 text-[#0a1628]"
                         : "text-gray-700 hover:bg-[#0a1628]/5 hover:text-[#0a1628]"
@@ -230,7 +275,25 @@ const Header: FC = () => {
                 )}
               </div>
             ))}
-          </nav>
+          </div>
+        </nav>
+
+        {/* Sidebar Footer */}
+        <div className="border-t border-gray-100 px-5 py-5">
+          <Link
+            href="/contact"
+            onClick={closeMenus}
+            className="flex w-full items-center justify-center rounded-full bg-[#0a1628] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#0f1f35]"
+          >
+            Nous contacter
+          </Link>
+
+          <a
+            href="tel:+22797400012"
+            className="mt-3 flex items-center justify-center gap-2 text-xs text-gray-500 transition-colors hover:text-[#0a1628]"
+          >
+            +227 97 40 00 12
+          </a>
         </div>
       </div>
     </header>

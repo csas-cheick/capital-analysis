@@ -144,7 +144,7 @@ export default function IngenierieFinanciereSection() {
           HERO
       ═══════════════════════════════════════ */}
 
-      <section className="relative flex min-h-[300px] items-center justify-center overflow-hidden bg-[#0A1628] pt-16">
+      <section className="relative flex min-h-[220px] items-center justify-center overflow-hidden bg-[#0A1628] pt-16 sm:min-h-[300px]">
         <div className="absolute inset-0 bg-[url('/images/principale.svg')] bg-cover bg-center opacity-10" />
 
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A1628]/80 to-[#0A1628]/95" />
@@ -153,12 +153,12 @@ export default function IngenierieFinanciereSection() {
 
         <div className="pointer-events-none absolute -right-16 -top-20 h-[230px] w-[230px] rounded-full border border-white/[0.07]" />
 
-        <div className="relative mx-auto w-full max-w-[1400px] px-6 py-16 text-center lg:px-10">
+        <div className="relative mx-auto w-full max-w-[1400px] px-5 py-10 text-center sm:py-16 lg:px-10">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease }}
-            className="text-4xl font-extrabold uppercase tracking-wider text-white sm:text-5xl lg:text-6xl"
+            className="text-3xl font-extrabold uppercase tracking-wider text-white sm:text-5xl lg:text-6xl"
           >
             Ingénierie Financière
           </motion.h1>
@@ -196,8 +196,8 @@ export default function IngenierieFinanciereSection() {
           INTRODUCTION
       ═══════════════════════════════════════ */}
 
-      <section className="bg-white py-20 lg:py-28">
-        <div ref={introRef} className="mx-auto max-w-[1250px] px-6 lg:px-10">
+      <section className="bg-white py-12 sm:py-20 lg:py-28">
+        <div ref={introRef} className="mx-auto max-w-[1250px] px-5 sm:px-6 lg:px-10">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <motion.div
               initial={{ opacity: 0, x: -40 }}
@@ -209,14 +209,14 @@ export default function IngenierieFinanciereSection() {
                 Notre expertise
               </span>
 
-              <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#0A1628] sm:text-4xl">
+              <h2 className="mt-4 text-2xl font-bold tracking-tight text-[#0A1628] sm:text-3xl lg:text-4xl">
                 Des solutions financières sur mesure pour accompagner votre
                 croissance
               </h2>
 
               <div className="mt-5 h-1 w-16 rounded-full bg-[#E87932]" />
 
-              <p className="mt-6 text-base leading-8 text-[#64748B]">
+              <p className="mt-6 text-sm leading-7 text-[#64748B] sm:text-base sm:leading-8">
                 Nous accompagnons entreprises et investisseurs dans la
                 conception de solutions financières innovantes. De la
                 modélisation à la structuration, en passant par l&apos;analyse
@@ -224,7 +224,7 @@ export default function IngenierieFinanciereSection() {
                 ambitions.
               </p>
 
-              <p className="mt-4 text-base leading-8 text-[#64748B]">
+              <p className="mt-4 text-sm leading-7 text-[#64748B] sm:text-base sm:leading-8">
                 Notre approche combine rigueur analytique et connaissance
                 approfondie des marchés africains pour vous offrir un
                 accompagnement stratégique adapté à vos réalités.
@@ -261,19 +261,19 @@ export default function IngenierieFinanciereSection() {
           NOS SERVICES — ACCORDÉON INTERACTIF
       ═══════════════════════════════════════ */}
 
-      <section className="overflow-hidden bg-[#0A1628] py-20 lg:py-28">
-        <div ref={servicesRef} className="mx-auto max-w-[1400px] px-6 lg:px-10">
+      <section className="overflow-hidden bg-[#0A1628] py-12 sm:py-20 lg:py-28">
+        <div ref={servicesRef} className="mx-auto max-w-[1400px] px-5 sm:px-6 lg:px-10">
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             animate={servicesInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease }}
-            className="mx-auto mb-14 max-w-2xl text-center lg:mb-16"
+            className="mx-auto mb-8 max-w-2xl text-center sm:mb-14 lg:mb-16"
           >
             <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#E87932]">
               Nos domaines d&apos;expertise
             </span>
 
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+            <h2 className="mt-3 text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
               Nos Services
             </h2>
 
@@ -320,7 +320,7 @@ export default function IngenierieFinanciereSection() {
                     isActive ? "lg:flex-[2.3_1_0%]" : "lg:flex-[1_1_0%]"
                   }`}
                 >
-                  <div className="flex h-full flex-col p-6 sm:p-8">
+                  <div className="flex h-full flex-col p-5 sm:p-6 lg:p-8">
                     <div className="flex items-center justify-between">
                       <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.06]">
                         <Icon className="h-6 w-6 text-white/80" />
@@ -397,10 +397,10 @@ export default function IngenierieFinanciereSection() {
           NOS ATOUTS — SANS IMAGE, TEXTE CENTRÉ
       ═══════════════════════════════════════ */}
 
-      <section className="bg-white py-20 lg:py-28">
+      <section className="bg-white py-12 sm:py-20 lg:py-28">
         <div
           ref={strengthsRef}
-          className="mx-auto max-w-[1250px] px-6 lg:px-10"
+          className="mx-auto max-w-[1250px] px-5 sm:px-6 lg:px-10"
         >
           {/* En-tête centré */}
           <motion.div
@@ -413,13 +413,13 @@ export default function IngenierieFinanciereSection() {
               Pourquoi nous choisir
             </span>
 
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0A1628] sm:text-4xl">
+            <h2 className="mt-3 text-2xl font-bold tracking-tight text-[#0A1628] sm:text-3xl lg:text-4xl">
               Ce qui fait notre différence
             </h2>
 
             <div className="mx-auto mt-5 h-1 w-16 rounded-full bg-[#E87932]" />
 
-            <p className="mt-6 text-base leading-8 text-[#64748B]">
+            <p className="mt-6 text-sm leading-7 text-[#64748B] sm:text-base sm:leading-8">
               Notre engagement repose sur des valeurs essentielles qui guident
               chacune de nos interventions et la relation que nous construisons
               avec nos clients.
@@ -427,7 +427,7 @@ export default function IngenierieFinanciereSection() {
           </motion.div>
 
           {/* Grille des atouts */}
-          <div className="mx-auto mt-14 grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mx-auto mt-8 grid max-w-5xl grid-cols-2 gap-4 sm:mt-14 sm:gap-5 lg:grid-cols-4">
             {strengths.map((item, i) => {
               const Icon = item.icon;
 
@@ -445,17 +445,17 @@ export default function IngenierieFinanciereSection() {
                     duration: 0.6,
                     ease,
                   }}
-                  className="group flex flex-col items-center rounded-2xl border border-[#E9EDF2] bg-[#F8F9FB] px-6 py-9 text-center transition-all duration-300 hover:-translate-y-1 hover:border-[#D8DEE8] hover:bg-white hover:shadow-lg hover:shadow-[#0A1628]/[0.05]"
+                  className="group flex flex-col items-center rounded-xl border border-[#E9EDF2] bg-[#F8F9FB] px-4 py-6 text-center sm:rounded-2xl sm:px-6 sm:py-9 transition-all duration-300 hover:-translate-y-1 hover:border-[#D8DEE8] hover:bg-white hover:shadow-lg hover:shadow-[#0A1628]/[0.05]"
                 >
-                  <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-white shadow-sm transition-transform duration-300 group-hover:scale-110">
-                    <Icon className="h-6 w-6 text-[#E87932]" />
+                  <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-white shadow-sm transition-transform duration-300 group-hover:scale-110 sm:h-14 sm:w-14 sm:rounded-xl">
+                    <Icon className="h-5 w-5 text-[#E87932] sm:h-6 sm:w-6" />
                   </div>
 
-                  <h3 className="mt-5 text-base font-bold text-[#0A1628]">
+                  <h3 className="mt-3 text-sm font-bold text-[#0A1628] sm:mt-5 sm:text-base">
                     {item.title}
                   </h3>
 
-                  <p className="mt-3 text-sm leading-7 text-[#64748B]">
+                  <p className="mt-2 hidden text-sm leading-7 text-[#64748B] sm:mt-3 sm:block">
                     {item.description}
                   </p>
                 </motion.article>
@@ -469,13 +469,13 @@ export default function IngenierieFinanciereSection() {
           CTA
       ═══════════════════════════════════════ */}
 
-      <section className="bg-[#F4F6F9] px-6 pb-20 lg:px-10 lg:pb-28">
-        <div ref={ctaRef} className="mx-auto max-w-[1400px] pt-20">
+      <section className="bg-[#F4F6F9] px-5 pb-12 sm:px-6 sm:pb-20 lg:px-10 lg:pb-28">
+        <div ref={ctaRef} className="mx-auto max-w-[1400px] pt-12 sm:pt-20">
           <motion.div
             initial={{ opacity: 0, y: 50, scale: 0.97 }}
             animate={ctaInView ? { opacity: 1, y: 0, scale: 1 } : {}}
             transition={{ duration: 0.9, ease }}
-            className="relative overflow-hidden rounded-3xl bg-[#0A1628] px-7 py-16 text-center sm:px-12 lg:px-20 lg:py-20"
+            className="relative overflow-hidden rounded-2xl bg-[#0A1628] px-5 py-10 text-center sm:rounded-3xl sm:px-12 sm:py-16 lg:px-20 lg:py-20"
           >
             <motion.div
               animate={{ rotate: 360 }}
@@ -513,7 +513,7 @@ export default function IngenierieFinanciereSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={ctaInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.7, delay: 0.3, ease }}
-                className="mt-5 text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl"
+                className="mt-4 text-2xl font-bold leading-tight text-white sm:mt-5 sm:text-3xl lg:text-5xl"
               >
                 Optimisez votre stratégie financière dès aujourd&apos;hui.
               </motion.h2>
@@ -522,7 +522,7 @@ export default function IngenierieFinanciereSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={ctaInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.7, delay: 0.45, ease }}
-                className="mx-auto mt-6 max-w-2xl text-base leading-8 text-white/65 sm:text-lg"
+                className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-white/65 sm:mt-6 sm:text-base sm:leading-8 lg:text-lg"
               >
                 Discutons de vos objectifs et définissons ensemble la meilleure
                 approche pour concrétiser vos ambitions financières.
@@ -532,11 +532,11 @@ export default function IngenierieFinanciereSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={ctaInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.7, delay: 0.6, ease }}
-                className="mt-9"
+                className="mt-6 sm:mt-9"
               >
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#E87932] px-8 py-4 text-sm font-bold text-white shadow-lg shadow-[#E87932]/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#f28b47] hover:shadow-xl hover:shadow-[#E87932]/30"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#E87932] px-6 py-3 sm:gap-3 sm:px-8 sm:py-4 text-sm font-bold text-white shadow-lg shadow-[#E87932]/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#f28b47] hover:shadow-xl hover:shadow-[#E87932]/30"
                 >
                   Prendre rendez-vous
                   <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />

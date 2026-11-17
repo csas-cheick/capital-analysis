@@ -136,19 +136,19 @@ export default function SuiviAssistanceComptableSection() {
   return (
     <main className="min-h-screen bg-white">
       {/* ═══ HERO ═══ */}
-      <section className="relative flex min-h-[300px] items-center justify-center overflow-hidden bg-[#0A1628] pt-16">
+      <section className="relative flex min-h-[220px] items-center justify-center overflow-hidden bg-[#0A1628] pt-16 sm:min-h-[300px]">
         <div className="absolute inset-0 bg-[url('/images/principale.svg')] bg-cover bg-center opacity-10" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A1628]/80 to-[#0A1628]/95" />
 
         <div className="pointer-events-none absolute -right-32 -top-36 h-[350px] w-[350px] rounded-full border border-white/[0.07]" />
         <div className="pointer-events-none absolute -right-16 -top-20 h-[230px] w-[230px] rounded-full border border-white/[0.07]" />
 
-        <div className="relative mx-auto w-full max-w-[1400px] px-6 py-16 text-center lg:px-10">
+        <div className="relative mx-auto w-full max-w-[1400px] px-5 py-10 text-center sm:py-16 lg:px-10">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease }}
-            className="text-4xl font-extrabold uppercase tracking-wider text-white sm:text-5xl lg:text-6xl"
+            className="text-3xl font-extrabold uppercase tracking-wider text-white sm:text-5xl lg:text-6xl"
           >
             Assistance Comptable
           </motion.h1>
@@ -179,8 +179,8 @@ export default function SuiviAssistanceComptableSection() {
       </section>
 
       {/* ═══ INTRODUCTION ═══ */}
-      <section className="bg-white py-20 lg:py-28">
-        <div ref={introRef} className="mx-auto max-w-[1250px] px-6 lg:px-10">
+      <section className="bg-white py-12 sm:py-20 lg:py-28">
+        <div ref={introRef} className="mx-auto max-w-[1250px] px-5 sm:px-6 lg:px-10">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <motion.div
               initial={{ opacity: 0, x: -40 }}
@@ -192,13 +192,13 @@ export default function SuiviAssistanceComptableSection() {
                 Notre expertise comptable
               </span>
 
-              <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#0A1628] sm:text-4xl">
+              <h2 className="mt-4 text-2xl font-bold tracking-tight text-[#0A1628] sm:text-3xl lg:text-4xl">
                 Une gestion comptable rigoureuse pour sécuriser votre entreprise
               </h2>
 
               <div className="mt-5 h-1 w-16 rounded-full bg-[#E87932]" />
 
-              <p className="mt-6 text-base leading-8 text-[#64748B]">
+              <p className="mt-6 text-sm leading-7 text-[#64748B] sm:text-base sm:leading-8">
                 Capital Analysis assure le suivi comptable et fiscal de votre
                 entreprise avec rigueur et professionnalisme. De la tenue
                 quotidienne de vos comptes à la préparation de vos états
@@ -206,7 +206,7 @@ export default function SuiviAssistanceComptableSection() {
                 vos données comptables.
               </p>
 
-              <p className="mt-4 text-base leading-8 text-[#64748B]">
+              <p className="mt-4 text-sm leading-7 text-[#64748B] sm:text-base sm:leading-8">
                 Notre équipe d&apos;experts vous accompagne tout au long de
                 l&apos;année pour vous permettre de vous concentrer sur votre
                 cœur de métier en toute sérénité.
@@ -228,7 +228,7 @@ export default function SuiviAssistanceComptableSection() {
                 sizes="(min-width: 1024px) 50vw, 100vw"
               />
 
-              <div className="absolute -bottom-6 -left-6 rounded-xl bg-[#E87932] px-6 py-4 text-white shadow-lg">
+              <div className="absolute -bottom-6 left-3 rounded-xl bg-[#E87932] px-6 py-4 text-white shadow-lg sm:-left-6">
                 <p className="text-3xl font-extrabold">100%</p>
                 <p className="text-sm font-medium text-white/90">
                   conformité réglementaire
@@ -240,8 +240,8 @@ export default function SuiviAssistanceComptableSection() {
       </section>
 
       {/* ═══ NOS SERVICES — GRILLE SWOT ═══ */}
-      <section className="bg-[#F4F6F9] py-20 lg:py-28">
-        <div ref={servicesRef} className="mx-auto max-w-[1250px] px-6 lg:px-10">
+      <section className="bg-[#F4F6F9] py-12 sm:py-20 lg:py-28">
+        <div ref={servicesRef} className="mx-auto max-w-[1250px] px-5 sm:px-6 lg:px-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={servicesInView ? { opacity: 1, y: 0 } : {}}
@@ -252,13 +252,13 @@ export default function SuiviAssistanceComptableSection() {
               Nos prestations
             </span>
 
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0A1628] sm:text-4xl">
+            <h2 className="mt-3 text-2xl font-bold tracking-tight text-[#0A1628] sm:text-3xl lg:text-4xl">
               Nos Services Comptables
             </h2>
 
             <div className="mx-auto mt-5 h-1 w-16 rounded-full bg-[#E87932]" />
 
-            <p className="mt-6 text-base leading-8 text-[#64748B]">
+            <p className="mt-6 text-sm leading-7 text-[#64748B] sm:text-base sm:leading-8">
               Un accompagnement complet pour toutes vos obligations comptables
               et fiscales, en conformité avec les normes OHADA.
             </p>
@@ -285,7 +285,7 @@ export default function SuiviAssistanceComptableSection() {
                       duration: 0.6,
                       ease,
                     }}
-                    className={`${colors[i]} rounded-2xl p-8 text-white`}
+                    className={`${colors[i]} rounded-xl p-5 text-white sm:rounded-2xl sm:p-8`}
                   >
                     <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/20">
                       <Icon className="h-6 w-6 text-white" />
@@ -334,8 +334,8 @@ export default function SuiviAssistanceComptableSection() {
       </section>
 
       {/* ═══ POURQUOI NOUS ═══ */}
-      <section className="bg-[#0A1628] py-20 lg:py-28">
-        <div ref={benefitsRef} className="mx-auto max-w-[1250px] px-6 lg:px-10">
+      <section className="bg-[#0A1628] py-12 sm:py-20 lg:py-28">
+        <div ref={benefitsRef} className="mx-auto max-w-[1250px] px-5 sm:px-6 lg:px-10">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <motion.div
               initial={{ opacity: 0, x: -40 }}
@@ -346,13 +346,13 @@ export default function SuiviAssistanceComptableSection() {
                 Vos avantages
               </span>
 
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              <h2 className="mt-3 text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
                 Pourquoi nous confier votre comptabilité ?
               </h2>
 
               <div className="mt-5 h-1 w-16 rounded-full bg-[#E87932]" />
 
-              <p className="mt-6 text-base leading-8 text-white/60">
+              <p className="mt-6 text-sm leading-7 text-white/60 sm:text-base sm:leading-8">
                 Notre équipe d&apos;experts assure un suivi rigoureux de vos
                 finances pour vous permettre de prendre les meilleures
                 décisions.
@@ -417,10 +417,10 @@ export default function SuiviAssistanceComptableSection() {
       </section>
 
       {/* ═══ NOS ATOUTS ═══ */}
-      <section className="bg-white py-20 lg:py-28">
+      <section className="bg-white py-12 sm:py-20 lg:py-28">
         <div
           ref={strengthsRef}
-          className="mx-auto max-w-[1250px] px-6 lg:px-10"
+          className="mx-auto max-w-[1250px] px-5 sm:px-6 lg:px-10"
         >
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <motion.div
@@ -432,7 +432,7 @@ export default function SuiviAssistanceComptableSection() {
                 Nos engagements
               </span>
 
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0A1628] sm:text-4xl">
+              <h2 className="mt-3 text-2xl font-bold tracking-tight text-[#0A1628] sm:text-3xl lg:text-4xl">
                 Ce qui fait notre différence
               </h2>
 
@@ -491,13 +491,13 @@ export default function SuiviAssistanceComptableSection() {
       </section>
 
       {/* ═══ CTA ═══ */}
-      <section className="bg-[#F4F6F9] px-6 py-20 lg:px-10 lg:py-28">
+      <section className="bg-[#F4F6F9] px-5 py-12 sm:px-6 sm:py-20 lg:px-10 lg:py-28">
         <div ref={ctaRef} className="mx-auto max-w-[1400px]">
           <motion.div
             initial={{ opacity: 0, y: 50, scale: 0.97 }}
             animate={ctaInView ? { opacity: 1, y: 0, scale: 1 } : {}}
             transition={{ duration: 0.9, ease }}
-            className="relative overflow-hidden rounded-3xl bg-[#0A1628] px-7 py-16 text-center sm:px-12 lg:px-20 lg:py-20"
+            className="relative overflow-hidden rounded-2xl bg-[#0A1628] px-5 py-10 text-center sm:rounded-3xl sm:px-12 sm:py-16 lg:px-20 lg:py-20"
           >
             <motion.div
               animate={{ rotate: 360 }}
@@ -533,7 +533,7 @@ export default function SuiviAssistanceComptableSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={ctaInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.7, delay: 0.3, ease }}
-                className="mt-5 text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl"
+                className="mt-4 text-2xl font-bold leading-tight text-white sm:mt-5 sm:text-3xl lg:text-5xl"
               >
                 Confiez-nous votre comptabilité.
               </motion.h2>
@@ -542,7 +542,7 @@ export default function SuiviAssistanceComptableSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={ctaInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.7, delay: 0.45, ease }}
-                className="mx-auto mt-6 max-w-2xl text-base leading-8 text-white/65 sm:text-lg"
+                className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-white/65 sm:mt-6 sm:text-base sm:leading-8 lg:text-lg"
               >
                 Prenez rendez-vous pour un diagnostic gratuit de votre situation
                 comptable et découvrez comment nous pouvons vous accompagner.
@@ -552,11 +552,11 @@ export default function SuiviAssistanceComptableSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={ctaInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.7, delay: 0.6, ease }}
-                className="mt-9"
+                className="mt-6 sm:mt-9"
               >
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#E87932] px-8 py-4 text-sm font-bold text-white shadow-lg shadow-[#E87932]/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#f28b47] hover:shadow-xl hover:shadow-[#E87932]/30"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#E87932] px-6 py-3 sm:gap-3 sm:px-8 sm:py-4 text-sm font-bold text-white shadow-lg shadow-[#E87932]/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#f28b47] hover:shadow-xl hover:shadow-[#E87932]/30"
                 >
                   Demander un devis
                   <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />

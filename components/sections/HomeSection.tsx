@@ -325,7 +325,7 @@ const HomePage: FC = () => {
           });
         }}
         onMouseLeave={() => setSpotlight((s) => ({ ...s, active: false }))}
-        className="relative isolate flex min-h-[680px] items-center overflow-hidden bg-[#0A1628] pt-16 text-white"
+        className="relative isolate flex min-h-[480px] items-center overflow-hidden bg-[#0A1628] pt-16 text-white sm:min-h-[560px] lg:min-h-[680px]"
       >
         {/* Background crossfade */}
         <AnimatePresence>
@@ -400,12 +400,12 @@ const HomePage: FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15, duration: 0.6, ease }}
-                className="mb-5 inline-flex border-l-2 border-[#E87932] pl-3 text-xs font-bold uppercase tracking-[0.12em] text-orange-300"
+                className="mb-4 inline-flex border-l-2 border-[#E87932] pl-3 text-[10px] font-bold uppercase tracking-[0.12em] text-orange-300 sm:mb-5 sm:text-xs"
               >
                 {heroSlide.eyebrow}
               </motion.span>
 
-              <h1 className="mx-auto min-h-[48px] max-w-xl text-center text-4xl font-bold leading-tight sm:min-h-[60px] sm:text-5xl lg:min-h-[66px] lg:text-[58px]">
+              <h1 className="mx-auto min-h-[40px] max-w-xl text-center text-3xl font-bold leading-tight sm:min-h-[60px] sm:text-4xl md:text-5xl lg:min-h-[66px] lg:text-[58px]">
                 {heroSlide.title.split(" ").map((word, i) => (
                   <motion.span
                     key={i}
@@ -427,7 +427,7 @@ const HomePage: FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.6, ease }}
-                className="mx-auto mt-5 min-h-[56px] max-w-xl text-center text-base leading-relaxed text-white/80 sm:text-lg"
+                className="mx-auto mt-4 min-h-[48px] max-w-xl text-center text-sm leading-relaxed text-white/80 sm:mt-5 sm:min-h-[56px] sm:text-base lg:text-lg"
               >
                 {heroSlide.description}
               </motion.p>
@@ -436,7 +436,7 @@ const HomePage: FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.6, ease }}
-                className="mt-7 flex flex-col justify-center gap-3 sm:flex-row"
+                className="mt-6 flex flex-col justify-center gap-3 sm:mt-7 sm:flex-row"
               >
                 <Link
                   href={heroSlide.href}
@@ -507,13 +507,13 @@ const HomePage: FC = () => {
       </section>
 
       {/* ═══ PARTENAIRES ═══ */}
-      <section className="bg-[#F4F6F9] py-12">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-          <div className="partner-marquee flex w-max items-center gap-5">
+      <section className="overflow-hidden bg-[#F4F6F9] py-8 sm:py-12">
+        <div className="mx-auto max-w-[1400px] overflow-hidden px-5 sm:px-6 lg:px-10">
+          <div className="partner-marquee flex w-max items-center gap-3 sm:gap-5">
             {[...partners, ...partners].map((partner, index) => (
               <div
                 key={`${partner.name}-${index}`}
-                className="flex h-24 w-52 shrink-0 items-center justify-center rounded-[22px] bg-white px-6 shadow-[0_5px_20px_rgba(10,22,40,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_25px_rgba(10,22,40,0.08)]"
+                className="flex h-16 w-36 shrink-0 items-center justify-center rounded-xl bg-white px-3 shadow-[0_5px_20px_rgba(10,22,40,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_25px_rgba(10,22,40,0.08)] sm:h-24 sm:w-52 sm:rounded-[22px] sm:px-6"
               >
                 {partner.logoSrc ? (
                   <Image
@@ -521,10 +521,10 @@ const HomePage: FC = () => {
                     alt={partner.name}
                     width={160}
                     height={56}
-                    className="h-14 w-40 object-contain"
+                    className="h-10 w-28 object-contain sm:h-14 sm:w-40"
                   />
                 ) : (
-                  <span className="text-center text-base font-bold text-[#0A1628]">
+                  <span className="text-center text-xs font-bold text-[#0A1628] sm:text-base">
                     Santé <span className="text-[#E87932]">Horizon</span>
                   </span>
                 )}
@@ -535,10 +535,10 @@ const HomePage: FC = () => {
       </section>
 
       {/* ═══ QUI SOMMES-NOUS ═══ */}
-      <section className="bg-white py-16 lg:py-20">
+      <section className="bg-white py-12 sm:py-16 lg:py-20">
         <div
           ref={aboutRef}
-          className="mx-auto max-w-[1250px] px-6 text-center lg:px-10"
+          className="mx-auto max-w-[1250px] px-5 text-center sm:px-6 lg:px-10"
         >
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -553,7 +553,7 @@ const HomePage: FC = () => {
               initial={{ opacity: 0, y: 25 }}
               animate={aboutInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.15, duration: 0.7, ease }}
-              className="text-4xl font-extrabold tracking-tight text-[#0A1628] sm:text-5xl"
+              className="text-3xl font-extrabold tracking-tight text-[#0A1628] sm:text-4xl lg:text-5xl"
             >
               Qui sommes-nous ?
             </motion.h2>
@@ -570,7 +570,7 @@ const HomePage: FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={aboutInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.4, duration: 0.6, ease }}
-              className="mx-auto mt-7 max-w-none text-lg font-medium leading-relaxed text-[#334155] sm:text-xl"
+              className="mx-auto mt-5 max-w-none text-base font-medium leading-relaxed text-[#334155] sm:mt-7 sm:text-lg lg:text-xl"
             >
               Un partenaire engagé aux côtés des entreprises pour éclairer leurs
               décisions et accompagner leur développement.
@@ -594,7 +594,7 @@ const HomePage: FC = () => {
 
       {/* ═══ CHIFFRES CLÉS ═══ */}
       <section className="bg-white py-8 lg:py-10">
-        <div className="mx-auto grid max-w-[1100px] grid-cols-2 gap-x-6 gap-y-10 px-6 md:grid-cols-4 lg:px-10">
+        <div className="mx-auto grid max-w-[1100px] grid-cols-2 gap-x-4 gap-y-8 px-5 sm:gap-x-6 sm:gap-y-10 sm:px-6 md:grid-cols-4 lg:px-10">
           {[
             { value: "5+", label: "Projets réalisés" },
             { value: "10+", label: "Clients accompagnés" },
@@ -609,10 +609,10 @@ const HomePage: FC = () => {
               transition={{ duration: 0.6, delay: i * 0.1, ease }}
               className="text-center"
             >
-              <p className="text-4xl font-extrabold tracking-tight text-[#0A1628] lg:text-5xl">
+              <p className="text-3xl font-extrabold tracking-tight text-[#0A1628] sm:text-4xl lg:text-5xl">
                 {stat.value}
               </p>
-              <p className="mt-2 text-xs font-semibold uppercase tracking-wider text-[#E87932] sm:text-sm">
+              <p className="mt-1 text-[10px] font-semibold uppercase tracking-wider text-[#E87932] sm:mt-2 sm:text-xs md:text-sm">
                 {stat.label}
               </p>
             </motion.div>
@@ -621,8 +621,8 @@ const HomePage: FC = () => {
       </section>
 
       {/* ═══ NOS EXPERTISES ═══ */}
-      <section ref={servicesRef} className="bg-[#F4F6F9] py-16 lg:py-20">
-        <div className="mx-auto max-w-[1250px] px-6 lg:px-10">
+      <section ref={servicesRef} className="bg-[#F4F6F9] py-12 sm:py-16 lg:py-20">
+        <div className="mx-auto max-w-[1250px] px-5 sm:px-6 lg:px-10">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={servicesInView ? { opacity: 1, y: 0 } : {}}
@@ -633,7 +633,7 @@ const HomePage: FC = () => {
               Nos competences en votre service
             </p>
 
-            <h2 className="text-4xl font-extrabold tracking-tight text-[#0A1628] sm:text-5xl">
+            <h2 className="text-3xl font-extrabold tracking-tight text-[#0A1628] sm:text-4xl lg:text-5xl">
               Nos expertises
             </h2>
 
@@ -643,7 +643,7 @@ const HomePage: FC = () => {
             </p>
           </motion.div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-5 grid-cols-2 sm:gap-6 lg:grid-cols-4">
             {services.map((service, index) => (
               <ServiceTiltCard
                 key={service.title}
@@ -652,9 +652,9 @@ const HomePage: FC = () => {
               >
                 <Link
                   href={service.link}
-                  className="group flex min-h-[390px] flex-col items-center rounded-[22px] bg-white px-6 pb-7 pt-6 text-center shadow-[0_5px_20px_rgba(10,22,40,0.04)] transition-all duration-300 hover:bg-[#0A1628] hover:shadow-[0_16px_35px_rgba(10,22,40,0.20)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#E87932] motion-reduce:transition-none"
+                  className="group flex min-h-[320px] flex-col items-center rounded-2xl bg-white px-4 pb-5 pt-5 text-center shadow-[0_5px_20px_rgba(10,22,40,0.04)] transition-all duration-300 hover:bg-[#0A1628] hover:shadow-[0_16px_35px_rgba(10,22,40,0.20)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#E87932] motion-reduce:transition-none sm:min-h-[390px] sm:rounded-[22px] sm:px-6 sm:pb-7 sm:pt-6"
                 >
-                  <div className="mb-5 flex h-[165px] w-full items-center justify-center">
+                  <div className="mb-3 flex h-[120px] w-full items-center justify-center sm:mb-5 sm:h-[165px]">
                     <Image
                       src={service.imageSrc}
                       alt={service.title}
@@ -664,15 +664,15 @@ const HomePage: FC = () => {
                     />
                   </div>
 
-                  <h3 className="text-center text-lg font-bold text-[#0A1628] transition-colors duration-300 group-hover:text-white">
+                  <h3 className="text-center text-sm font-bold text-[#0A1628] transition-colors duration-300 group-hover:text-white sm:text-lg">
                     {service.title}
                   </h3>
 
-                  <p className="mt-3 text-center text-sm leading-6 text-[#64748B] transition-colors duration-300 group-hover:text-white/70">
+                  <p className="mt-2 hidden text-center text-sm leading-6 text-[#64748B] transition-colors duration-300 group-hover:text-white/70 sm:mt-3 sm:block">
                     {service.description}
                   </p>
 
-                  <span className="mt-auto inline-flex min-w-[125px] items-center justify-center gap-2 rounded-full bg-[#0A1628] px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-white transition-all duration-300 group-hover:bg-[#E87932]">
+                  <span className="mt-auto inline-flex items-center justify-center gap-1.5 rounded-full bg-[#0A1628] px-4 py-2 text-[10px] font-semibold uppercase tracking-wider text-white transition-all duration-300 group-hover:bg-[#E87932] sm:gap-2 sm:px-6 sm:py-2.5 sm:text-xs">
                     Découvrir
                     <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                   </span>
@@ -684,9 +684,9 @@ const HomePage: FC = () => {
       </section>
 
       {/* ═══ CAPESYS ═══ */}
-      <section className="bg-white py-16 lg:py-20">
-        <div ref={capesysRef} className="mx-auto max-w-[1250px] px-6 lg:px-10">
-          <div className="overflow-hidden rounded-[28px] bg-gradient-to-br from-[#0A1628] to-[#142B48] p-7 sm:p-10 lg:p-14">
+      <section className="bg-white py-12 sm:py-16 lg:py-20">
+        <div ref={capesysRef} className="mx-auto max-w-[1250px] px-5 sm:px-6 lg:px-10">
+          <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-[#0A1628] to-[#142B48] p-5 sm:rounded-[28px] sm:p-10 lg:p-14">
             <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
               <motion.div
                 initial={{ opacity: 0, x: -60 }}
@@ -707,7 +707,7 @@ const HomePage: FC = () => {
                   initial={{ opacity: 0, y: 30 }}
                   animate={capesysInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.3, duration: 0.7, ease }}
-                  className="text-3xl font-bold leading-tight text-white sm:text-4xl"
+                  className="text-2xl font-bold leading-tight text-white sm:text-3xl lg:text-4xl"
                 >
                   Pilotez votre station avec CAPESYS
                 </motion.h2>
@@ -807,8 +807,8 @@ const HomePage: FC = () => {
       </section>
 
       {/* ═══ NOTRE APPROCHE ═══ */}
-      <section ref={methodRef} className="bg-white py-16 lg:py-20">
-        <div className="mx-auto max-w-[1250px] px-6 lg:px-10">
+      <section ref={methodRef} className="bg-white py-12 sm:py-16 lg:py-20">
+        <div className="mx-auto max-w-[1250px] px-5 sm:px-6 lg:px-10">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={methodInView ? { opacity: 1, y: 0 } : {}}
@@ -819,7 +819,7 @@ const HomePage: FC = () => {
               Accompagnement sur mesure
             </p>
 
-            <h2 className="text-4xl font-extrabold tracking-tight text-[#0A1628] sm:text-5xl">
+            <h2 className="text-3xl font-extrabold tracking-tight text-[#0A1628] sm:text-4xl lg:text-5xl">
               Notre approche
             </h2>
 
@@ -831,7 +831,7 @@ const HomePage: FC = () => {
           </motion.div>
 
           {/* Methodology cards */}
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-6 sm:gap-10 lg:grid-cols-4">
             {methodology.map((step, index) => (
               <motion.div
                 key={step.number}
@@ -846,7 +846,7 @@ const HomePage: FC = () => {
               >
                 {/* Numéro */}
                 <div className="relative mx-auto mb-6 flex h-24 items-center justify-center">
-                  <span className="text-7xl font-black tracking-tighter text-[#DCE2EA] transition-colors duration-500 group-hover:text-[#FCE9DD]">
+                  <span className="text-5xl font-black tracking-tighter text-[#DCE2EA] transition-colors duration-500 group-hover:text-[#FCE9DD] sm:text-7xl">
                     {String(step.number).padStart(2, "0")}
                   </span>
 
@@ -854,12 +854,11 @@ const HomePage: FC = () => {
                 </div>
 
                 {/* Titre */}
-                <h3 className="text-lg font-bold text-[#0A1628] transition-colors duration-300 group-hover:text-[#E87932]">
+                <h3 className="text-base font-bold text-[#0A1628] transition-colors duration-300 group-hover:text-[#E87932] sm:text-lg">
                   {step.title}
                 </h3>
 
-                {/* Description */}
-                <p className="mx-auto mt-3 max-w-[260px] text-sm leading-7 text-[#64748B]">
+                <p className="mx-auto mt-2 max-w-[260px] text-xs leading-6 text-[#64748B] sm:mt-3 sm:text-sm sm:leading-7">
                   {step.description}
                 </p>
               </motion.div>
@@ -869,8 +868,8 @@ const HomePage: FC = () => {
       </section>
 
       {/* ═══ TÉMOIGNAGES ═══ */}
-      <section ref={testimonialsRef} className="bg-[#F4F6F9] py-16 lg:py-20">
-        <div className="mx-auto max-w-[1250px] px-6 lg:px-10">
+      <section ref={testimonialsRef} className="bg-[#F4F6F9] py-12 sm:py-16 lg:py-20">
+        <div className="mx-auto max-w-[1250px] px-5 sm:px-6 lg:px-10">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={testimonialsInView ? { opacity: 1, y: 0 } : {}}
@@ -881,7 +880,7 @@ const HomePage: FC = () => {
               Ils nous font confiance
             </p>
 
-            <h2 className="text-4xl font-extrabold tracking-tight text-[#0A1628] sm:text-5xl">
+            <h2 className="text-3xl font-extrabold tracking-tight text-[#0A1628] sm:text-4xl lg:text-5xl">
               Témoignages
             </h2>
 
@@ -891,7 +890,7 @@ const HomePage: FC = () => {
             </p>
           </motion.div>
 
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
             {testimonialsData.map((testimonial, index) => {
               const [role, company] = testimonial.position.split(", ");
               const initials = testimonial.name
@@ -918,7 +917,7 @@ const HomePage: FC = () => {
                       damping: 20,
                     },
                   }}
-                  className="group flex flex-col rounded-2xl border border-gray-100 bg-white px-7 pb-8 pt-6 shadow-[0_4px_20px_rgba(10,22,40,0.05)] transition-shadow duration-300 hover:shadow-[0_12px_30px_rgba(10,22,40,0.10)]"
+                  className="group flex flex-col rounded-2xl border border-gray-100 bg-white px-5 pb-6 pt-5 shadow-[0_4px_20px_rgba(10,22,40,0.05)] transition-shadow duration-300 hover:shadow-[0_12px_30px_rgba(10,22,40,0.10)] sm:px-7 sm:pb-8 sm:pt-6"
                 >
                   <motion.div
                     initial={{ scale: 0 }}
@@ -929,17 +928,17 @@ const HomePage: FC = () => {
                       damping: 15,
                       delay: 0.3 + index * 0.15,
                     }}
-                    className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#E87932] shadow-lg shadow-[#E87932]/25"
+                    className="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-[#E87932] shadow-lg shadow-[#E87932]/25 sm:h-14 sm:w-14"
                   >
-                    <Quote className="h-7 w-7 text-white" aria-hidden="true" />
+                    <Quote className="h-5 w-5 text-white sm:h-7 sm:w-7" aria-hidden="true" />
                   </motion.div>
 
-                  <blockquote className="mt-6 flex-1 text-justify text-[15px] leading-7 text-[#475569]">
+                  <blockquote className="mt-4 flex-1 text-justify text-sm leading-6 text-[#475569] sm:mt-6 sm:text-[15px] sm:leading-7">
                     {testimonial.content}
                   </blockquote>
 
                   <div className="mt-6 flex flex-col items-center text-center">
-                    <div className="flex h-20 w-20 items-center justify-center rounded-full border-[3px] border-[#E87932]/20 bg-[#0A1628] text-xl font-bold text-white">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-full border-[3px] border-[#E87932]/20 bg-[#0A1628] text-lg font-bold text-white sm:h-20 sm:w-20 sm:text-xl">
                       {initials}
                     </div>
 
@@ -978,8 +977,8 @@ const HomePage: FC = () => {
       </section>
 
       {/* ═══ ACTUALITÉS ═══ */}
-      <section className="bg-[#F4F6F9] py-16 lg:py-20">
-        <div ref={articlesRef} className="mx-auto max-w-[1400px] px-6 lg:px-10">
+      <section className="bg-[#F4F6F9] py-12 sm:py-16 lg:py-20">
+        <div ref={articlesRef} className="mx-auto max-w-[1400px] px-5 sm:px-6 lg:px-10">
           {/* En-tête */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -991,7 +990,7 @@ const HomePage: FC = () => {
               Actualités &amp; publications
             </p>
 
-            <h2 className="text-4xl font-extrabold tracking-tight text-[#0A1628] sm:text-5xl">
+            <h2 className="text-3xl font-extrabold tracking-tight text-[#0A1628] sm:text-4xl lg:text-5xl">
               Nos actualités
             </h2>
 
@@ -1011,7 +1010,7 @@ const HomePage: FC = () => {
           </motion.div>
 
           {/* Cartes des articles */}
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
             {articles.map((article, i) => (
               <motion.article
                 key={article.title}
@@ -1033,28 +1032,28 @@ const HomePage: FC = () => {
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
 
-                  <span className="absolute right-3 top-3 rounded-md bg-[#E87932] px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white">
+                  <span className="absolute right-2 top-2 rounded-md bg-[#E87932] px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white sm:right-3 sm:top-3 sm:px-3 sm:py-1 sm:text-[11px]">
                     {article.category}
                   </span>
                 </div>
 
-                <div className="flex flex-1 flex-col px-5 pb-5 pt-5">
-                  <h3 className="text-base font-bold leading-snug text-[#0A1628] transition-colors group-hover:text-[#E87932]">
+                <div className="flex flex-1 flex-col px-3 pb-3 pt-3 sm:px-5 sm:pb-5 sm:pt-5">
+                  <h3 className="text-xs font-bold leading-snug text-[#0A1628] transition-colors group-hover:text-[#E87932] sm:text-base">
                     {article.title}
                   </h3>
 
-                  <p className="mt-3 text-sm leading-relaxed text-[#64748B]">
+                  <p className="mt-2 hidden text-sm leading-relaxed text-[#64748B] sm:mt-3 sm:block">
                     {article.excerpt}
                   </p>
 
                   <Link
                     href="/actualites"
-                    className="mt-4 inline-flex items-center text-sm font-bold text-[#0A1628] transition-colors hover:text-[#E87932]"
+                    className="mt-2 inline-flex items-center text-xs font-bold text-[#0A1628] transition-colors hover:text-[#E87932] sm:mt-4 sm:text-sm"
                   >
                     Lire plus &raquo;
                   </Link>
 
-                  <div className="mt-auto border-t border-gray-100 pt-4 text-xs text-[#E87932]">
+                  <div className="mt-auto border-t border-gray-100 pt-2 text-[9px] text-[#E87932] sm:pt-4 sm:text-xs">
                     <time>{article.date}</time>
                     <span className="mx-2">•</span>
                     <span>Aucun commentaire</span>
@@ -1083,13 +1082,13 @@ const HomePage: FC = () => {
       </section>
 
       {/* ═══ CTA FINAL ═══ */}
-      <section className="bg-[#F4F6F9] py-16 lg:py-20">
-        <div ref={ctaRef} className="mx-auto max-w-[1250px] px-6 lg:px-10">
+      <section className="bg-[#F4F6F9] py-12 sm:py-16 lg:py-20">
+        <div ref={ctaRef} className="mx-auto max-w-[1250px] px-5 sm:px-6 lg:px-10">
           <motion.div
             initial={{ opacity: 0, y: 50, scale: 0.97 }}
             animate={ctaInView ? { opacity: 1, y: 0, scale: 1 } : {}}
             transition={{ duration: 0.8, ease }}
-            className="relative overflow-hidden rounded-[28px] bg-[#0A1628] px-7 py-14 text-center sm:px-12 lg:px-16 lg:py-16"
+            className="relative overflow-hidden rounded-2xl bg-[#0A1628] px-5 py-10 text-center sm:rounded-[28px] sm:px-12 sm:py-14 lg:px-16 lg:py-16"
           >
             {/* Animated floating orbs */}
             <motion.div
@@ -1125,7 +1124,7 @@ const HomePage: FC = () => {
                   initial={{ opacity: 0, y: 30 }}
                   animate={ctaInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.4, duration: 0.7, ease }}
-                  className="mt-4 text-center text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-[42px]"
+                  className="mt-4 text-center text-2xl font-bold leading-tight text-white sm:text-3xl lg:text-[42px]"
                 >
                   Donnons à vos projets les moyens d&apos;aller plus loin.
                 </motion.h2>

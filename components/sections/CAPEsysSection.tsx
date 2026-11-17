@@ -191,7 +191,7 @@ const CAPEsysSection: FC = () => {
   return (
     <main className="min-h-screen bg-white">
       {/* ═══ HERO ═══ */}
-      <section className="relative flex min-h-[300px] items-center justify-center overflow-hidden bg-[#0A1628] pt-16">
+      <section className="relative flex min-h-[220px] items-center justify-center overflow-hidden bg-[#0A1628] pt-16 sm:min-h-[300px]">
         <div className="absolute inset-0 opacity-20">
           <svg
             className="h-full w-full"
@@ -231,12 +231,12 @@ const CAPEsysSection: FC = () => {
         <div className="absolute -right-32 top-10 h-72 w-72 rounded-full border border-white/5" />
         <div className="absolute -right-16 top-24 h-48 w-48 rounded-full border border-[#E87932]/10" />
 
-        <div className="relative py-16 text-center">
+        <div className="relative px-5 py-10 text-center sm:py-16">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease }}
-            className="text-4xl font-extrabold uppercase tracking-wider text-white sm:text-5xl lg:text-6xl"
+            className="text-3xl font-extrabold uppercase tracking-wider text-white sm:text-5xl lg:text-6xl"
           >
             CAPE<span className="text-[#E87932]">SYS</span>
           </motion.h1>
@@ -260,24 +260,24 @@ const CAPEsysSection: FC = () => {
       </section>
 
       {/* ═══ INTRO — VOTRE RÉSEAU, VOS DONNÉES, VOS DÉCISIONS ═══ */}
-      <section className="relative bg-white py-16 lg:py-20">
+      <section className="relative bg-white py-12 sm:py-16 lg:py-20">
         <div className="absolute inset-0 bg-[url('/images/capesys-background.png')] bg-cover bg-center opacity-10" />
-        <div className="relative mx-auto max-w-[1250px] px-6 text-center lg:px-10">
+        <div className="relative mx-auto max-w-[1250px] px-5 text-center sm:px-6 lg:px-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease }}
           >
-            <h2 className="text-3xl font-extrabold leading-tight text-[#0A1628] sm:text-4xl lg:text-5xl">
+            <h2 className="text-2xl font-extrabold leading-tight text-[#0A1628] sm:text-3xl md:text-4xl lg:text-5xl">
               Votre Réseau
-              <span className="mx-3 text-[#E87932]">-</span>
+              <span className="mx-1 text-[#E87932] sm:mx-3">-</span>
               <span className="text-[#E87932]">Vos Données</span>
-              <span className="mx-3 text-[#E87932]">-</span>
+              <span className="mx-1 text-[#E87932] sm:mx-3">-</span>
               <span className="text-[#0A1628]">Vos Décisions</span>
             </h2>
 
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[#64748B]">
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-[#64748B] sm:mt-6 sm:text-lg">
               CAPESYS : La plateforme digitale pour piloter votre réseau de
               stations-service en temps réel.
             </p>
@@ -301,7 +301,7 @@ const CAPEsysSection: FC = () => {
             />
           </motion.div>
 
-          <div className="mx-auto mt-12 grid max-w-3xl gap-6 sm:grid-cols-3">
+          <div className="mx-auto mt-8 grid max-w-3xl grid-cols-3 gap-4 sm:mt-12 sm:gap-6">
             {pillars.map((pillar, i) => (
               <motion.div
                 key={pillar.title}
@@ -315,15 +315,15 @@ const CAPEsysSection: FC = () => {
                 }}
                 className="flex flex-col items-center text-center"
               >
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#E87932]">
-                  <pillar.icon className="h-7 w-7 text-white" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#E87932] sm:h-16 sm:w-16">
+                  <pillar.icon className="h-5 w-5 text-white sm:h-7 sm:w-7" />
                 </div>
 
-                <p className="mt-3 text-lg font-extrabold uppercase text-[#0A1628]">
+                <p className="mt-2 text-sm font-extrabold uppercase text-[#0A1628] sm:mt-3 sm:text-lg">
                   {pillar.title}
                 </p>
 
-                <p className="text-sm text-[#64748B]">{pillar.subtitle}</p>
+                <p className="text-xs text-[#64748B] sm:text-sm">{pillar.subtitle}</p>
               </motion.div>
             ))}
           </div>
@@ -331,22 +331,22 @@ const CAPEsysSection: FC = () => {
       </section>
 
       {/* ═══ CONTEXTE & ENJEUX ═══ */}
-      <section className="relative bg-[#E87932] py-16 lg:py-20">
+      <section className="relative bg-[#E87932] py-12 sm:py-16 lg:py-20">
         <div className="absolute inset-0 bg-[url('/images/capesys-background.png')] bg-cover bg-center opacity-5" />
         <div
           ref={contextRef}
-          className="relative mx-auto max-w-[900px] px-6 text-center lg:px-10"
+          className="relative mx-auto max-w-[900px] px-5 text-center sm:px-6 lg:px-10"
         >
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={contextInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease }}
           >
-            <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
+            <h2 className="text-2xl font-extrabold text-white sm:text-3xl lg:text-4xl">
               Contexte & Enjeux
             </h2>
 
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/90">
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-white/90 sm:mt-5 sm:text-base">
               Gérer un réseau de stations-service exige aujourd&apos;hui une
               maîtrise précise des flux, des stocks, des ventes et des finances,
               avec une visibilité en temps réel sur l&apos;ensemble des
@@ -355,7 +355,7 @@ const CAPEsysSection: FC = () => {
             </p>
           </motion.div>
 
-          <div className="mx-auto mt-8 max-w-2xl space-y-4 text-left">
+          <div className="mx-auto mt-6 max-w-2xl space-y-3 text-left sm:mt-8 sm:space-y-4">
             {challenges.map((item, i) => (
               <motion.div
                 key={i}
@@ -366,11 +366,11 @@ const CAPEsysSection: FC = () => {
                   duration: 0.5,
                   ease,
                 }}
-                className="flex items-start gap-3"
+                className="flex items-start gap-2 sm:gap-3"
               >
-                <ArrowRight className="mt-1 h-5 w-5 shrink-0 text-[#0A1628]" />
+                <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-[#0A1628] sm:mt-1 sm:h-5 sm:w-5" />
 
-                <p className="text-sm leading-relaxed text-white/90">{item}</p>
+                <p className="text-xs leading-relaxed text-white/90 sm:text-sm">{item}</p>
               </motion.div>
             ))}
           </div>
@@ -379,9 +379,9 @@ const CAPEsysSection: FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={contextInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.6, duration: 0.7, ease }}
-            className="mx-auto mt-10 max-w-2xl rounded-2xl bg-[#0A1628]/20 p-6"
+            className="mx-auto mt-8 max-w-2xl rounded-xl bg-[#0A1628]/20 p-4 sm:mt-10 sm:rounded-2xl sm:p-6"
           >
-            <p className="text-lg font-bold leading-relaxed text-white">
+            <p className="text-base font-bold leading-relaxed text-white sm:text-lg">
               <span className="font-extrabold">
                 CAPE<span className="text-[#0A1628]">SYS</span>
               </span>{" "}
@@ -393,31 +393,31 @@ const CAPEsysSection: FC = () => {
       </section>
 
       {/* ═══ QUI SOMMES-NOUS ═══ */}
-      <section className="relative bg-white py-16 lg:py-20">
+      <section className="relative bg-white py-12 sm:py-16 lg:py-20">
         <div className="absolute inset-0 bg-[url('/images/capesys-background.png')] bg-cover bg-center opacity-5" />
-        <div className="relative mx-auto max-w-[1250px] px-6 text-center lg:px-10">
-          <h2 className="text-3xl font-extrabold text-[#0A1628] sm:text-4xl">
+        <div className="relative mx-auto max-w-[1250px] px-5 text-center sm:px-6 lg:px-10">
+          <h2 className="text-2xl font-extrabold text-[#0A1628] sm:text-3xl lg:text-4xl">
             Qui sommes-nous ?
           </h2>
 
-          <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-[#64748B]">
+          <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-[#64748B] sm:mt-5 sm:text-base">
             CAPESYS est une solution développée par Capital Analysis, cabinet de
             conseil financier & IT. Nous accompagnons les entreprises dans la
             transformation de leurs activités grâce à une approche combinant
             expertise métier, technologie et conseil.
           </p>
 
-          <div className="mx-auto mt-10 flex justify-center">
+          <div className="mx-auto mt-8 flex justify-center sm:mt-10">
             <Image
               src="/images/capital-analysis.png"
               alt="Capital Analysis"
               width={200}
               height={200}
-              className="h-auto w-40 rounded-full object-cover"
+              className="h-auto w-28 rounded-full object-cover sm:w-40"
             />
           </div>
 
-          <div className="mx-auto mt-10 grid max-w-3xl gap-5 text-left sm:grid-cols-2">
+          <div className="mx-auto mt-8 grid max-w-3xl gap-4 text-left sm:mt-10 sm:grid-cols-2 sm:gap-5">
             {[
               {
                 title: "Ingénierie financière",
@@ -451,13 +451,13 @@ const CAPEsysSection: FC = () => {
       </section>
 
       {/* ═══ PLATEFORME — CENTRALISER ET PILOTER ═══ */}
-      <section className="relative bg-[#E87932] py-16 lg:py-20">
+      <section className="relative bg-[#E87932] py-12 sm:py-16 lg:py-20">
         <div className="absolute inset-0 bg-[url('/images/capesys-background.png')] bg-cover bg-center opacity-5" />
         <div
           ref={platformRef}
-          className="relative mx-auto max-w-[1250px] px-6 lg:px-10"
+          className="relative mx-auto max-w-[1250px] px-5 sm:px-6 lg:px-10"
         >
-          <div className="grid items-center gap-10 lg:grid-cols-[1fr_1fr]">
+          <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-[1fr_1fr]">
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               animate={platformInView ? { opacity: 1, x: 0 } : {}}
@@ -478,18 +478,18 @@ const CAPEsysSection: FC = () => {
               animate={platformInView ? { opacity: 1, x: 0 } : {}}
               transition={{ delay: 0.2, duration: 0.7, ease }}
             >
-              <h2 className="text-3xl font-extrabold uppercase text-[#0A1628] sm:text-4xl">
+              <h2 className="text-2xl font-extrabold uppercase text-[#0A1628] sm:text-3xl lg:text-4xl">
                 CAPE<span className="text-white">SYS</span>
               </h2>
 
-              <p className="mt-4 text-lg leading-relaxed text-white">
+              <p className="mt-3 text-base leading-relaxed text-white sm:mt-4 sm:text-lg">
                 Centraliser et piloter l&apos;ensemble de vos stations-service
                 depuis une plateforme unique.
               </p>
             </motion.div>
           </div>
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-2">
+          <div className="mt-8 grid gap-3 sm:mt-10 sm:grid-cols-2 sm:gap-4">
             {platformFeatures.map((feature, i) => (
               <motion.div
                 key={i}
@@ -500,11 +500,11 @@ const CAPEsysSection: FC = () => {
                   duration: 0.5,
                   ease,
                 }}
-                className="flex items-start gap-3 rounded-xl bg-white/10 px-5 py-4"
+                className="flex items-start gap-2 rounded-lg bg-white/10 px-4 py-3 sm:gap-3 sm:rounded-xl sm:px-5 sm:py-4"
               >
-                <ArrowRight className="mt-0.5 h-5 w-5 shrink-0 text-[#0A1628]" />
+                <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-[#0A1628] sm:h-5 sm:w-5" />
 
-                <p className="text-sm leading-relaxed text-white/95">
+                <p className="text-xs leading-relaxed text-white/95 sm:text-sm">
                   {feature}
                 </p>
               </motion.div>
@@ -514,19 +514,19 @@ const CAPEsysSection: FC = () => {
       </section>
 
       {/* ═══ CLÔTURE JOURNALIÈRE ═══ */}
-      <section className="relative bg-white py-16 lg:py-20">
+      <section className="relative bg-white py-12 sm:py-16 lg:py-20">
         <div className="absolute inset-0 bg-[url('/images/capesys-background.png')] bg-cover bg-center opacity-5" />
         <div
           ref={shiftRef}
-          className="relative mx-auto max-w-[1250px] px-6 lg:px-10"
+          className="relative mx-auto max-w-[1250px] px-5 sm:px-6 lg:px-10"
         >
-          <div className="grid items-center gap-10 lg:grid-cols-2">
+          <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-2">
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               animate={shiftInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.7, ease }}
             >
-              <h2 className="text-3xl font-extrabold text-[#0A1628] sm:text-4xl">
+              <h2 className="text-2xl font-extrabold text-[#0A1628] sm:text-3xl lg:text-4xl">
                 De l&apos;ouverture à la clôture,
                 <br />
                 <span className="text-[#E87932]">gardez le contrôle.</span>
@@ -579,19 +579,19 @@ const CAPEsysSection: FC = () => {
       </section>
 
       {/* ═══ COMPTABILITÉ INTÉGRÉE ═══ */}
-      <section className="relative bg-[#F4F6F9] py-16 lg:py-20">
+      <section className="relative bg-[#F4F6F9] py-12 sm:py-16 lg:py-20">
         <div className="absolute inset-0 bg-[url('/images/capesys-background.png')] bg-cover bg-center opacity-5" />
         <div
           ref={accountingRef}
-          className="relative mx-auto max-w-[1250px] px-6 lg:px-10"
+          className="relative mx-auto max-w-[1250px] px-5 sm:px-6 lg:px-10"
         >
-          <div className="grid items-center gap-10 lg:grid-cols-2">
+          <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-2">
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               animate={accountingInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.7, ease }}
             >
-              <h2 className="text-3xl font-extrabold text-[#0A1628] sm:text-4xl">
+              <h2 className="text-2xl font-extrabold text-[#0A1628] sm:text-3xl lg:text-4xl">
                 Votre exploitation et votre comptabilité,
                 <br />
                 <span className="text-[#E87932]">au même endroit.</span>
@@ -648,18 +648,18 @@ const CAPEsysSection: FC = () => {
       </section>
 
       {/* ═══ RAPPORTS ═══ */}
-      <section className="relative bg-[#E87932] py-16 lg:py-20">
+      <section className="relative bg-[#E87932] py-12 sm:py-16 lg:py-20">
         <div className="absolute inset-0 bg-[url('/images/capesys-background.png')] bg-cover bg-center opacity-5" />
         <div
           ref={reportRef}
-          className="relative mx-auto max-w-[900px] px-6 text-center lg:px-10"
+          className="relative mx-auto max-w-[900px] px-5 text-center sm:px-6 lg:px-10"
         >
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={reportInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease }}
           >
-            <h2 className="text-3xl font-extrabold text-[#0A1628] sm:text-4xl">
+            <h2 className="text-2xl font-extrabold text-[#0A1628] sm:text-3xl lg:text-4xl">
               Tous vos rapports,{" "}
               <span className="text-white">prêts à être exploités.</span>
             </h2>
@@ -709,13 +709,13 @@ const CAPEsysSection: FC = () => {
       </section>
 
       {/* ═══ IA PRÉDICTIVE ═══ */}
-      <section className="relative bg-[#0A1628] py-16 lg:py-20">
+      <section className="relative bg-[#0A1628] py-12 sm:py-16 lg:py-20">
         <div className="absolute inset-0 bg-[url('/images/capesys-background.png')] bg-cover bg-center opacity-5" />
         <div
           ref={aiRef}
-          className="relative mx-auto max-w-[1250px] px-6 lg:px-10"
+          className="relative mx-auto max-w-[1250px] px-5 sm:px-6 lg:px-10"
         >
-          <div className="grid items-center gap-10 lg:grid-cols-2">
+          <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-2">
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               animate={aiInView ? { opacity: 1, x: 0 } : {}}
@@ -736,7 +736,7 @@ const CAPEsysSection: FC = () => {
               animate={aiInView ? { opacity: 1, x: 0 } : {}}
               transition={{ delay: 0.15, duration: 0.7, ease }}
             >
-              <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
+              <h2 className="text-2xl font-extrabold text-white sm:text-3xl lg:text-4xl">
                 Ne vous contentez plus de suivre vos stocks.
                 <br />
                 <span className="text-[#E87932]">Anticipez vos besoins.</span>
@@ -749,7 +749,7 @@ const CAPEsysSection: FC = () => {
                 réapprovisionnements.
               </p>
 
-              <div className="mt-8 space-y-4">
+              <div className="mt-6 space-y-3 sm:mt-8 sm:space-y-4">
                 {aiFeatures.map((feature, i) => (
                   <motion.div
                     key={feature.title}
@@ -760,11 +760,11 @@ const CAPEsysSection: FC = () => {
                       duration: 0.6,
                       ease,
                     }}
-                    className="rounded-xl border border-white/10 bg-white/5 p-5"
+                    className="rounded-lg border border-white/10 bg-white/5 p-4 sm:rounded-xl sm:p-5"
                   >
-                    <div className="flex items-start gap-4">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#E87932]">
-                        <Sparkles className="h-5 w-5 text-white" />
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#E87932] sm:h-10 sm:w-10">
+                        <Sparkles className="h-4 w-4 text-white sm:h-5 sm:w-5" />
                       </div>
 
                       <div>
@@ -786,17 +786,17 @@ const CAPEsysSection: FC = () => {
       </section>
 
       {/* ═══ POURQUOI CAPESYS ═══ */}
-      <section className="relative bg-[#F4F6F9] py-16 lg:py-20">
+      <section className="relative bg-[#F4F6F9] py-12 sm:py-16 lg:py-20">
         <div className="absolute inset-0 bg-[url('/images/capesys-background.png')] bg-cover bg-center opacity-5" />
         <div
           ref={whyRef}
-          className="relative mx-auto max-w-[1250px] px-6 lg:px-10"
+          className="relative mx-auto max-w-[1250px] px-5 sm:px-6 lg:px-10"
         >
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             animate={whyInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease }}
-            className="text-center text-3xl font-extrabold text-[#0A1628] sm:text-4xl"
+            className="text-center text-2xl font-extrabold text-[#0A1628] sm:text-3xl lg:text-4xl"
           >
             Pourquoi choisir CAPE<span className="text-[#E87932]">SYS</span> ?
           </motion.h2>
@@ -829,23 +829,23 @@ const CAPEsysSection: FC = () => {
             ))}
           </div>
 
-          <div className="mt-14">
-            <h3 className="text-center text-2xl font-extrabold text-[#0A1628] sm:text-3xl">
+          <div className="mt-10 sm:mt-14">
+            <h3 className="text-center text-xl font-extrabold text-[#0A1628] sm:text-2xl lg:text-3xl">
               Clients déjà actifs :
             </h3>
 
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-6">
+            <div className="mt-6 grid grid-cols-2 gap-4 sm:mt-8 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-6">
               {clients.map((client) => (
                 <div
                   key={client.name}
-                  className="flex h-24 w-40 items-center justify-center rounded-2xl bg-white px-4 shadow-sm"
+                  className="flex h-16 items-center justify-center rounded-xl bg-white px-3 shadow-sm sm:h-24 sm:w-40 sm:rounded-2xl sm:px-4"
                 >
                   <Image
                     src={client.logoSrc}
                     alt={client.name}
                     width={120}
                     height={60}
-                    className="h-14 w-full object-contain"
+                    className="h-10 w-full object-contain sm:h-14"
                   />
                 </div>
               ))}
@@ -855,19 +855,19 @@ const CAPEsysSection: FC = () => {
       </section>
 
       {/* ═══ OFFRES & MODALITÉS ═══ */}
-      <section className="relative bg-[#E87932] py-16 lg:py-20">
+      <section className="relative bg-[#E87932] py-12 sm:py-16 lg:py-20">
         <div className="absolute inset-0 bg-[url('/images/capesys-background.png')] bg-cover bg-center opacity-5" />
         <div
           ref={offerRef}
-          className="relative mx-auto max-w-[1250px] px-6 lg:px-10"
+          className="relative mx-auto max-w-[1250px] px-5 sm:px-6 lg:px-10"
         >
-          <div className="grid items-center gap-10 lg:grid-cols-2">
+          <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-2">
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               animate={offerInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.7, ease }}
             >
-              <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
+              <h2 className="text-2xl font-extrabold text-white sm:text-3xl lg:text-4xl">
                 Offres & modalités
               </h2>
 
@@ -911,24 +911,24 @@ const CAPEsysSection: FC = () => {
       </section>
 
       {/* ═══ ESSAI GRATUIT — CTA ═══ */}
-      <section className="relative bg-[#0A1628] py-16 lg:py-24">
+      <section className="relative bg-[#0A1628] py-12 sm:py-16 lg:py-24">
         <div className="absolute inset-0 bg-[url('/images/capesys-background.png')] bg-cover bg-center opacity-5" />
         <div
           ref={trialRef}
-          className="relative mx-auto max-w-[1250px] px-6 text-center lg:px-10"
+          className="relative mx-auto max-w-[1250px] px-5 text-center sm:px-6 lg:px-10"
         >
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={trialInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease }}
           >
-            <h2 className="text-3xl font-extrabold text-white sm:text-4xl lg:text-5xl">
+            <h2 className="text-2xl font-extrabold text-white sm:text-3xl md:text-4xl lg:text-5xl">
               Obtenez un essai gratuit
               <br />
               sans engagement
             </h2>
 
-            <p className="mt-4 text-lg text-[#E87932]">
+            <p className="mt-3 text-base text-[#E87932] sm:mt-4 sm:text-lg">
               30 jours jusqu&apos;à 2 stations
             </p>
 
@@ -945,7 +945,7 @@ const CAPEsysSection: FC = () => {
             </p>
           </motion.div>
 
-          <div className="mx-auto mt-10 grid max-w-2xl gap-6 sm:grid-cols-3">
+          <div className="mx-auto mt-8 grid max-w-2xl grid-cols-3 gap-4 sm:mt-10 sm:gap-6">
             {[
               {
                 icon: Star,
@@ -974,15 +974,15 @@ const CAPEsysSection: FC = () => {
                 }}
                 className="flex flex-col items-center text-center"
               >
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#E87932]">
-                  <item.icon className="h-6 w-6 text-white" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#E87932] sm:h-14 sm:w-14">
+                  <item.icon className="h-5 w-5 text-white sm:h-6 sm:w-6" />
                 </div>
 
-                <p className="mt-3 text-sm font-extrabold uppercase text-white">
+                <p className="mt-2 text-xs font-extrabold uppercase text-white sm:mt-3 sm:text-sm">
                   {item.title}
                 </p>
 
-                <p className="text-xs text-white/70">{item.subtitle}</p>
+                <p className="text-[10px] text-white/70 sm:text-xs">{item.subtitle}</p>
               </motion.div>
             ))}
           </div>
@@ -991,13 +991,13 @@ const CAPEsysSection: FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={trialInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.7, duration: 0.6, ease }}
-            className="mt-10 space-y-1"
+            className="mt-8 space-y-1 sm:mt-10"
           >
-            <p className="text-2xl font-bold text-white">+227 97 40 00 12</p>
+            <p className="text-xl font-bold text-white sm:text-2xl">+227 97 40 00 12</p>
 
-            <p className="text-2xl font-bold text-white">+216 53 414 178</p>
+            <p className="text-xl font-bold text-white sm:text-2xl">+216 53 414 178</p>
 
-            <p className="mt-2 text-sm text-white/60">
+            <p className="mt-2 text-xs text-white/60 sm:text-sm">
               capesys.capital-analysis.com
             </p>
           </motion.div>
@@ -1006,11 +1006,11 @@ const CAPEsysSection: FC = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={trialInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ delay: 0.8, duration: 0.6, ease }}
-            className="mt-8 flex flex-col justify-center gap-3 sm:flex-row"
+            className="mt-6 flex flex-col justify-center gap-3 sm:mt-8 sm:flex-row"
           >
             <Link
               href="/contact"
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#E87932] px-8 py-4 text-sm font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#D56827]"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#E87932] px-6 py-3 text-sm font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#D56827] sm:px-8 sm:py-4"
             >
               Demander un essai gratuit
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -1018,7 +1018,7 @@ const CAPEsysSection: FC = () => {
 
             <a
               href="tel:+22797400012"
-              className="inline-flex items-center justify-center rounded-full border border-white/25 px-8 py-4 text-sm font-bold text-white transition-colors hover:bg-white/10"
+              className="inline-flex items-center justify-center rounded-full border border-white/25 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10 sm:px-8 sm:py-4"
             >
               Parler à un conseiller
             </a>
