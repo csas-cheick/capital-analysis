@@ -1,9 +1,34 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./data/**/*.{js,ts,jsx,tsx,mdx}",
+    "./hooks/**/*.{js,ts,jsx,tsx,mdx}",
+    "./lib/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        blob: {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+          "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+        },
+        gradient: {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
+      },
+      animation: {
+        blob: "blob 8s infinite ease-in-out",
+        gradient: "gradient 4s ease infinite",
+      },
+      backgroundSize: {
+        "gradient-200": "200% auto",
+      },
+    },
   },
   plugins: [],
 };
